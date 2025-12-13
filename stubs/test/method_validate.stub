@@ -1,0 +1,6 @@
+    public function validData(): array
+    {
+        return [
+            {{ data }}
+        ];
+    }

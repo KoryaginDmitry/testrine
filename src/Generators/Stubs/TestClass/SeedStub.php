@@ -1,0 +1,30 @@
+<?php
+
+declare(strict_types=1);
+
+namespace DkDev\Testrine\Generators\Stubs\TestClass;
+
+use DkDev\Testrine\Contracts\SeedContract;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+
+class SeedStub extends TestClassStub
+{
+    public function getStubPath(): string
+    {
+        return 'test.method_seed';
+    }
+
+    /**
+     * @throws FileNotFoundException
+     */
+    public function getReplacementValue(): string
+    {
+        return $this->getStub();
+    }
+
+    public function needUse(): bool
+    {
+        return $this->hasContract(contract: SeedContract::class);
+    }
+}

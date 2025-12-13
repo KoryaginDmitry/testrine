@@ -1,0 +1,6 @@
+    public function invalidParameters(): array
+    {
+        return [
+            {{ parameters }}
+        ];
+    }

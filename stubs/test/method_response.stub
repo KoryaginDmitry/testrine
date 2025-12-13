@@ -1,0 +1,6 @@
+    public function getResponseStructure(): array
+    {
+        return [
+            {{ resource_keys }}
+        ];
+    }

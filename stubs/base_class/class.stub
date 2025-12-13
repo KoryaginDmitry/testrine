@@ -1,0 +1,77 @@
+<?php
+
+namespace Tests\Feature\{{ group }};
+
+use Illuminate\Testing\TestResponse;
+use DkDev\Testrine\BaseTestrineCase;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Queue;
+use DkDev\Testrine\Contracts\DocIgnoreContract;
+use DkDev\Testrine\Contracts\JobContract;
+use DkDev\Testrine\Contracts\NotificationContract;
+use DkDev\Testrine\Contracts\InvalidateContract;
+use DkDev\Testrine\Contracts\InvalidParametersContract;
+use DkDev\Testrine\Parser\TestParser;
+use DkDev\Testrine\Helpers\Config;
+use DkDev\Testrine\Hooks\AssertHook;
+use DkDev\Testrine\Hooks\CodeHook;
+use DkDev\Testrine\Hooks\InvalidateHook;
+use DkDev\Testrine\Hooks\InvalidDataCodeHook;
+use DkDev\Testrine\Hooks\InvalidParametersCodeHook;
+use DkDev\Testrine\Hooks\InvalidParametersHook;
+use DkDev\Testrine\Hooks\JobHook;
+use DkDev\Testrine\Hooks\MockHook;
+use DkDev\Testrine\Hooks\NotifyHook;
+use DkDev\Testrine\Hooks\ParametersHook;
+use DkDev\Testrine\Hooks\ResponseHook;
+use DkDev\Testrine\Hooks\SeedHook;
+use DkDev\Testrine\Hooks\ValidateHook;
+
+abstract class {{ class_name }} extends BaseTestrineCase
+{
+    public function getGroupName(): string
+    {
+        return '{{ group }}';
+    }
+
+    private function callRouteAction(array $data = [], array $parameters = []): TestResponse
+    {
+        $route = $this->getRouteByName();
+        $method = $route->methods()[0];
+        $uri = route(name: $this->getRouteName(), parameters: $parameters);
+
+        if ($this->implements(contract: JobContract::class)) {
+           Queue::fake();
+        }
+
+        if ($this->implements(contract: NotificationContract::class)) {
+           Notification::fake();
+        }
+
+        $this->executeHook(hook: SeedHook::class);
+        $this->executeHook(hook: MockHook::class);
+
+        $testResponse = $this->json(method: $method, uri: $uri, data: $data);
+
+        if (Config::getGroupValue(group: $this->getGroupName(), key: 'document') && ! $this->implements(contract: DocIgnoreContract::class)) {
+            TestParser::make()->makeAutoDoc(response: $testResponse);
+        }
+
+        return $testResponse;
+    }
+
+    {{ route_actions }}
+
+    {{ test_from_auth_users }}
+
+    public function testMiddleware(): void
+    {
+        $this->assertRouteHasExactMiddleware(
+            names: $this->getMiddleware()
+        );
+    }
+
+    {{ send_not_valid_data }}
+
+    {{ send_invalid_parameters }}
+}

@@ -1,0 +1,9 @@
+public function getRouteName(): string
+    {
+        return '{{ route }}';
+    }
+
+    public function getMiddleware(): array
+    {
+        return [{{ middleware }}];
+    }

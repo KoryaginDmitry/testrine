@@ -1,0 +1,10 @@
+<?php
+
+namespace {{ namespace }};
+
+{{ uses }}
+
+class {{ class }} extends {{ extendsClass }} {{ implements }}
+{
+    {{ methods }}
+}

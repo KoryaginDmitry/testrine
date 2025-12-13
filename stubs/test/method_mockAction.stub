@@ -1,0 +1,4 @@
+    public function mockAction(): void
+    {
+        //todo Add mocking of classes
+    }

@@ -1,0 +1,17 @@
+public function testFrom{{ studly_name }}(): void
+    {
+        $this->setUserKey(userKey: '{{ name }}');
+
+        $response = $this->callAuthorizedBy{{ studly_name }}RouteAction(
+            user: $this->get{{ studly_name }}(),
+            data: $this->executeHook(ValidateHook::class),
+            parameters: $this->executeHook(ParametersHook::class),
+        );
+
+        $response = $response->assertStatus(status: $this->executeHook(hook: CodeHook::class));
+
+        $this->executeHook(hook: ResponseHook::class, args: ['response' => $response]);
+        $this->executeHook(hook: JobHook::class);
+        $this->executeHook(hook: NotifyHook::class);
+        $this->executeHook(hook: AssertHook::class, args: ['response' => $response]);
+    }

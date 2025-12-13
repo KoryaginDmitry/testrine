@@ -1,0 +1,6 @@
+    public function codes(): array
+    {
+        return [
+            {{ default_codes }}
+        ];
+    }

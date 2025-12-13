@@ -1,0 +1,4 @@
+    public function notifications(): void
+    {
+        //todo Add notification checks
+    }

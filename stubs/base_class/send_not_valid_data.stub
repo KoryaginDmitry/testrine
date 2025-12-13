@@ -1,0 +1,14 @@
+public function testSendFrom{{ studly_name }}NotValidData(): void
+    {
+        $this->setUserKey(userKey: '{{ name }}');
+
+        if (! $this->implements(InvalidateContract::class)) {
+            $this->markTestSkipped(__('testrine:console.test.skipped.invalid_parameters'));
+        }
+
+        $this->callAuthorizedBy{{ studly_name }}RouteAction(
+            user: $this->get{{ studly_name }}(),
+            data: $this->executeHook(InvalidateHook::class),
+            parameters: $this->executeHook(ParametersHook::class),
+        )->assertStatus(status: $this->executeHook(InvalidDataCodeHook::class));
+    }
