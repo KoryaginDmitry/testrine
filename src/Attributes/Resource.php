@@ -1,6 +1,6 @@
 <?php
 
-namespace Dkdev\Testrine\Attributes;
+namespace DkDev\Testrine\Attributes;
 
 use Attribute;
 

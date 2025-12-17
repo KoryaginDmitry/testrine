@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Data\OpenApi\Path\Method\Response;
+namespace DkDev\Testrine\Data\OpenApi\Path\Method\Response;
 
-use Dkdev\Testrine\Data\OpenApi\Path\Method\Scheme\Scheme;
+use DkDev\Testrine\Data\OpenApi\Path\Method\Scheme\Scheme;
 use JsonSerializable;
 
 class Code implements JsonSerializable

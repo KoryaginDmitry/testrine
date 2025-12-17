@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\TestClass;
+namespace DkDev\Testrine\Generators\Stubs\TestClass;
 
-use Dkdev\Testrine\Contracts\ParametersContract;
-use Dkdev\Testrine\Generators\Stubs\TestClassStub;
-use Dkdev\Testrine\Support\Char;
-use Dkdev\Testrine\Testrine;
+use DkDev\Testrine\Contracts\ParametersContract;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\Support\Char;
+use DkDev\Testrine\Testrine;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +30,7 @@ class ParametersStub extends TestClassStub
     {
         $uri = Route::getRoutes()->getByName($this->routeName)->uri();
 
-        $result = \Dkdev\Testrine\Support\Infrastructure\Route::getParametersByUrl($uri)
+        $result = \DkDev\Testrine\Support\Infrastructure\Route::getParametersByUrl($uri)
             ->map(function (string $parameter, int $index) {
                 $key = str_replace(['{', '}'], '', $parameter);
                 $value = Testrine::binds()->getValid($this->routeName, $key);

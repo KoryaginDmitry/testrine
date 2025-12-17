@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Mappers;
+namespace DkDev\Testrine\Mappers;
 
-use Dkdev\Testrine\Data\OpenApi\Path\Method\Response\Code;
-use Dkdev\Testrine\Support\Builders\SchemeBuilder;
+use DkDev\Testrine\Data\OpenApi\Path\Method\Response\Code;
+use DkDev\Testrine\Support\Builders\SchemeBuilder;
 
 class ResponseMapper extends BaseMapper
 {

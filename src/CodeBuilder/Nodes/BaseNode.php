@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\CodeBuilder\Nodes;
+namespace DkDev\Testrine\CodeBuilder\Nodes;
 
-use Dkdev\Testrine\CodeBuilder\Renderer;
+use DkDev\Testrine\CodeBuilder\Renderer;
 
 abstract class BaseNode
 {

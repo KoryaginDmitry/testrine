@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Collectors;
+namespace DkDev\Testrine\Collectors;
 
-use Dkdev\Testrine\Attributes\Summary;
+use DkDev\Testrine\Attributes\Summary;
 
 class SummaryCollector extends Collector
 {

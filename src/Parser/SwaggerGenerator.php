@@ -1,15 +1,15 @@
 <?php
 
-namespace Dkdev\Testrine\Parser;
+namespace DkDev\Testrine\Parser;
 
-use Dkdev\Testrine\Data\OpenApi\OpenApi;
-use Dkdev\Testrine\Enums\Writes\Format;
-use Dkdev\Testrine\Factories\DocFactory;
-use Dkdev\Testrine\Factories\ReaderFactory;
-use Dkdev\Testrine\Factories\WriterFactory;
-use Dkdev\Testrine\Mappers\BaseMapper;
-use Dkdev\Testrine\Support\Infrastructure\Config;
-use Dkdev\Testrine\Support\Infrastructure\StorageHelper;
+use DkDev\Testrine\Data\OpenApi\OpenApi;
+use DkDev\Testrine\Enums\Writes\Format;
+use DkDev\Testrine\Factories\DocFactory;
+use DkDev\Testrine\Factories\ReaderFactory;
+use DkDev\Testrine\Factories\WriterFactory;
+use DkDev\Testrine\Mappers\BaseMapper;
+use DkDev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Support\Infrastructure\StorageHelper;
 
 class SwaggerGenerator
 {

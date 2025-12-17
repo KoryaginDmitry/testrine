@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Data\OpenApi\Info\Contact;
+namespace DkDev\Testrine\Data\OpenApi\Info\Contact;
 
 class Contact
 {

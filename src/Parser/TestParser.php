@@ -1,18 +1,18 @@
 <?php
 
-namespace Dkdev\Testrine\Parser;
+namespace DkDev\Testrine\Parser;
 
-use Dkdev\Testrine\Attributes\Property;
-use Dkdev\Testrine\Attributes\Resource;
-use Dkdev\Testrine\Collectors\Collector;
-use Dkdev\Testrine\Enums\Attributes\In;
-use Dkdev\Testrine\Enums\Inform\Level;
-use Dkdev\Testrine\Enums\Writes\Format;
-use Dkdev\Testrine\Factories\WriterFactory;
-use Dkdev\Testrine\Inform\Inform;
-use Dkdev\Testrine\Support\Infrastructure\Config;
-use Dkdev\Testrine\Support\Infrastructure\Reflection;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Attributes\Property;
+use DkDev\Testrine\Attributes\Resource;
+use DkDev\Testrine\Collectors\Collector;
+use DkDev\Testrine\Enums\Attributes\In;
+use DkDev\Testrine\Enums\Inform\Level;
+use DkDev\Testrine\Enums\Writes\Format;
+use DkDev\Testrine\Factories\WriterFactory;
+use DkDev\Testrine\Inform\Inform;
+use DkDev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Support\Infrastructure\Reflection;
+use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;

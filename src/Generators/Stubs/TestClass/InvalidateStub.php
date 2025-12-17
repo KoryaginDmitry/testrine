@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\TestClass;
+namespace DkDev\Testrine\Generators\Stubs\TestClass;
 
-use Dkdev\Testrine\Contracts\InvalidateContract;
-use Dkdev\Testrine\Generators\Stubs\TestClassStub;
-use Dkdev\Testrine\Support\Char;
-use Dkdev\Testrine\Support\Infrastructure\Reflection;
+use DkDev\Testrine\Contracts\InvalidateContract;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\Support\Char;
+use DkDev\Testrine\Support\Infrastructure\Reflection;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Route;
 use ReflectionException;

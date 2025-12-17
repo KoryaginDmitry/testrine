@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\BaseClass;
+namespace DkDev\Testrine\Generators\Stubs\BaseClass;
 
-use Dkdev\Testrine\Generators\Stubs\BaseClassStub;
+use DkDev\Testrine\Generators\Stubs\BaseClassStub;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class SendNotValidDataStub extends BaseClassStub

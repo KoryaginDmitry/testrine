@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\CodeBuilder;
+namespace DkDev\Testrine\CodeBuilder;
 
-use Dkdev\Testrine\CodeBuilder\Nodes\BaseNode;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\CodeBuilder\Nodes\BaseNode;
+use DkDev\Testrine\Traits\Makeable;
 
 class Renderer
 {

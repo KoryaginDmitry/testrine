@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Hooks;
+namespace DkDev\Testrine\Hooks;
 
-use Dkdev\Testrine\Contracts\InvalidParametersCodeContract;
-use Dkdev\Testrine\Resolvers\Code\InvalidRouteParamsResolver;
-use Dkdev\Testrine\Support\Infrastructure\Route;
+use DkDev\Testrine\Contracts\InvalidParametersCodeContract;
+use DkDev\Testrine\Resolvers\Code\InvalidRouteParamsResolver;
+use DkDev\Testrine\Support\Infrastructure\Route;
 
 class InvalidParametersCodeHook extends BaseHook
 {

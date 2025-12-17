@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Hooks;
+namespace DkDev\Testrine\Hooks;
 
-use Dkdev\Testrine\Contracts\CodeContract;
-use Dkdev\Testrine\Resolvers\Code\ValidDataCodeResolver;
-use Dkdev\Testrine\Support\Infrastructure\Route;
+use DkDev\Testrine\Contracts\CodeContract;
+use DkDev\Testrine\Resolvers\Code\ValidDataCodeResolver;
+use DkDev\Testrine\Support\Infrastructure\Route;
 
 class CodeHook extends BaseHook
 {

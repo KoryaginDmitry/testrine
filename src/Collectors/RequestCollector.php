@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Collectors;
+namespace DkDev\Testrine\Collectors;
 
 use BackedEnum;
-use Dkdev\Testrine\Attributes\Property;
-use Dkdev\Testrine\Enums\Attributes\In;
-use Dkdev\Testrine\Enums\Attributes\StringFormat;
-use Dkdev\Testrine\Enums\Attributes\Type;
-use Dkdev\Testrine\Support\Infrastructure\Reflection;
+use DkDev\Testrine\Attributes\Property;
+use DkDev\Testrine\Enums\Attributes\In;
+use DkDev\Testrine\Enums\Attributes\StringFormat;
+use DkDev\Testrine\Enums\Attributes\Type;
+use DkDev\Testrine\Support\Infrastructure\Reflection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 

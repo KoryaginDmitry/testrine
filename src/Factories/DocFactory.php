@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Factories;
+namespace DkDev\Testrine\Factories;
 
-use Dkdev\Testrine\Data\OpenApi\OpenApi;
-use Dkdev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Data\OpenApi\OpenApi;
+use DkDev\Testrine\Support\Infrastructure\Config;
 
 class DocFactory
 {

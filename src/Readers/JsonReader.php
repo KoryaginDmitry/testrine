@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Readers;
+namespace DkDev\Testrine\Readers;
 
-use Dkdev\Testrine\Support\Infrastructure\StorageHelper;
+use DkDev\Testrine\Support\Infrastructure\StorageHelper;
 
 class JsonReader extends BaseReader
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\ValidData\Rules;
 
-use Dkdev\Testrine\Enums\ValidData\RulePriority;
-use Dkdev\Testrine\ValidData\Traits\HasRange;
+use DkDev\Testrine\Enums\ValidData\RulePriority;
+use DkDev\Testrine\ValidData\Traits\HasRange;
 
 class StringRule extends BaseRule
 {

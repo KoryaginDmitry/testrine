@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Collectors;
+namespace DkDev\Testrine\Collectors;
 
-use Dkdev\Testrine\Attributes\Code;
+use DkDev\Testrine\Attributes\Code;
 
 class CodeCollector extends Collector
 {

@@ -1,7 +1,7 @@
 <?php
 
-use Dkdev\Testrine\Support\Infrastructure\Config;
-use Dkdev\Testrine\Support\Infrastructure\StorageHelper;
+use DkDev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Support\Infrastructure\StorageHelper;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(Config::getSwaggerValue('routes.middlewares'))

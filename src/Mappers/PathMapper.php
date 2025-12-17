@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Mappers;
+namespace DkDev\Testrine\Mappers;
 
-use Dkdev\Testrine\Data\OpenApi\Path\Path;
+use DkDev\Testrine\Data\OpenApi\Path\Path;
 
 class PathMapper extends BaseMapper
 {

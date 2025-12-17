@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\ValidData\Rules;
 
-use Dkdev\Testrine\Enums\ValidData\RulePriority;
+use DkDev\Testrine\Enums\ValidData\RulePriority;
 use Illuminate\Support\Str;
 
 class PasswordRule extends BaseRule

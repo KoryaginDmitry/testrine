@@ -1,8 +1,8 @@
 <?php
 
-namespace Dkdev\Testrine;
+namespace DkDev\Testrine;
 
-use Dkdev\Testrine\Hooks\BaseHook;
+use DkDev\Testrine\Hooks\BaseHook;
 use Illuminate\Routing\Route;
 use Tests\TestCase;
 

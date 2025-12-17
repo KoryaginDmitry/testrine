@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Traits;
+namespace DkDev\Testrine\Traits;
 
 use Closure;
 

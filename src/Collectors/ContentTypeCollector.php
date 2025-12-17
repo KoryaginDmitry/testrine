@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Collectors;
+namespace DkDev\Testrine\Collectors;
 
 class ContentTypeCollector extends Collector
 {

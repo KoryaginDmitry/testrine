@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine;
+namespace DkDev\Testrine;
 
-use Dkdev\Testrine\Services\BindService;
-use Dkdev\Testrine\Services\HandlerService;
-use Dkdev\Testrine\Services\RuleService;
+use DkDev\Testrine\Services\BindService;
+use DkDev\Testrine\Services\HandlerService;
+use DkDev\Testrine\Services\RuleService;
 
 class Testrine
 {

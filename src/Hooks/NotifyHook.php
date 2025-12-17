@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Hooks;
+namespace DkDev\Testrine\Hooks;
 
-use Dkdev\Testrine\Contracts\NotificationContract;
+use DkDev\Testrine\Contracts\NotificationContract;
 
 class NotifyHook extends BaseHook
 {

@@ -4,13 +4,13 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Dkdev\\Testrine\\": "src/"
+            "DkDev\\Testrine\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Dkdev\\Testrine\\TestrineServiceProvider"
+                "DkDev\\Testrine\\TestrineServiceProvider"
             ]
         }
     },
@@ -20,5 +20,7 @@
             "email": "kor.dima97@mail.ru"
         }
     ],
-    "require": {}
+    "require": {
+        "php": "^8.1"
+    }
 }

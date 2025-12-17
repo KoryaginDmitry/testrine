@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Collectors;
+namespace DkDev\Testrine\Collectors;
 
-use Dkdev\Testrine\Attributes\Group;
-use Dkdev\Testrine\Support\Infrastructure\Reflection;
+use DkDev\Testrine\Attributes\Group;
+use DkDev\Testrine\Support\Infrastructure\Reflection;
 
 class GroupCollector extends Collector
 {

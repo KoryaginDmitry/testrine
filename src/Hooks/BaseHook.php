@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Hooks;
+namespace DkDev\Testrine\Hooks;
 
-use Dkdev\Testrine\BaseTestrineCase;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\BaseTestrineCase;
+use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Support\Collection;
 
 /**

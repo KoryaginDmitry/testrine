@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Writers;
+namespace DkDev\Testrine\Writers;
 
 abstract class BaseWriter
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Collectors;
+namespace DkDev\Testrine\Collectors;
 
-use Dkdev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Support\Infrastructure\Config;
 
 class AuthCollector extends Collector
 {

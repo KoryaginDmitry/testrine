@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs;
+namespace DkDev\Testrine\Generators\Stubs;
 
-use Dkdev\Testrine\Generators\BaseGenerator;
-use Dkdev\Testrine\Support\Stub;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Generators\BaseGenerator;
+use DkDev\Testrine\Support\Stub;
+use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 /**

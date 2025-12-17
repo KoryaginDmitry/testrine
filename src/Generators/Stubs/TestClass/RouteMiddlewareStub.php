@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\TestClass;
+namespace DkDev\Testrine\Generators\Stubs\TestClass;
 
-use Dkdev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class RouteMiddlewareStub extends TestClassStub

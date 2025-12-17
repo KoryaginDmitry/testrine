@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Services;
+namespace DkDev\Testrine\Services;
 
 class RuleService extends BaseService
 {

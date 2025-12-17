@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Readers;
+namespace DkDev\Testrine\Readers;
 
 abstract class BaseReader
 {

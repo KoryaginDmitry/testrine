@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Mappers;
+namespace DkDev\Testrine\Mappers;
 
-use Dkdev\Testrine\Data\OpenApi\OpenApi;
-use Dkdev\Testrine\Data\OpenApi\Path\Method\Method;
+use DkDev\Testrine\Data\OpenApi\OpenApi;
+use DkDev\Testrine\Data\OpenApi\Path\Method\Method;
 
 class MethodMapper extends BaseMapper
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Enums\Attributes;
+namespace DkDev\Testrine\Enums\Attributes;
 
-use Dkdev\Testrine\Interfaces\FormatInterface;
+use DkDev\Testrine\Interfaces\FormatInterface;
 
 enum StringFormat: string implements FormatInterface
 {

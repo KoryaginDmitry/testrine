@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Resolvers\Code;
+namespace DkDev\Testrine\Resolvers\Code;
 
 use Symfony\Component\HttpFoundation\Response;
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Data\OpenApi\Info;
+namespace DkDev\Testrine\Data\OpenApi\Info;
 
-use Dkdev\Testrine\Data\OpenApi\Info\Contact\Contact;
-use Dkdev\Testrine\Data\OpenApi\Info\License\License;
+use DkDev\Testrine\Data\OpenApi\Info\Contact\Contact;
+use DkDev\Testrine\Data\OpenApi\Info\License\License;
 
 class Info
 {

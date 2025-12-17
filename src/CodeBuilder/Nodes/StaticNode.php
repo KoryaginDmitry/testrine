@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\CodeBuilder\Nodes;
+namespace DkDev\Testrine\CodeBuilder\Nodes;
 
 class StaticNode extends BaseNode
 {

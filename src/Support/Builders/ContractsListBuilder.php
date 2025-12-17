@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Support\Builders;
+namespace DkDev\Testrine\Support\Builders;
 
-use Dkdev\Testrine\Resolvers\Contract\ContractResolver;
-use Dkdev\Testrine\Support\Infrastructure\Config;
-use Dkdev\Testrine\Support\Infrastructure\Route;
+use DkDev\Testrine\Resolvers\Contract\ContractResolver;
+use DkDev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Support\Infrastructure\Route;
 
 class ContractsListBuilder
 {

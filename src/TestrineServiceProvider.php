@@ -1,28 +1,28 @@
 <?php
 
-namespace Dkdev\Testrine;
+namespace DkDev\Testrine;
 
-use Dkdev\Testrine\Console\DestroyDataCommand;
-use Dkdev\Testrine\Console\GenerateCommand;
-use Dkdev\Testrine\Console\GenerateTestsCommand;
-use Dkdev\Testrine\Console\InitCommand;
-use Dkdev\Testrine\Console\MakeCommand;
-use Dkdev\Testrine\Console\ParseCommand;
-use Dkdev\Testrine\ValidData\Rules\ArrayRule;
-use Dkdev\Testrine\ValidData\Rules\BooleanRule;
-use Dkdev\Testrine\ValidData\Rules\CurrentPasswordRule;
-use Dkdev\Testrine\ValidData\Rules\DateRule;
-use Dkdev\Testrine\ValidData\Rules\EmailRule;
-use Dkdev\Testrine\ValidData\Rules\EnumRule;
-use Dkdev\Testrine\ValidData\Rules\FileRule;
-use Dkdev\Testrine\ValidData\Rules\ImageRule;
-use Dkdev\Testrine\ValidData\Rules\IntegerRule;
-use Dkdev\Testrine\ValidData\Rules\NullableRule;
-use Dkdev\Testrine\ValidData\Rules\PasswordRule;
-use Dkdev\Testrine\ValidData\Rules\RegexRule;
-use Dkdev\Testrine\ValidData\Rules\StringRule;
-use Dkdev\Testrine\ValidData\Rules\TableExistsRule;
-use Dkdev\Testrine\ValidData\Rules\UrlRule;
+use DkDev\Testrine\Console\DestroyDataCommand;
+use DkDev\Testrine\Console\GenerateCommand;
+use DkDev\Testrine\Console\GenerateTestsCommand;
+use DkDev\Testrine\Console\InitCommand;
+use DkDev\Testrine\Console\MakeCommand;
+use DkDev\Testrine\Console\ParseCommand;
+use DkDev\Testrine\ValidData\Rules\ArrayRule;
+use DkDev\Testrine\ValidData\Rules\BooleanRule;
+use DkDev\Testrine\ValidData\Rules\CurrentPasswordRule;
+use DkDev\Testrine\ValidData\Rules\DateRule;
+use DkDev\Testrine\ValidData\Rules\EmailRule;
+use DkDev\Testrine\ValidData\Rules\EnumRule;
+use DkDev\Testrine\ValidData\Rules\FileRule;
+use DkDev\Testrine\ValidData\Rules\ImageRule;
+use DkDev\Testrine\ValidData\Rules\IntegerRule;
+use DkDev\Testrine\ValidData\Rules\NullableRule;
+use DkDev\Testrine\ValidData\Rules\PasswordRule;
+use DkDev\Testrine\ValidData\Rules\RegexRule;
+use DkDev\Testrine\ValidData\Rules\StringRule;
+use DkDev\Testrine\ValidData\Rules\TableExistsRule;
+use DkDev\Testrine\ValidData\Rules\UrlRule;
 use Illuminate\Support\ServiceProvider;
 
 class TestrineServiceProvider extends ServiceProvider

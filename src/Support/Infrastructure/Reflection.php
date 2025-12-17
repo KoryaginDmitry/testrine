@@ -1,8 +1,8 @@
 <?php
 
-namespace Dkdev\Testrine\Support\Infrastructure;
+namespace DkDev\Testrine\Support\Infrastructure;
 
-use Dkdev\Testrine\Attributes\Resource;
+use DkDev\Testrine\Attributes\Resource;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -63,7 +63,7 @@ class Reflection
             return [];
         }
 
-        foreach (\Dkdev\Testrine\Support\Infrastructure\Route::getParametersByUrl($this->route->uri()) as $urlParam) {
+        foreach (\DkDev\Testrine\Support\Infrastructure\Route::getParametersByUrl($this->route->uri()) as $urlParam) {
             $prop = trim($urlParam, '{}');
             $formRequest->{$prop} = $this->mockRouteValue();
         }

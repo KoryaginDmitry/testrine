@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Support\Builders;
+namespace DkDev\Testrine\Support\Builders;
 
-use Dkdev\Testrine\Data\OpenApi\Path\Method\Scheme\Property\Property;
-use Dkdev\Testrine\Data\OpenApi\Path\Method\Scheme\Scheme;
-use Dkdev\Testrine\Enums\Attributes\Type;
+use DkDev\Testrine\Data\OpenApi\Path\Method\Scheme\Property\Property;
+use DkDev\Testrine\Data\OpenApi\Path\Method\Scheme\Scheme;
+use DkDev\Testrine\Enums\Attributes\Type;
 use Illuminate\Support\Arr;
 
 final class SchemeBuilder

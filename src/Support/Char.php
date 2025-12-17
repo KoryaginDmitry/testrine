@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Support;
+namespace DkDev\Testrine\Support;
 
 class Char
 {

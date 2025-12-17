@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\TestClass;
+namespace DkDev\Testrine\Generators\Stubs\TestClass;
 
-use Dkdev\Testrine\Contracts\ResponseContract;
-use Dkdev\Testrine\Generators\Stubs\TestClassStub;
-use Dkdev\Testrine\Support\Infrastructure\Reflection;
-use Dkdev\Testrine\Support\Infrastructure\ResourceModelResolver;
-use Dkdev\Testrine\Support\Infrastructure\ResourceResponseBuilder;
-use Dkdev\Testrine\Support\Infrastructure\Route;
+use DkDev\Testrine\Contracts\ResponseContract;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\Support\Infrastructure\Reflection;
+use DkDev\Testrine\Support\Infrastructure\ResourceModelResolver;
+use DkDev\Testrine\Support\Infrastructure\ResourceResponseBuilder;
+use DkDev\Testrine\Support\Infrastructure\Route;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Http\Resources\Json\JsonResource;
 use ReflectionException;

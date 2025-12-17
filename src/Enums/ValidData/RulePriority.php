@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Enums\ValidData;
+namespace DkDev\Testrine\Enums\ValidData;
 
 enum RulePriority: string
 {

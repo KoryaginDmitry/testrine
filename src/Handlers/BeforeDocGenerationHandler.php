@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Handlers;
+namespace DkDev\Testrine\Handlers;
 
 class BeforeDocGenerationHandler extends Handler
 {

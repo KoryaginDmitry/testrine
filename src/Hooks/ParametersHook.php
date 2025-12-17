@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Hooks;
+namespace DkDev\Testrine\Hooks;
 
-use Dkdev\Testrine\Contracts\ParametersContract;
+use DkDev\Testrine\Contracts\ParametersContract;
 
 class ParametersHook extends BaseHook
 {

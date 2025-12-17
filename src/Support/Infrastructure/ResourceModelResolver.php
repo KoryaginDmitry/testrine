@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Support\Infrastructure;
+namespace DkDev\Testrine\Support\Infrastructure;
 
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use RecursiveDirectoryIterator;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\ValidData\Rules;
 
 use App\Models\User;
-use Dkdev\Testrine\Enums\ValidData\RulePriority;
+use DkDev\Testrine\Enums\ValidData\RulePriority;
 
 class CurrentPasswordRule extends BaseRule
 {

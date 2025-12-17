@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Factories;
+namespace DkDev\Testrine\Factories;
 
-use Dkdev\Testrine\Enums\Writes\Format;
-use Dkdev\Testrine\Readers\BaseReader;
-use Dkdev\Testrine\Readers\JsonReader;
+use DkDev\Testrine\Enums\Writes\Format;
+use DkDev\Testrine\Readers\BaseReader;
+use DkDev\Testrine\Readers\JsonReader;
 
 class ReaderFactory
 {

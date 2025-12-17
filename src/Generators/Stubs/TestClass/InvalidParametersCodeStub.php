@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\TestClass;
+namespace DkDev\Testrine\Generators\Stubs\TestClass;
 
-use Dkdev\Testrine\Contracts\InvalidParametersCodeContract;
-use Dkdev\Testrine\Generators\Stubs\TestClassStub;
-use Dkdev\Testrine\Resolvers\Contract\InvalidateCodeResolver;
-use Dkdev\Testrine\Support\Char;
-use Dkdev\Testrine\Support\Infrastructure\Config;
-use Dkdev\Testrine\Support\Infrastructure\Route;
+use DkDev\Testrine\Contracts\InvalidParametersCodeContract;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\Resolvers\Contract\InvalidateCodeResolver;
+use DkDev\Testrine\Support\Char;
+use DkDev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Support\Infrastructure\Route;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class InvalidParametersCodeStub extends TestClassStub

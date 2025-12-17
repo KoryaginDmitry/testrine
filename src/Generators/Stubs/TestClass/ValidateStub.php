@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\TestClass;
+namespace DkDev\Testrine\Generators\Stubs\TestClass;
 
-use Dkdev\Testrine\Contracts\ValidateContract;
-use Dkdev\Testrine\Generators\Stubs\TestClassStub;
-use Dkdev\Testrine\Support\Char;
-use Dkdev\Testrine\Support\Infrastructure\Reflection;
-use Dkdev\Testrine\ValidData\ValidData;
+use DkDev\Testrine\Contracts\ValidateContract;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\Support\Char;
+use DkDev\Testrine\Support\Infrastructure\Reflection;
+use DkDev\Testrine\ValidData\ValidData;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Route;
 use ReflectionException;

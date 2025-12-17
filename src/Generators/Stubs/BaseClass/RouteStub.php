@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\BaseClass;
+namespace DkDev\Testrine\Generators\Stubs\BaseClass;
 
-use Dkdev\Testrine\Generators\Stubs\BaseClassStub;
-use Dkdev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Generators\Stubs\BaseClassStub;
+use DkDev\Testrine\Support\Infrastructure\Config;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class RouteStub extends BaseClassStub

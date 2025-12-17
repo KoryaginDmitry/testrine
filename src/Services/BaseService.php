@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Services;
+namespace DkDev\Testrine\Services;
 
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Traits\Makeable;
 
 abstract class BaseService
 {

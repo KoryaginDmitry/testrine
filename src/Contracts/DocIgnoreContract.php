@@ -1,5 +1,5 @@
 <?php
 
-namespace Dkdev\Testrine\Contracts;
+namespace DkDev\Testrine\Contracts;
 
 interface DocIgnoreContract {}

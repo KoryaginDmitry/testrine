@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Handlers;
+namespace DkDev\Testrine\Handlers;
 
-use Dkdev\Testrine\Traits\HasHandler;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Traits\HasHandler;
+use DkDev\Testrine\Traits\Makeable;
 
 abstract class Handler
 {

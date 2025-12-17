@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Enums\Inform;
+namespace DkDev\Testrine\Enums\Inform;
 
 enum Level: string
 {

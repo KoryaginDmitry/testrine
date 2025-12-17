@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Data\OpenApi\Server;
+namespace DkDev\Testrine\Data\OpenApi\Server;
 
 class Server
 {

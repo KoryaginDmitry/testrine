@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Resolvers\Code;
+namespace DkDev\Testrine\Resolvers\Code;
 
-use Dkdev\Testrine\Strategies\Auth\WithoutAuthStrategy;
-use Dkdev\Testrine\Support\Infrastructure\Config;
-use Dkdev\Testrine\Traits\HasHandler;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Strategies\Auth\WithoutAuthStrategy;
+use DkDev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Traits\HasHandler;
+use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Routing\Route;
 use Symfony\Component\HttpFoundation\Response;
 

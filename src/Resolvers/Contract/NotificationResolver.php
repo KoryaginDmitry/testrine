@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Resolvers\Contract;
+namespace DkDev\Testrine\Resolvers\Contract;
 
-use Dkdev\Testrine\Traits\HasContractRoutes;
+use DkDev\Testrine\Traits\HasContractRoutes;
 
 class NotificationResolver extends ContractResolver
 {

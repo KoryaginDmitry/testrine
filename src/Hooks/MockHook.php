@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Hooks;
+namespace DkDev\Testrine\Hooks;
 
-use Dkdev\Testrine\Contracts\FakeStorageContract;
-use Dkdev\Testrine\Contracts\MockContract;
+use DkDev\Testrine\Contracts\FakeStorageContract;
+use DkDev\Testrine\Contracts\MockContract;
 use Illuminate\Support\Facades\Storage;
 
 class MockHook extends BaseHook

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Console;
+namespace DkDev\Testrine\Console;
 
-use Dkdev\Testrine\Exceptions\TestAlreadyExistException;
-use Dkdev\Testrine\Generators\TestGenerator;
-use Dkdev\Testrine\Inform\Inform;
-use Dkdev\Testrine\Support\Builders\ClassNameBuilder;
-use Dkdev\Testrine\Support\Builders\ContractsListBuilder;
+use DkDev\Testrine\Exceptions\TestAlreadyExistException;
+use DkDev\Testrine\Generators\TestGenerator;
+use DkDev\Testrine\Inform\Inform;
+use DkDev\Testrine\Support\Builders\ClassNameBuilder;
+use DkDev\Testrine\Support\Builders\ContractsListBuilder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;

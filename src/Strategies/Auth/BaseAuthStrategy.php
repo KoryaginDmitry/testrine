@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Strategies\Auth;
+namespace DkDev\Testrine\Strategies\Auth;
 
 use App\Models\User;
-use Dkdev\Testrine\BaseTestrineCase;
-use Dkdev\Testrine\Traits\HasHandler;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\BaseTestrineCase;
+use DkDev\Testrine\Traits\HasHandler;
+use DkDev\Testrine\Traits\Makeable;
 
 /**
  * @method static BaseAuthStrategy make(BaseTestrineCase $test, ?User $user)

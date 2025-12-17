@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Services;
+namespace DkDev\Testrine\Services;
 
-use Dkdev\Testrine\Handlers\AfterDestroyFilesHandler;
-use Dkdev\Testrine\Handlers\AfterDocGenerationHandler;
-use Dkdev\Testrine\Handlers\AfterTestHandler;
-use Dkdev\Testrine\Handlers\BeforeDestroyFilesHandler;
-use Dkdev\Testrine\Handlers\BeforeDocGenerationHandler;
-use Dkdev\Testrine\Handlers\BeforeTestsHandler;
-use Dkdev\Testrine\Traits\HasHandler;
+use DkDev\Testrine\Handlers\AfterDestroyFilesHandler;
+use DkDev\Testrine\Handlers\AfterDocGenerationHandler;
+use DkDev\Testrine\Handlers\AfterTestHandler;
+use DkDev\Testrine\Handlers\BeforeDestroyFilesHandler;
+use DkDev\Testrine\Handlers\BeforeDocGenerationHandler;
+use DkDev\Testrine\Handlers\BeforeTestsHandler;
+use DkDev\Testrine\Traits\HasHandler;
 
 class HandlerService extends BaseService
 {

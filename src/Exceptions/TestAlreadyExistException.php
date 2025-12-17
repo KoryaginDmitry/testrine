@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Exceptions;
+namespace DkDev\Testrine\Exceptions;
 
 use Exception;
 

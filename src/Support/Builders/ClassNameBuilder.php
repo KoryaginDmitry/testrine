@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Support\Builders;
+namespace DkDev\Testrine\Support\Builders;
 
-use Dkdev\Testrine\Traits\HasHandler;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Traits\HasHandler;
+use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Support\Stringable;
 
 /**

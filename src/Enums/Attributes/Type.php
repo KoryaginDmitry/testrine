@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Enums\Attributes;
+namespace DkDev\Testrine\Enums\Attributes;
 
 enum Type: string
 {

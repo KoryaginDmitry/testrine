@@ -1,15 +1,15 @@
 <?php
 
-namespace Dkdev\Testrine\Generators;
+namespace DkDev\Testrine\Generators;
 
-use Dkdev\Testrine\Generators\Stubs\BaseClass\AuthMethodsStub;
-use Dkdev\Testrine\Generators\Stubs\BaseClass\RouteStub;
-use Dkdev\Testrine\Generators\Stubs\BaseClass\SendInvalidParametersStub;
-use Dkdev\Testrine\Generators\Stubs\BaseClass\SendNotValidDataStub;
-use Dkdev\Testrine\Generators\Stubs\BaseClassStub;
-use Dkdev\Testrine\Inform\Inform;
-use Dkdev\Testrine\Support\Stub;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Generators\Stubs\BaseClass\AuthMethodsStub;
+use DkDev\Testrine\Generators\Stubs\BaseClass\RouteStub;
+use DkDev\Testrine\Generators\Stubs\BaseClass\SendInvalidParametersStub;
+use DkDev\Testrine\Generators\Stubs\BaseClass\SendNotValidDataStub;
+use DkDev\Testrine\Generators\Stubs\BaseClassStub;
+use DkDev\Testrine\Inform\Inform;
+use DkDev\Testrine\Support\Stub;
+use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\File;
 

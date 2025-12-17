@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Hooks;
+namespace DkDev\Testrine\Hooks;
 
-use Dkdev\Testrine\Contracts\SeedContract;
+use DkDev\Testrine\Contracts\SeedContract;
 
 class SeedHook extends BaseHook
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Dkdev\Testrine\Generators;
+namespace DkDev\Testrine\Generators;
 
-use Dkdev\Testrine\Generators\Stubs\BaseStub;
-use Dkdev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Generators\Stubs\BaseStub;
+use DkDev\Testrine\Support\Infrastructure\Config;
 
 abstract class BaseGenerator
 {

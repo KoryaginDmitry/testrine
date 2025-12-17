@@ -1,10 +1,10 @@
 <?php
 
-namespace Dkdev\Testrine\Console;
+namespace DkDev\Testrine\Console;
 
-use Dkdev\Testrine\Generators\BaseClassGenerator;
-use Dkdev\Testrine\Inform\Inform;
-use Dkdev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Generators\BaseClassGenerator;
+use DkDev\Testrine\Inform\Inform;
+use DkDev\Testrine\Support\Infrastructure\Config;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 

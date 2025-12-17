@@ -1,12 +1,12 @@
 <?php
 
-namespace Dkdev\Testrine\ValidData;
+namespace DkDev\Testrine\ValidData;
 
-use Dkdev\Testrine\Testrine;
-use Dkdev\Testrine\Traits\Makeable;
-use Dkdev\Testrine\ValidData\Rules\BaseRule;
-use Dkdev\Testrine\ValidData\Traits\HasMimes;
-use Dkdev\Testrine\ValidData\Traits\HasRange;
+use DkDev\Testrine\Testrine;
+use DkDev\Testrine\Traits\Makeable;
+use DkDev\Testrine\ValidData\Rules\BaseRule;
+use DkDev\Testrine\ValidData\Traits\HasMimes;
+use DkDev\Testrine\ValidData\Traits\HasRange;
 use Illuminate\Routing\Route;
 
 class ValidData

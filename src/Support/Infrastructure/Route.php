@@ -1,6 +1,6 @@
 <?php
 
-namespace Dkdev\Testrine\Support\Infrastructure;
+namespace DkDev\Testrine\Support\Infrastructure;
 
 use Illuminate\Support\Collection;
 use ReflectionException;

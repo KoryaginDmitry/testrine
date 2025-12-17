@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Mappers;
+namespace DkDev\Testrine\Mappers;
 
-use Dkdev\Testrine\Data\OpenApi\OpenApi;
-use Dkdev\Testrine\Data\OpenApi\Path\Method\Body\RequestBody;
-use Dkdev\Testrine\Data\OpenApi\Path\Method\Parameter\Parameter;
-use Dkdev\Testrine\Enums\Attributes\In;
-use Dkdev\Testrine\Support\Builders\SchemeBuilder;
+use DkDev\Testrine\Data\OpenApi\OpenApi;
+use DkDev\Testrine\Data\OpenApi\Path\Method\Body\RequestBody;
+use DkDev\Testrine\Data\OpenApi\Path\Method\Parameter\Parameter;
+use DkDev\Testrine\Enums\Attributes\In;
+use DkDev\Testrine\Support\Builders\SchemeBuilder;
 
 class RequestMapper extends BaseMapper
 {

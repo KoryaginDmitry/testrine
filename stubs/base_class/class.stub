@@ -3,29 +3,29 @@
 namespace Tests\Feature\{{ group }};
 
 use Illuminate\Testing\TestResponse;
-use Dkdev\Testrine\BaseTestrineCase;
+use DkDev\Testrine\BaseTestrineCase;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Queue;
-use Dkdev\Testrine\Contracts\DocIgnoreContract;
-use Dkdev\Testrine\Contracts\JobContract;
-use Dkdev\Testrine\Contracts\NotificationContract;
-use Dkdev\Testrine\Contracts\InvalidateContract;
-use Dkdev\Testrine\Contracts\InvalidParametersContract;
-use Dkdev\Testrine\Parser\TestParser;
-use Dkdev\Testrine\Support\Infrastructure\Config;
-use Dkdev\Testrine\Hooks\AssertHook;
-use Dkdev\Testrine\Hooks\CodeHook;
-use Dkdev\Testrine\Hooks\InvalidateHook;
-use Dkdev\Testrine\Hooks\InvalidDataCodeHook;
-use Dkdev\Testrine\Hooks\InvalidParametersCodeHook;
-use Dkdev\Testrine\Hooks\InvalidParametersHook;
-use Dkdev\Testrine\Hooks\JobHook;
-use Dkdev\Testrine\Hooks\MockHook;
-use Dkdev\Testrine\Hooks\NotifyHook;
-use Dkdev\Testrine\Hooks\ParametersHook;
-use Dkdev\Testrine\Hooks\ResponseHook;
-use Dkdev\Testrine\Hooks\SeedHook;
-use Dkdev\Testrine\Hooks\ValidateHook;
+use DkDev\Testrine\Contracts\DocIgnoreContract;
+use DkDev\Testrine\Contracts\JobContract;
+use DkDev\Testrine\Contracts\NotificationContract;
+use DkDev\Testrine\Contracts\InvalidateContract;
+use DkDev\Testrine\Contracts\InvalidParametersContract;
+use DkDev\Testrine\Parser\TestParser;
+use DkDev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Hooks\AssertHook;
+use DkDev\Testrine\Hooks\CodeHook;
+use DkDev\Testrine\Hooks\InvalidateHook;
+use DkDev\Testrine\Hooks\InvalidDataCodeHook;
+use DkDev\Testrine\Hooks\InvalidParametersCodeHook;
+use DkDev\Testrine\Hooks\InvalidParametersHook;
+use DkDev\Testrine\Hooks\JobHook;
+use DkDev\Testrine\Hooks\MockHook;
+use DkDev\Testrine\Hooks\NotifyHook;
+use DkDev\Testrine\Hooks\ParametersHook;
+use DkDev\Testrine\Hooks\ResponseHook;
+use DkDev\Testrine\Hooks\SeedHook;
+use DkDev\Testrine\Hooks\ValidateHook;
 
 abstract class {{ class_name }} extends BaseTestrineCase
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Strategies\Auth;
+namespace DkDev\Testrine\Strategies\Auth;
 
-use Dkdev\Testrine\BaseTestrineCase;
+use DkDev\Testrine\BaseTestrineCase;
 use Laravel\Sanctum\Sanctum;
 
 class SanctumAuthStrategy extends BaseAuthStrategy

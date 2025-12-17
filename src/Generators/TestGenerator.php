@@ -1,26 +1,26 @@
 <?php
 
-namespace Dkdev\Testrine\Generators;
+namespace DkDev\Testrine\Generators;
 
-use Dkdev\Testrine\Exceptions\TestAlreadyExistException;
-use Dkdev\Testrine\Generators\Stubs\TestClass\CodesStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\InvalidateStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\InvalidCodeStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\InvalidParametersCodeStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\InvalidParametersStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\JobStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\MockStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\NotificationStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\ParametersStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\ResponseStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\RouteMiddlewareStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\SeedStub;
-use Dkdev\Testrine\Generators\Stubs\TestClass\ValidateStub;
-use Dkdev\Testrine\Generators\Stubs\TestClassStub;
-use Dkdev\Testrine\Inform\Inform;
-use Dkdev\Testrine\Support\Char;
-use Dkdev\Testrine\Support\Stub;
-use Dkdev\Testrine\Traits\Makeable;
+use DkDev\Testrine\Exceptions\TestAlreadyExistException;
+use DkDev\Testrine\Generators\Stubs\TestClass\CodesStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\InvalidateStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\InvalidCodeStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\InvalidParametersCodeStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\InvalidParametersStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\JobStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\MockStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\NotificationStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\ParametersStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\ResponseStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\RouteMiddlewareStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\SeedStub;
+use DkDev\Testrine\Generators\Stubs\TestClass\ValidateStub;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\Inform\Inform;
+use DkDev\Testrine\Support\Char;
+use DkDev\Testrine\Support\Stub;
+use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;

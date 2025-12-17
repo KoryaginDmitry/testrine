@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Generators\Stubs\TestClass;
+namespace DkDev\Testrine\Generators\Stubs\TestClass;
 
-use Dkdev\Testrine\Contracts\CodeContract;
-use Dkdev\Testrine\Generators\Stubs\TestClassStub;
-use Dkdev\Testrine\Resolvers\Code\ValidDataCodeResolver;
-use Dkdev\Testrine\Support\Char;
-use Dkdev\Testrine\Support\Infrastructure\Route;
+use DkDev\Testrine\Contracts\CodeContract;
+use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\Resolvers\Code\ValidDataCodeResolver;
+use DkDev\Testrine\Support\Char;
+use DkDev\Testrine\Support\Infrastructure\Route;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class CodesStub extends TestClassStub

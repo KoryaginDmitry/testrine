@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Mappers;
+namespace DkDev\Testrine\Mappers;
 
-use Dkdev\Testrine\Data\OpenApi\OpenApi;
-use Dkdev\Testrine\Support\Infrastructure\Config;
+use DkDev\Testrine\Data\OpenApi\OpenApi;
+use DkDev\Testrine\Support\Infrastructure\Config;
 
 class AuthMapper extends BaseMapper
 {

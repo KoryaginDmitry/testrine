@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Hooks;
+namespace DkDev\Testrine\Hooks;
 
-use Dkdev\Testrine\Contracts\InvalidateContract;
+use DkDev\Testrine\Contracts\InvalidateContract;
 
 class InvalidateHook extends BaseHook
 {

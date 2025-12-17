@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Writers;
+namespace DkDev\Testrine\Writers;
 
-use Dkdev\Testrine\Support\Infrastructure\StorageHelper;
+use DkDev\Testrine\Support\Infrastructure\StorageHelper;
 
 class JsonWriter extends BaseWriter
 {

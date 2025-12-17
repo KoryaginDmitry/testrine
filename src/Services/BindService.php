@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Dkdev\Testrine\Services;
+namespace DkDev\Testrine\Services;
 
-use Dkdev\Testrine\CodeBuilder\Builder;
-use Dkdev\Testrine\Resolvers\Code\CodeResolver;
-use Dkdev\Testrine\Traits\HasContractRoutes;
-use Dkdev\Testrine\ValidData\Rules\BaseRule;
+use DkDev\Testrine\CodeBuilder\Builder;
+use DkDev\Testrine\Resolvers\Code\CodeResolver;
+use DkDev\Testrine\Traits\HasContractRoutes;
+use DkDev\Testrine\ValidData\Rules\BaseRule;
 
 class BindService extends BaseService
 {
