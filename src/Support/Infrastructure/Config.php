@@ -29,6 +29,6 @@ class Config
 
     public static function getSwaggerValue(string $path): mixed
     {
-        return config('testrine.swagger.'.$path) ?? null;
+        return config('testrine.swagger.'.$path);
     }
 }

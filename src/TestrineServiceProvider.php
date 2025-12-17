@@ -27,6 +27,14 @@ use Illuminate\Support\ServiceProvider;
 
 class TestrineServiceProvider extends ServiceProvider
 {
+    public function register(): void
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/testrine.php',
+            'testrine'
+        );
+    }
+
     public function boot(): void
     {
         $this->loadTranslationsFrom(path: __DIR__.'/../resources/lang', namespace: 'testrine');
