@@ -10,7 +10,7 @@ class DescriptionMapper extends BaseMapper
 {
     public function defaultHandler(): OpenApi
     {
-        $this->data->paths[$this->fileData['path']]->methods[$this->fileData['method']]->description = $fileData['description'] ?? '';
+        $this->data->paths[$this->fileData['path']]->methods[$this->fileData['method']]->description = $this->fileData['description'] ?? '';
 
         return $this->data;
     }
