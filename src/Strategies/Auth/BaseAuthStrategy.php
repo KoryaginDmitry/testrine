@@ -2,24 +2,23 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Strategies\Auth;
+namespace Dkdev\Testrine\Strategies\Auth;
 
 use App\Models\User;
-use DkDev\Testrine\BaseTestrineCase;
-use DkDev\Testrine\Strategies\BaseStrategy;
+use Dkdev\Testrine\BaseTestrineCase;
+use Dkdev\Testrine\Traits\HasHandler;
+use Dkdev\Testrine\Traits\Makeable;
 
-abstract class BaseAuthStrategy extends BaseStrategy
+/**
+ * @method static BaseAuthStrategy make(BaseTestrineCase $test, ?User $user)
+ */
+abstract class BaseAuthStrategy
 {
-    public function handle(BaseTestrineCase $test, ?User $user): BaseTestrineCase
-    {
-        if (! empty(static::$handle)) {
-            $callable = static::$handle;
+    use HasHandler;
+    use Makeable;
 
-            return $callable($test, $user);
-        }
-
-        return $this->authorize(test: $test, user: $user);
-    }
-
-    abstract public function authorize(BaseTestrineCase $test, ?User $user): BaseTestrineCase;
+    public function __construct(
+        protected BaseTestrineCase $test,
+        protected ?User $user,
+    ) {}
 }

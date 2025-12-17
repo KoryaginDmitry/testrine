@@ -1,6 +1,6 @@
 <?php
 
-namespace DkDev\Testrine\Contracts;
+namespace Dkdev\Testrine\Contracts;
 
 interface MockContract
 {

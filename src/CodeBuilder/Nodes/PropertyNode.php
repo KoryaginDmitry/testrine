@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\CodeBuilder\Nodes;
+namespace Dkdev\Testrine\CodeBuilder\Nodes;
 
 class PropertyNode extends BaseNode
 {

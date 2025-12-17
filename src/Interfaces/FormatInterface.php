@@ -2,6 +2,6 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Interfaces;
+namespace Dkdev\Testrine\Interfaces;
 
 interface FormatInterface {}

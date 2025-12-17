@@ -2,57 +2,39 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine;
+namespace Dkdev\Testrine;
 
-use Closure;
-use DkDev\Testrine\CodeBuilder\Builder;
-use DkDev\Testrine\Helpers\GetClassName;
-use DkDev\Testrine\Helpers\RouteParameter;
-use DkDev\Testrine\Strategies\BaseStrategy;
-use DkDev\Testrine\Strategies\Code\BaseCodeStrategy;
-use DkDev\Testrine\Traits\HasContractRoutes;
-use DkDev\Testrine\ValidData\Rules\BaseRule;
+use Dkdev\Testrine\Services\BindService;
+use Dkdev\Testrine\Services\HandlerService;
+use Dkdev\Testrine\Services\RuleService;
 
 class Testrine
 {
-    public static function getClassName(Closure $callback): void
+    protected static array $instances = [];
+
+    protected static function getInstance(string $instance)
     {
-        GetClassName::$handler = $callback;
+        if (isset(self::$instances[$instance])) {
+            return self::$instances[$instance];
+        }
+
+        self::$instances[$instance] = new $instance;
+
+        return self::$instances[$instance];
     }
 
-    /**
-     * @param  class-string<BaseStrategy>  $strategy
-     */
-    public static function setStrategyHandler(string $strategy, Closure $handler): void
+    public static function rules(): RuleService
     {
-        $strategy::setHandler(callback: $handler);
+        return self::getInstance(RuleService::class);
     }
 
-    /**
-     * @param  class-string<HasContractRoutes>  $contract
-     */
-    public static function setContractRoutes(string $contract, array $routes): void
+    public static function binds(): BindService
     {
-        $contract::setContractRoutes(routes: $routes);
+        return self::getInstance(BindService::class);
     }
 
-    public static function bindValidRouteParameter(?string $routeName, string $key, string|Builder $value): void
+    public function handlers(): HandlerService
     {
-        RouteParameter::bindValid(routeName: $routeName, key: $key, value: $value);
-    }
-
-    public static function bindInvalidRouteParameter(?string $routeName, string $key, string $value): void
-    {
-        RouteParameter::bindInvalid(routeName: $routeName, key: $key, value: $value);
-    }
-
-    public static function bindValidDataValue(string $routeName, string $key, int|string|Builder $value): void
-    {
-        BaseRule::setDefaultValue(routeName: $routeName, key: $key, value: $value);
-    }
-
-    public static function setDefaultCode(string $strategy, string $routeName, int $value): void
-    {
-        BaseCodeStrategy::setDefaultCode(strategy: $strategy, routeName: $routeName, code: $value);
+        return self::getInstance(HandlerService::class);
     }
 }

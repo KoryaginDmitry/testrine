@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Hooks;
+namespace Dkdev\Testrine\Hooks;
 
-use DkDev\Testrine\Contracts\ResponseContract;
+use Dkdev\Testrine\Contracts\ResponseContract;
 use Illuminate\Testing\TestResponse;
 
 class ResponseHook extends BaseHook

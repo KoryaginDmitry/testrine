@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Data\OpenApi\Info\License;
+namespace Dkdev\Testrine\Data\OpenApi\Info\License;
 
 class License
 {

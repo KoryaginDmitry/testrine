@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Data\OpenApi\Path\Method\Scheme\Property;
+namespace Dkdev\Testrine\Data\OpenApi\Path\Method\Scheme\Property;
 
 use JsonSerializable;
 

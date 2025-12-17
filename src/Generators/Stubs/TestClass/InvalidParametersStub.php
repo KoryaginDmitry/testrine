@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Generators\Stubs\TestClass;
+namespace Dkdev\Testrine\Generators\Stubs\TestClass;
 
-use DkDev\Testrine\Contracts\InvalidParametersContract;
-use DkDev\Testrine\Generators\Stubs\TestClassStub;
-use DkDev\Testrine\Helpers\Char;
-use DkDev\Testrine\Helpers\RouteParameter;
+use Dkdev\Testrine\Contracts\InvalidParametersContract;
+use Dkdev\Testrine\Generators\Stubs\TestClassStub;
+use Dkdev\Testrine\Support\Char;
+use Dkdev\Testrine\Testrine;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +30,10 @@ class InvalidParametersStub extends TestClassStub
     {
         $uri = Route::getRoutes()->getByName($this->routeName)->uri();
 
-        $result = \DkDev\Testrine\Helpers\Route::getParametersByUrl($uri)
+        $result = \Dkdev\Testrine\Support\Infrastructure\Route::getParametersByUrl($uri)
             ->map(function (string $parameter, int $index) {
                 $key = str_replace(['{', '}'], '', $parameter);
-                $value = RouteParameter::makeInvalidValue($this->routeName, $key);
+                $value = Testrine::binds()->getInvalid($this->routeName, $key);
 
                 return $index === 0 ? "'$key' => $value" : Char::TAB3."'$key' => $value";
             })->implode(','.Char::NL);

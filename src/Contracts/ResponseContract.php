@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Contracts;
+namespace Dkdev\Testrine\Contracts;
 
 interface ResponseContract
 {

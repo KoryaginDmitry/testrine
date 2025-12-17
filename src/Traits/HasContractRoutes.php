@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Traits;
+namespace Dkdev\Testrine\Traits;
 
 use Illuminate\Routing\Route;
 

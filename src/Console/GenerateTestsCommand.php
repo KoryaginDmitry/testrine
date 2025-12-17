@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Console;
+namespace Dkdev\Testrine\Console;
 
-use DkDev\Testrine\Exceptions\TestAlreadyExistException;
-use DkDev\Testrine\Generators\TestGenerator;
-use DkDev\Testrine\Helpers\GetClassName;
-use DkDev\Testrine\Helpers\GetContractsByRoute;
-use DkDev\Testrine\Inform\Inform;
+use Dkdev\Testrine\Exceptions\TestAlreadyExistException;
+use Dkdev\Testrine\Generators\TestGenerator;
+use Dkdev\Testrine\Inform\Inform;
+use Dkdev\Testrine\Support\Builders\ClassNameBuilder;
+use Dkdev\Testrine\Support\Builders\ContractsListBuilder;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
@@ -83,6 +83,7 @@ class GenerateTestsCommand extends Command
 
             return self::SUCCESS;
         } catch (Throwable $throwable) {
+            dd($throwable);
             error($throwable->getMessage());
 
             return self::FAILURE;
@@ -92,8 +93,8 @@ class GenerateTestsCommand extends Command
     private function makeGenerator(array $route, bool $rewrite = false): TestGenerator
     {
         return new TestGenerator(
-            className: GetClassName::handle($route['name'], $route['group']),
-            contracts: GetContractsByRoute::make($route['group'], $route['name']),
+            className: ClassNameBuilder::make($route['name'], $route['group'])->handle(),
+            contracts: ContractsListBuilder::make($route['group'], $route['name']),
             routeName: $route['name'],
             middlewares: implode(', ', Route::getRoutes()->getByName($route['name'])->middleware() ?? []),
             group: $route['group'],

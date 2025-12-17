@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Inform;
+namespace Dkdev\Testrine\Inform;
 
-use DkDev\Testrine\Enums\Inform\Level;
-use DkDev\Testrine\Traits\Makeable;
+use Dkdev\Testrine\Enums\Inform\Level;
+use Dkdev\Testrine\Traits\Makeable;
 
 /**
  * @method static Message make(Level $level, string $message, bool $prependIndent = false, bool $appendIndent = false)

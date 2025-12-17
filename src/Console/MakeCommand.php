@@ -1,26 +1,26 @@
 <?php
 
-namespace DkDev\Testrine\Console;
+namespace Dkdev\Testrine\Console;
 
-use DkDev\Testrine\Contracts\CodeContract;
-use DkDev\Testrine\Contracts\DocIgnoreContract;
-use DkDev\Testrine\Contracts\FakeStorageContract;
-use DkDev\Testrine\Contracts\InvalidateCodeContract;
-use DkDev\Testrine\Contracts\InvalidateContract;
-use DkDev\Testrine\Contracts\InvalidParametersCodeContract;
-use DkDev\Testrine\Contracts\InvalidParametersContract;
-use DkDev\Testrine\Contracts\JobContract;
-use DkDev\Testrine\Contracts\MockContract;
-use DkDev\Testrine\Contracts\NotificationContract;
-use DkDev\Testrine\Contracts\ParametersContract;
-use DkDev\Testrine\Contracts\SeedContract;
-use DkDev\Testrine\Contracts\ValidateContract;
-use DkDev\Testrine\Exceptions\RouteNotFoundException;
-use DkDev\Testrine\Generators\TestGenerator;
-use DkDev\Testrine\Helpers\Config;
-use DkDev\Testrine\Helpers\GetClassName;
-use DkDev\Testrine\Helpers\GetContractsByRoute;
-use DkDev\Testrine\Inform\Inform;
+use Dkdev\Testrine\Contracts\CodeContract;
+use Dkdev\Testrine\Contracts\DocIgnoreContract;
+use Dkdev\Testrine\Contracts\FakeStorageContract;
+use Dkdev\Testrine\Contracts\InvalidateCodeContract;
+use Dkdev\Testrine\Contracts\InvalidateContract;
+use Dkdev\Testrine\Contracts\InvalidParametersCodeContract;
+use Dkdev\Testrine\Contracts\InvalidParametersContract;
+use Dkdev\Testrine\Contracts\JobContract;
+use Dkdev\Testrine\Contracts\MockContract;
+use Dkdev\Testrine\Contracts\NotificationContract;
+use Dkdev\Testrine\Contracts\ParametersContract;
+use Dkdev\Testrine\Contracts\SeedContract;
+use Dkdev\Testrine\Contracts\ValidateContract;
+use Dkdev\Testrine\Exceptions\RouteNotFoundException;
+use Dkdev\Testrine\Generators\TestGenerator;
+use Dkdev\Testrine\Inform\Inform;
+use Dkdev\Testrine\Support\Builders\ClassNameBuilder;
+use Dkdev\Testrine\Support\Builders\ContractsListBuilder;
+use Dkdev\Testrine\Support\Infrastructure\Config;
 use Illuminate\Console\Command;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
@@ -75,7 +75,7 @@ class MakeCommand extends Command
     {
         return text(
             label: __('testrine::console.make.write_class_name'),
-            default: GetClassName::handle($this->routeName, $this->group),
+            default: ClassNameBuilder::make($this->routeName, $this->group)->handle(),
             required: true,
             validate: fn (string $value) => match (true) {
                 strlen($value) < 3 => __('validation.min.string', [
@@ -139,7 +139,7 @@ class MakeCommand extends Command
                 NotificationContract::class,
                 DocIgnoreContract::class,
             ],
-            default: GetContractsByRoute::make($this->group, $this->routeName)
+            default: ContractsListBuilder::make($this->group, $this->routeName)
         );
     }
 }

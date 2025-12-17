@@ -1,11 +1,11 @@
 <?php
 
-namespace DkDev\Testrine\Attributes;
+namespace Dkdev\Testrine\Attributes;
 
 use Attribute;
-use DkDev\Testrine\Enums\Attributes\In;
-use DkDev\Testrine\Enums\Attributes\Type;
-use DkDev\Testrine\Interfaces\FormatInterface;
+use Dkdev\Testrine\Enums\Attributes\In;
+use Dkdev\Testrine\Enums\Attributes\Type;
+use Dkdev\Testrine\Interfaces\FormatInterface;
 
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_CLASS)]
 class Property

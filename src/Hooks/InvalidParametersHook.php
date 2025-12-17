@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Hooks;
+namespace Dkdev\Testrine\Hooks;
 
-use DkDev\Testrine\Contracts\InvalidParametersContract;
+use Dkdev\Testrine\Contracts\InvalidParametersContract;
 
 class InvalidParametersHook extends BaseHook
 {

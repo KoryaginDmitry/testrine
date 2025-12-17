@@ -1,0 +1,24 @@
+{
+    "name": "Dkdev/testrine",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Dkdev\\Testrine\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dkdev\\Testrine\\TestrineServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Dmitry",
+            "email": "kor.dima97@mail.ru"
+        }
+    ],
+    "require": {}
+}

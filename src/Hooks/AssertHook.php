@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Hooks;
+namespace Dkdev\Testrine\Hooks;
 
-use DkDev\Testrine\Contracts\AssertContract;
+use Dkdev\Testrine\Contracts\AssertContract;
 
 class AssertHook extends BaseHook
 {

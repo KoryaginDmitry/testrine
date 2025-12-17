@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Factories;
+namespace Dkdev\Testrine\Factories;
 
-use DkDev\Testrine\Enums\Writes\Format;
-use DkDev\Testrine\Writers\BaseWriter;
-use DkDev\Testrine\Writers\JsonWriter;
+use Dkdev\Testrine\Enums\Writes\Format;
+use Dkdev\Testrine\Writers\BaseWriter;
+use Dkdev\Testrine\Writers\JsonWriter;
 
 class WriterFactory
 {

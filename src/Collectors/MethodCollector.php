@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Dkdev\Testrine\Collectors;
+
+class MethodCollector extends Collector
+{
+    public function getName(): string
+    {
+        return 'method';
+    }
+
+    public function defaultHandler(): mixed
+    {
+        return str($this->getRoute()?->methods()[0])->lower()->value();
+    }
+}

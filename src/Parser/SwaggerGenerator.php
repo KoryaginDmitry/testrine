@@ -1,15 +1,15 @@
 <?php
 
-namespace DkDev\Testrine\Parser;
+namespace Dkdev\Testrine\Parser;
 
-use DkDev\Testrine\Data\OpenApi\OpenApi;
-use DkDev\Testrine\Enums\Writes\Format;
-use DkDev\Testrine\Factories\DocFactory;
-use DkDev\Testrine\Factories\ReaderFactory;
-use DkDev\Testrine\Factories\WriterFactory;
-use DkDev\Testrine\Helpers\Config;
-use DkDev\Testrine\Helpers\StorageHelper;
-use DkDev\Testrine\Strategies\Generators\BaseGeneratorStrategy;
+use Dkdev\Testrine\Data\OpenApi\OpenApi;
+use Dkdev\Testrine\Enums\Writes\Format;
+use Dkdev\Testrine\Factories\DocFactory;
+use Dkdev\Testrine\Factories\ReaderFactory;
+use Dkdev\Testrine\Factories\WriterFactory;
+use Dkdev\Testrine\Mappers\BaseMapper;
+use Dkdev\Testrine\Support\Infrastructure\Config;
+use Dkdev\Testrine\Support\Infrastructure\StorageHelper;
 
 class SwaggerGenerator
 {
@@ -28,12 +28,12 @@ class SwaggerGenerator
 
     protected function parseFile(OpenApi $doc, string $path): OpenApi
     {
-        /** @var BaseGeneratorStrategy $strategy */
-        foreach (Config::getSwaggerValue('strategies.generators') as $strategy) {
-            $doc = $strategy::make()->generate(
+        /** @var BaseMapper $mapper */
+        foreach (Config::getSwaggerValue('mappers') as $mapper) {
+            $doc = $mapper::make(
                 data: $doc,
                 fileData: ReaderFactory::make(Format::JSON)->read($path),
-            );
+            )->handle();
         }
 
         return $doc;

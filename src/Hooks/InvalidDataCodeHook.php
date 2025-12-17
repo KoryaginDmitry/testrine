@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Hooks;
+namespace Dkdev\Testrine\Hooks;
 
-use DkDev\Testrine\Contracts\InvalidateCodeContract;
-use DkDev\Testrine\Helpers\Route;
-use DkDev\Testrine\Strategies\Code\InvalidDataCodeStrategy;
+use Dkdev\Testrine\Contracts\InvalidateCodeContract;
+use Dkdev\Testrine\Resolvers\Code\InvalidDataCodeResolver;
+use Dkdev\Testrine\Support\Infrastructure\Route;
 
 class InvalidDataCodeHook extends BaseHook
 {
@@ -17,12 +17,11 @@ class InvalidDataCodeHook extends BaseHook
         if ($this->implements(contract: InvalidateCodeContract::class)) {
             $defCode = call_user_func([$this->test, 'invalidDataCode']);
         } else {
-            $defCode = InvalidDataCodeStrategy::make()
-                ->handle(
-                    route: Route::getRouteByName($this->getRouteName()),
-                    group: $this->getGroupName(),
-                    userKey: $this->getUserKey(),
-                );
+            $defCode = InvalidDataCodeResolver::make(
+                route: Route::getRouteByName($this->getRouteName()),
+                group: $this->getGroupName(),
+                userKey: $this->getUserKey(),
+            )->handle();
         }
 
         return $code >= 200 && $code < 399 ? $defCode : $code;

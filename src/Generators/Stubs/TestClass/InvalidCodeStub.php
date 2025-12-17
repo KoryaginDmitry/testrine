@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Generators\Stubs\TestClass;
+namespace Dkdev\Testrine\Generators\Stubs\TestClass;
 
-use DkDev\Testrine\Contracts\InvalidateCodeContract;
-use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use Dkdev\Testrine\Contracts\InvalidateCodeContract;
+use Dkdev\Testrine\Generators\Stubs\TestClassStub;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class InvalidCodeStub extends TestClassStub

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Generators\Stubs;
+namespace Dkdev\Testrine\Generators\Stubs;
 
-use DkDev\Testrine\Generators\BaseClassGenerator;
-use DkDev\Testrine\Helpers\Char;
+use Dkdev\Testrine\Generators\BaseClassGenerator;
+use Dkdev\Testrine\Support\Char;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 /** @mixin BaseClassGenerator */

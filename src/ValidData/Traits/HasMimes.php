@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Traits;
+namespace Dkdev\Testrine\ValidData\Traits;
 
 trait HasMimes
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Data\OpenApi\Path\Method\Parameter;
+namespace Dkdev\Testrine\Data\OpenApi\Path\Method\Parameter;
 
 use JsonSerializable;
 

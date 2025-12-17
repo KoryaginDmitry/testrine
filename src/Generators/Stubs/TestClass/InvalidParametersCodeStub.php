@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Generators\Stubs\TestClass;
+namespace Dkdev\Testrine\Generators\Stubs\TestClass;
 
-use DkDev\Testrine\Contracts\InvalidParametersCodeContract;
-use DkDev\Testrine\Generators\Stubs\TestClassStub;
-use DkDev\Testrine\Helpers\Char;
-use DkDev\Testrine\Helpers\Config;
-use DkDev\Testrine\Helpers\Route;
-use DkDev\Testrine\Strategies\Contract\InvalidateCodeStrategy;
+use Dkdev\Testrine\Contracts\InvalidParametersCodeContract;
+use Dkdev\Testrine\Generators\Stubs\TestClassStub;
+use Dkdev\Testrine\Resolvers\Contract\InvalidateCodeResolver;
+use Dkdev\Testrine\Support\Char;
+use Dkdev\Testrine\Support\Infrastructure\Config;
+use Dkdev\Testrine\Support\Infrastructure\Route;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class InvalidParametersCodeStub extends TestClassStub
@@ -31,7 +31,7 @@ class InvalidParametersCodeStub extends TestClassStub
     {
         $result = collect(Config::getGroupValue($this->group, 'users'))
             ->map(function (string $user, int $index) {
-                $code = InvalidateCodeStrategy::make()->handle(Route::getRouteByName($this->routeName));
+                $code = InvalidateCodeResolver::make(route: Route::getRouteByName($this->routeName))->handle();
 
                 return $index === 0 ? "'$user' => $code" : Char::TAB3."'$user' => $code";
             })->implode(','.Char::NL);

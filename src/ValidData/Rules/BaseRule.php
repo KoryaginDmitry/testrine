@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace Dkdev\Testrine\ValidData\Rules;
 
-use DkDev\Testrine\CodeBuilder\Builder;
-use DkDev\Testrine\Enums\ValidData\RulePriority;
-use DkDev\Testrine\Traits\Makeable;
+use Dkdev\Testrine\CodeBuilder\Builder;
+use Dkdev\Testrine\Enums\ValidData\RulePriority;
+use Dkdev\Testrine\Traits\Makeable;
 use Illuminate\Routing\Route;
 
 /**

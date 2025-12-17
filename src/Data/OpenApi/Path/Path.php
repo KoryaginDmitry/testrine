@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Data\OpenApi\Path;
+namespace Dkdev\Testrine\Data\OpenApi\Path;
 
-use DkDev\Testrine\Data\OpenApi\Path\Method\Method;
+use Dkdev\Testrine\Data\OpenApi\Path\Method\Method;
 use JsonSerializable;
 
 class Path implements JsonSerializable

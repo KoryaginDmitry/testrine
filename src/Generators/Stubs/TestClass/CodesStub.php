@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Generators\Stubs\TestClass;
+namespace Dkdev\Testrine\Generators\Stubs\TestClass;
 
-use DkDev\Testrine\Contracts\CodeContract;
-use DkDev\Testrine\Generators\Stubs\TestClassStub;
-use DkDev\Testrine\Helpers\Char;
-use DkDev\Testrine\Helpers\Route;
-use DkDev\Testrine\Strategies\Code\ValidDataCodeStrategy;
+use Dkdev\Testrine\Contracts\CodeContract;
+use Dkdev\Testrine\Generators\Stubs\TestClassStub;
+use Dkdev\Testrine\Resolvers\Code\ValidDataCodeResolver;
+use Dkdev\Testrine\Support\Char;
+use Dkdev\Testrine\Support\Infrastructure\Route;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class CodesStub extends TestClassStub
@@ -30,12 +30,11 @@ class CodesStub extends TestClassStub
     {
         $result = collect($this->users)
             ->map(function (string $user, int $index) {
-                $code = ValidDataCodeStrategy::make()
-                    ->handle(
-                        route: Route::getRouteByName(routeName: $this->routeName),
-                        group: $this->getGroup(),
-                        userKey: $user
-                    );
+                $code = ValidDataCodeResolver::make(
+                    route: Route::getRouteByName(routeName: $this->routeName),
+                    group: $this->getGroup(),
+                    userKey: $user
+                )->handle();
 
                 return $index === 0 ? "'$user' => $code" : Char::TAB3."'$user' => $code";
             })->implode(','.Char::NL);

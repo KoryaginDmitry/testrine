@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Data\OpenApi\Path\Method;
+namespace Dkdev\Testrine\Data\OpenApi\Path\Method;
 
-use DkDev\Testrine\Data\OpenApi\Path\Method\Body\RequestBody;
-use DkDev\Testrine\Data\OpenApi\Path\Method\Parameter\Parameter;
-use DkDev\Testrine\Data\OpenApi\Path\Method\Response\Code;
+use Dkdev\Testrine\Data\OpenApi\Path\Method\Body\RequestBody;
+use Dkdev\Testrine\Data\OpenApi\Path\Method\Parameter\Parameter;
+use Dkdev\Testrine\Data\OpenApi\Path\Method\Response\Code;
 use JsonSerializable;
 
 class Method implements JsonSerializable

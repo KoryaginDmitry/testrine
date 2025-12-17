@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\CodeBuilder;
+namespace Dkdev\Testrine\CodeBuilder;
 
-use DkDev\Testrine\CodeBuilder\Nodes\FunctionNode;
-use DkDev\Testrine\CodeBuilder\Nodes\MethodNode;
-use DkDev\Testrine\CodeBuilder\Nodes\PropertyNode;
-use DkDev\Testrine\CodeBuilder\Nodes\RawNode;
-use DkDev\Testrine\CodeBuilder\Nodes\SafeMethodNode;
-use DkDev\Testrine\CodeBuilder\Nodes\SafePropertyNode;
-use DkDev\Testrine\CodeBuilder\Nodes\StaticNode;
-use DkDev\Testrine\Traits\Makeable;
+use Dkdev\Testrine\CodeBuilder\Nodes\FunctionNode;
+use Dkdev\Testrine\CodeBuilder\Nodes\MethodNode;
+use Dkdev\Testrine\CodeBuilder\Nodes\PropertyNode;
+use Dkdev\Testrine\CodeBuilder\Nodes\RawNode;
+use Dkdev\Testrine\CodeBuilder\Nodes\SafeMethodNode;
+use Dkdev\Testrine\CodeBuilder\Nodes\SafePropertyNode;
+use Dkdev\Testrine\CodeBuilder\Nodes\StaticNode;
+use Dkdev\Testrine\Traits\Makeable;
 
 /** @method static Builder make(string $root = '$this') */
 class Builder

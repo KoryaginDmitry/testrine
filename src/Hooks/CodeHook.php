@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Hooks;
+namespace Dkdev\Testrine\Hooks;
 
-use DkDev\Testrine\Contracts\CodeContract;
-use DkDev\Testrine\Helpers\Route;
-use DkDev\Testrine\Strategies\Code\ValidDataCodeStrategy;
+use Dkdev\Testrine\Contracts\CodeContract;
+use Dkdev\Testrine\Resolvers\Code\ValidDataCodeResolver;
+use Dkdev\Testrine\Support\Infrastructure\Route;
 
 class CodeHook extends BaseHook
 {
@@ -18,11 +18,11 @@ class CodeHook extends BaseHook
             return $codes[$this->getUserKey()];
         }
 
-        return ValidDataCodeStrategy::make()
-            ->handle(
-                route: Route::getRouteByName($this->getRouteName()),
-                group: $this->getGroupName(),
-                userKey: $this->getUserKey()
-            );
+        return ValidDataCodeResolver::make(
+            route: Route::getRouteByName($this->getRouteName()),
+            group: $this->getGroupName(),
+            userKey: $this->getUserKey()
+        )
+            ->handle();
     }
 }

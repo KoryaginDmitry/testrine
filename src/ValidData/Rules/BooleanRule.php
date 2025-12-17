@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace Dkdev\Testrine\ValidData\Rules;
 
-use DkDev\Testrine\Enums\ValidData\RulePriority;
+use Dkdev\Testrine\Enums\ValidData\RulePriority;
 
 class BooleanRule extends BaseRule
 {

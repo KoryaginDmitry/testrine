@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Enums\Writes;
+namespace Dkdev\Testrine\Enums\Writes;
 
 enum Format: string
 {

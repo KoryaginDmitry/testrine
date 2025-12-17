@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace Dkdev\Testrine\ValidData\Rules;
 
-use DkDev\Testrine\Enums\ValidData\RulePriority;
-use DkDev\Testrine\ValidData\Traits\HasRange;
+use Dkdev\Testrine\Enums\ValidData\RulePriority;
+use Dkdev\Testrine\ValidData\Traits\HasRange;
 
 class IntegerRule extends BaseRule
 {

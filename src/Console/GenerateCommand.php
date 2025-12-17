@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Console;
+namespace Dkdev\Testrine\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;

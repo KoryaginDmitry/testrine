@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Enums\Swagger;
+namespace Dkdev\Testrine\Enums\Swagger;
 
 enum Location: string
 {

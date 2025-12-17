@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Console;
+namespace Dkdev\Testrine\Console;
 
-use DkDev\Testrine\Helpers\Config;
-use DkDev\Testrine\Helpers\StorageHelper;
+use Dkdev\Testrine\Support\Infrastructure\Config;
+use Dkdev\Testrine\Support\Infrastructure\StorageHelper;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 

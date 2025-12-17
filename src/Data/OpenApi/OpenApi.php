@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Data\OpenApi;
+namespace Dkdev\Testrine\Data\OpenApi;
 
-use DkDev\Testrine\Data\OpenApi\Info\Info;
-use DkDev\Testrine\Data\OpenApi\Path\Path;
-use DkDev\Testrine\Data\OpenApi\Server\Server;
+use Dkdev\Testrine\Data\OpenApi\Info\Info;
+use Dkdev\Testrine\Data\OpenApi\Path\Path;
+use Dkdev\Testrine\Data\OpenApi\Server\Server;
 
 class OpenApi
 {

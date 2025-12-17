@@ -1,18 +1,18 @@
 <?php
 
-namespace DkDev\Testrine\Parser;
+namespace Dkdev\Testrine\Parser;
 
-use DkDev\Testrine\Attributes\Property;
-use DkDev\Testrine\Attributes\Resource;
-use DkDev\Testrine\Enums\Attributes\In;
-use DkDev\Testrine\Enums\Inform\Level;
-use DkDev\Testrine\Enums\Writes\Format;
-use DkDev\Testrine\Factories\WriterFactory;
-use DkDev\Testrine\Helpers\Config;
-use DkDev\Testrine\Helpers\Reflection;
-use DkDev\Testrine\Inform\Inform;
-use DkDev\Testrine\Strategies\Parser\BaseParserStrategy;
-use DkDev\Testrine\Traits\Makeable;
+use Dkdev\Testrine\Attributes\Property;
+use Dkdev\Testrine\Attributes\Resource;
+use Dkdev\Testrine\Collectors\Collector;
+use Dkdev\Testrine\Enums\Attributes\In;
+use Dkdev\Testrine\Enums\Inform\Level;
+use Dkdev\Testrine\Enums\Writes\Format;
+use Dkdev\Testrine\Factories\WriterFactory;
+use Dkdev\Testrine\Inform\Inform;
+use Dkdev\Testrine\Support\Infrastructure\Config;
+use Dkdev\Testrine\Support\Infrastructure\Reflection;
+use Dkdev\Testrine\Traits\Makeable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Testing\TestResponse;
@@ -43,6 +43,7 @@ class TestParser
 
             Inform::push(__('success'));
         } catch (Throwable $throwable) {
+            dd($throwable);
             Inform::push(__('error', [
                 'error' => $throwable->getMessage(),
             ]), Level::WARNING);
@@ -142,15 +143,15 @@ class TestParser
     {
         /**
          * @var string $key
-         * @var BaseParserStrategy $strategy
+         * @var Collector $collector
          */
-        foreach (Config::getSwaggerValue('strategies.parsers') as $strategy) {
-            $strategy = $strategy::make();
-
-            $this->data[$strategy->getName()] = $strategy->handle(
+        foreach (Config::getSwaggerValue('collectors') as $collector) {
+            $collector = $collector::make(
                 response: $response,
-                attributes: $this->attributes,
+                attributes: $this->attributes
             );
+
+            $this->data[$collector->getName()] = $collector->handle();
         }
     }
 

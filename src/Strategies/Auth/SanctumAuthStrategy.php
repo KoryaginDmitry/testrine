@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Strategies\Auth;
+namespace Dkdev\Testrine\Strategies\Auth;
 
-use App\Models\User;
-use DkDev\Testrine\BaseTestrineCase;
+use Dkdev\Testrine\BaseTestrineCase;
 use Laravel\Sanctum\Sanctum;
 
 class SanctumAuthStrategy extends BaseAuthStrategy
 {
-    public function authorize(BaseTestrineCase $test, ?User $user): BaseTestrineCase
+    public function defaultHandler(): BaseTestrineCase
     {
-        Sanctum::actingAs(user: $user);
+        Sanctum::actingAs(user: $this->user);
 
-        return $test;
+        return $this->test;
     }
 }

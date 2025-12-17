@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Generators\Stubs\BaseClass;
+namespace Dkdev\Testrine\Generators\Stubs\BaseClass;
 
-use DkDev\Testrine\Generators\Stubs\BaseClassStub;
-use DkDev\Testrine\Helpers\Config;
+use Dkdev\Testrine\Generators\Stubs\BaseClassStub;
+use Dkdev\Testrine\Support\Infrastructure\Config;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 class RouteStub extends BaseClassStub
@@ -28,7 +28,7 @@ class RouteStub extends BaseClassStub
         foreach ($this->users as $user) {
             $this->pushResult(
                 keys: ['{{ name }}', '{{ user_key }}', '{{ auth }}'],
-                values: [str($user)->studly(), $user, Config::getGroupValue(group: $this->getGroup(), key: "strategies.auth.$user")],
+                values: [str($user)->studly(), $user, Config::getGroupValue(group: $this->getGroup(), key: "auth.$user")],
             );
         }
 

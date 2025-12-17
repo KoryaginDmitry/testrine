@@ -1,55 +1,55 @@
 <?php
 
-use DkDev\Testrine\Contracts\CodeContract;
-use DkDev\Testrine\Contracts\DocIgnoreContract;
-use DkDev\Testrine\Contracts\FakeStorageContract;
-use DkDev\Testrine\Contracts\InvalidateCodeContract;
-use DkDev\Testrine\Contracts\InvalidateContract;
-use DkDev\Testrine\Contracts\InvalidParametersCodeContract;
-use DkDev\Testrine\Contracts\InvalidParametersContract;
-use DkDev\Testrine\Contracts\JobContract;
-use DkDev\Testrine\Contracts\MockContract;
-use DkDev\Testrine\Contracts\NotificationContract;
-use DkDev\Testrine\Contracts\ParametersContract;
-use DkDev\Testrine\Contracts\ResponseContract;
-use DkDev\Testrine\Contracts\SeedContract;
-use DkDev\Testrine\Contracts\ValidateContract;
-use DkDev\Testrine\Strategies\Auth\SanctumAuthStrategy;
-use DkDev\Testrine\Strategies\Auth\WithoutAuthStrategy;
-use DkDev\Testrine\Strategies\Code\InvalidDataCodeStrategy;
-use DkDev\Testrine\Strategies\Code\InvalidRouteParamsStrategy;
-use DkDev\Testrine\Strategies\Code\ValidDataCodeStrategy;
-use DkDev\Testrine\Strategies\Contract\CodeContractStrategy;
-use DkDev\Testrine\Strategies\Contract\DocIgnoreStrategy;
-use DkDev\Testrine\Strategies\Contract\FakeStorageStrategy;
-use DkDev\Testrine\Strategies\Contract\InvalidateContractStrategy;
-use DkDev\Testrine\Strategies\Contract\InvalidParametersCodeStrategy;
-use DkDev\Testrine\Strategies\Contract\InvalidParametersContractStrategy;
-use DkDev\Testrine\Strategies\Contract\JobStrategy;
-use DkDev\Testrine\Strategies\Contract\MockStrategy;
-use DkDev\Testrine\Strategies\Contract\NotificationStrategy;
-use DkDev\Testrine\Strategies\Contract\ParametersContractStrategy;
-use DkDev\Testrine\Strategies\Contract\ResponseContractStrategy;
-use DkDev\Testrine\Strategies\Contract\SeedStrategy;
-use DkDev\Testrine\Strategies\Contract\ValidateContractStrategy;
-use DkDev\Testrine\Strategies\Generators\AuthGeneratorStrategy;
-use DkDev\Testrine\Strategies\Generators\DescriptionGeneratorStrategy;
-use DkDev\Testrine\Strategies\Generators\GroupGeneratorStrategy;
-use DkDev\Testrine\Strategies\Generators\MethodGeneratorStrategy;
-use DkDev\Testrine\Strategies\Generators\PathGeneratorStrategy;
-use DkDev\Testrine\Strategies\Generators\RequestGeneratorStrategy;
-use DkDev\Testrine\Strategies\Generators\ResponseGeneratorStrategy;
-use DkDev\Testrine\Strategies\Generators\SummaryGeneratorStrategy;
-use DkDev\Testrine\Strategies\Parser\AuthStrategy;
-use DkDev\Testrine\Strategies\Parser\CodeStrategy;
-use DkDev\Testrine\Strategies\Parser\ContentTypeParser;
-use DkDev\Testrine\Strategies\Parser\DescriptionStrategy;
-use DkDev\Testrine\Strategies\Parser\GroupStrategy;
-use DkDev\Testrine\Strategies\Parser\MethodStrategy;
-use DkDev\Testrine\Strategies\Parser\PathStrategy;
-use DkDev\Testrine\Strategies\Parser\RequestStrategy;
-use DkDev\Testrine\Strategies\Parser\ResponseStrategy;
-use DkDev\Testrine\Strategies\Parser\SummaryStrategy;
+use Dkdev\Testrine\Collectors\AuthCollector;
+use Dkdev\Testrine\Collectors\CodeCollector;
+use Dkdev\Testrine\Collectors\ContentTypeCollector;
+use Dkdev\Testrine\Collectors\DescriptionCollector;
+use Dkdev\Testrine\Collectors\GroupCollector;
+use Dkdev\Testrine\Collectors\MethodCollector;
+use Dkdev\Testrine\Collectors\PathCollector;
+use Dkdev\Testrine\Collectors\RequestCollector;
+use Dkdev\Testrine\Collectors\ResponseCollector;
+use Dkdev\Testrine\Collectors\SummaryCollector;
+use Dkdev\Testrine\Contracts\CodeContract;
+use Dkdev\Testrine\Contracts\DocIgnoreContract;
+use Dkdev\Testrine\Contracts\FakeStorageContract;
+use Dkdev\Testrine\Contracts\InvalidateCodeContract;
+use Dkdev\Testrine\Contracts\InvalidateContract;
+use Dkdev\Testrine\Contracts\InvalidParametersCodeContract;
+use Dkdev\Testrine\Contracts\InvalidParametersContract;
+use Dkdev\Testrine\Contracts\JobContract;
+use Dkdev\Testrine\Contracts\MockContract;
+use Dkdev\Testrine\Contracts\NotificationContract;
+use Dkdev\Testrine\Contracts\ParametersContract;
+use Dkdev\Testrine\Contracts\ResponseContract;
+use Dkdev\Testrine\Contracts\SeedContract;
+use Dkdev\Testrine\Contracts\ValidateContract;
+use Dkdev\Testrine\Mappers\AuthMapper;
+use Dkdev\Testrine\Mappers\DescriptionMapper;
+use Dkdev\Testrine\Mappers\GroupMapper;
+use Dkdev\Testrine\Mappers\MethodMapper;
+use Dkdev\Testrine\Mappers\PathMapper;
+use Dkdev\Testrine\Mappers\RequestMapper;
+use Dkdev\Testrine\Mappers\ResponseMapper;
+use Dkdev\Testrine\Mappers\SummaryMapper;
+use Dkdev\Testrine\Resolvers\Code\InvalidDataCodeResolver;
+use Dkdev\Testrine\Resolvers\Code\InvalidRouteParamsResolver;
+use Dkdev\Testrine\Resolvers\Code\ValidDataCodeResolver;
+use Dkdev\Testrine\Resolvers\Contract\CodeContractResolver;
+use Dkdev\Testrine\Resolvers\Contract\DocIgnoreResolver;
+use Dkdev\Testrine\Resolvers\Contract\FakeStorageResolver;
+use Dkdev\Testrine\Resolvers\Contract\InvalidateContractResolver;
+use Dkdev\Testrine\Resolvers\Contract\InvalidParametersCodeResolver;
+use Dkdev\Testrine\Resolvers\Contract\InvalidParametersContractResolver;
+use Dkdev\Testrine\Resolvers\Contract\JobResolver;
+use Dkdev\Testrine\Resolvers\Contract\MockResolver;
+use Dkdev\Testrine\Resolvers\Contract\NotificationResolver;
+use Dkdev\Testrine\Resolvers\Contract\ParametersContractResolver;
+use Dkdev\Testrine\Resolvers\Contract\ResponseContractResolver;
+use Dkdev\Testrine\Resolvers\Contract\SeedResolver;
+use Dkdev\Testrine\Resolvers\Contract\ValidateContractResolver;
+use Dkdev\Testrine\Strategies\Auth\SanctumAuthStrategy;
+use Dkdev\Testrine\Strategies\Auth\WithoutAuthStrategy;
 
 return [
     'groups' => [
@@ -62,34 +62,32 @@ return [
 
             'document' => true,
 
-            'strategies' => [
-                'contracts' => [
-                    CodeContract::class => CodeContractStrategy::class,
-                    DocIgnoreContract::class => DocIgnoreStrategy::class,
-                    FakeStorageContract::class => FakeStorageStrategy::class,
-                    InvalidateCodeContract::class => InvalidateContractStrategy::class,
-                    InvalidateContract::class => InvalidateContractStrategy::class,
-                    InvalidParametersCodeContract::class => InvalidParametersCodeStrategy::class,
-                    InvalidParametersContract::class => InvalidParametersContractStrategy::class,
-                    JobContract::class => JobStrategy::class,
-                    MockContract::class => MockStrategy::class,
-                    NotificationContract::class => NotificationStrategy::class,
-                    ParametersContract::class => ParametersContractStrategy::class,
-                    SeedContract::class => SeedStrategy::class,
-                    ValidateContract::class => ValidateContractStrategy::class,
-                    ResponseContract::class => ResponseContractStrategy::class,
-                ],
+            'contracts' => [
+                CodeContract::class => CodeContractResolver::class,
+                DocIgnoreContract::class => DocIgnoreResolver::class,
+                FakeStorageContract::class => FakeStorageResolver::class,
+                InvalidateCodeContract::class => InvalidateContractResolver::class,
+                InvalidateContract::class => InvalidateContractResolver::class,
+                InvalidParametersCodeContract::class => InvalidParametersCodeResolver::class,
+                InvalidParametersContract::class => InvalidParametersContractResolver::class,
+                JobContract::class => JobResolver::class,
+                MockContract::class => MockResolver::class,
+                NotificationContract::class => NotificationResolver::class,
+                ParametersContract::class => ParametersContractResolver::class,
+                SeedContract::class => SeedResolver::class,
+                ValidateContract::class => ValidateContractResolver::class,
+                ResponseContract::class => ResponseContractResolver::class,
+            ],
 
-                'code' => [
-                    'valid_data' => ValidDataCodeStrategy::class,
-                    'invalid_data' => InvalidDataCodeStrategy::class,
-                    'invalid_route_params' => InvalidRouteParamsStrategy::class,
-                ],
+            'code' => [
+                'valid_data' => ValidDataCodeResolver::class,
+                'invalid_data' => InvalidDataCodeResolver::class,
+                'invalid_route_params' => InvalidRouteParamsResolver::class,
+            ],
 
-                'auth' => [
-                    'guest' => WithoutAuthStrategy::class,
-                    'user' => SanctumAuthStrategy::class,
-                ],
+            'auth' => [
+                'guest' => WithoutAuthStrategy::class,
+                'user' => SanctumAuthStrategy::class,
             ],
         ],
 
@@ -190,30 +188,28 @@ return [
             ],
         ],
 
-        'strategies' => [
-            'parsers' => [
-                GroupStrategy::class,
-                CodeStrategy::class,
-                MethodStrategy::class,
-                PathStrategy::class,
-                ContentTypeParser::class,
-                AuthStrategy::class,
-                SummaryStrategy::class,
-                DescriptionStrategy::class,
-                RequestStrategy::class,
-                ResponseStrategy::class,
-            ],
+        'collectors' => [
+            GroupCollector::class,
+            CodeCollector::class,
+            MethodCollector::class,
+            PathCollector::class,
+            ContentTypeCollector::class,
+            AuthCollector::class,
+            SummaryCollector::class,
+            DescriptionCollector::class,
+            RequestCollector::class,
+            ResponseCollector::class,
+        ],
 
-            'generators' => [
-                PathGeneratorStrategy::class,
-                MethodGeneratorStrategy::class,
-                GroupGeneratorStrategy::class,
-                AuthGeneratorStrategy::class,
-                SummaryGeneratorStrategy::class,
-                DescriptionGeneratorStrategy::class,
-                ResponseGeneratorStrategy::class,
-                RequestGeneratorStrategy::class,
-            ],
+        'mappers' => [
+            PathMapper::class,
+            MethodMapper::class,
+            GroupMapper::class,
+            AuthMapper::class,
+            SummaryMapper::class,
+            DescriptionMapper::class,
+            ResponseMapper::class,
+            RequestMapper::class,
         ],
     ],
 ];

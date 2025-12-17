@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Hooks;
+namespace Dkdev\Testrine\Hooks;
 
-use DkDev\Testrine\Contracts\JobContract;
+use Dkdev\Testrine\Contracts\JobContract;
 use Illuminate\Support\Facades\Queue;
 
 class QueueHook extends BaseHook

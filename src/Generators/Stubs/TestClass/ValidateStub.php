@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Generators\Stubs\TestClass;
+namespace Dkdev\Testrine\Generators\Stubs\TestClass;
 
-use DkDev\Testrine\Contracts\ValidateContract;
-use DkDev\Testrine\Generators\Stubs\TestClassStub;
-use DkDev\Testrine\Helpers\Char;
-use DkDev\Testrine\Helpers\Reflection;
-use DkDev\Testrine\ValidData\MakeValidDataHelper;
+use Dkdev\Testrine\Contracts\ValidateContract;
+use Dkdev\Testrine\Generators\Stubs\TestClassStub;
+use Dkdev\Testrine\Support\Char;
+use Dkdev\Testrine\Support\Infrastructure\Reflection;
+use Dkdev\Testrine\ValidData\ValidData;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Support\Facades\Route;
 use ReflectionException;
@@ -33,7 +33,7 @@ class ValidateStub extends TestClassStub
         }
 
         $result = collect($rules ?? [])
-            ->map(fn (array|string $rules, string $key) => MakeValidDataHelper::make()->generate(route: $route, key: $key, rules: $rules))
+            ->map(fn (array|string $rules, string $key) => ValidData::make()->generate(route: $route, key: $key, rules: $rules))
             ->values()
             ->implode('');
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Console;
+namespace Dkdev\Testrine\Console;
 
-use DkDev\Testrine\Parser\SwaggerGenerator;
+use Dkdev\Testrine\Parser\SwaggerGenerator;
 use Illuminate\Console\Command;
 use JsonException;
 use Symfony\Component\Console\Command\Command as CommandAlias;

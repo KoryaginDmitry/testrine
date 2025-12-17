@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Hooks;
+namespace Dkdev\Testrine\Hooks;
 
-use DkDev\Testrine\Contracts\InvalidParametersCodeContract;
-use DkDev\Testrine\Helpers\Route;
-use DkDev\Testrine\Strategies\Code\InvalidRouteParamsStrategy;
+use Dkdev\Testrine\Contracts\InvalidParametersCodeContract;
+use Dkdev\Testrine\Resolvers\Code\InvalidRouteParamsResolver;
+use Dkdev\Testrine\Support\Infrastructure\Route;
 
 class InvalidParametersCodeHook extends BaseHook
 {
@@ -18,11 +18,11 @@ class InvalidParametersCodeHook extends BaseHook
             return $codes[$this->getUserKey()];
         }
 
-        return InvalidRouteParamsStrategy::make()
-            ->handle(
-                route: Route::getRouteByName($this->getRouteName()),
-                group: $this->getGroupName(),
-                userKey: $this->getUserKey(),
-            );
+        return InvalidRouteParamsResolver::make(
+            route: Route::getRouteByName($this->getRouteName()),
+            group: $this->getGroupName(),
+            userKey: $this->getUserKey(),
+        )
+            ->handle();
     }
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Inform;
+namespace Dkdev\Testrine\Inform;
 
-use DkDev\Testrine\Enums\Inform\Level;
+use Dkdev\Testrine\Enums\Inform\Level;
 use Illuminate\Console\Command;
 
 class Inform

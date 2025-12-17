@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\Strategies\Auth;
+namespace Dkdev\Testrine\Strategies\Auth;
 
-use App\Models\User;
-use DkDev\Testrine\BaseTestrineCase;
+use Dkdev\Testrine\BaseTestrineCase;
 use Laravel\Passport\Passport;
 
 class PassportAuthStrategy extends BaseAuthStrategy
 {
-    public function authorize(BaseTestrineCase $test, ?User $user): BaseTestrineCase
+    public function defaultHandler(): BaseTestrineCase
     {
-        Passport::actingAs(user: $user, abilities: ['*']);
+        Passport::actingAs(user: $this->user, abilities: ['*']);
 
-        return $test;
+        return $this->test;
     }
 }

@@ -1,6 +1,6 @@
     private function callAuthorizedBy{{ name }}RouteAction($user, array $data = [], array $parameters = []): TestResponse
     {
-        \{{ auth }}::make()->handle(test: $this, user: $user);
+        \{{ auth }}::make(test: $this, user: $user)->handle();
 
         return $this->callRouteAction(data: $data, parameters: $parameters);
     }
