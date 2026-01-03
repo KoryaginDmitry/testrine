@@ -115,7 +115,7 @@ class TestGenerator extends BaseGenerator
             return "Tests\\Feature\\$this->preparedGroup\\".str($this->className)->beforeLast('/')->replace('/', '\\');
         }
 
-        return "Tests\\Feature\\$this->preparedGroup\\";
+        return "Tests\\Feature\\$this->preparedGroup";
     }
 
     protected function getExtendsClass(): string
