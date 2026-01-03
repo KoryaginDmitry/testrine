@@ -37,4 +37,9 @@ return [
             ],
         ],
     ],
+
+    'tests' => [
+        'select_route_groups' => 'ルートグループを選択',
+        'select_routes_by_group' => 'グループ別にルートを選択',
+    ],
 ];

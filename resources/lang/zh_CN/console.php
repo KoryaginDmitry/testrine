@@ -37,4 +37,9 @@ return [
             ],
         ],
     ],
+
+    'tests' => [
+        'select_route_groups' => '选择路由组',
+        'select_routes_by_group' => '按组选择路由',
+    ],
 ];

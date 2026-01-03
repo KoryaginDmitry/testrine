@@ -38,7 +38,7 @@ class GenerateTestsCommand extends Command
             $grouped = $routes->groupBy('group');
 
             $groups = multiselect(
-                label: __('testrine::console.generate_tests.select_route_groups'),
+                label: __('testrine::console.tests.select_route_groups'),
                 options: $grouped->keys()
             );
 
@@ -49,7 +49,7 @@ class GenerateTestsCommand extends Command
                 $routes = collect($routes);
 
                 $selected = multiselect(
-                    label: __('testrine::console.generate_tests.select_routes_by_group', ['group' => $group]),
+                    label: __('testrine::console.tests.select_routes_by_group', ['group' => $group]),
                     options: $routes->pluck('name')->toArray(),
                     default: $routes->pluck('name')->toArray(),
                 );
@@ -83,7 +83,6 @@ class GenerateTestsCommand extends Command
 
             return self::SUCCESS;
         } catch (Throwable $throwable) {
-            dd($throwable);
             error($throwable->getMessage());
 
             return self::FAILURE;

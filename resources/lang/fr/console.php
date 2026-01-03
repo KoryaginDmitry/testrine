@@ -37,4 +37,9 @@ return [
             ],
         ],
     ],
+
+    'tests' => [
+        'select_route_groups' => 'Sélectionner des groupes de routes',
+        'select_routes_by_group' => 'Choisir les routes par groupe',
+    ],
 ];
