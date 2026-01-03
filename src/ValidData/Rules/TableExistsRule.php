@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
+use Illuminate\Support\Facades\DB;
 
 class TableExistsRule extends BaseRule
 {
@@ -20,7 +22,7 @@ class TableExistsRule extends BaseRule
     public function hasThisRule(): bool
     {
         foreach ($this->rules as $rule) {
-            if (str((string) $rule)->contains('exists:')) {
+            if ($this->contains('exists:', $rule)) {
                 $ruleExists = str((string) $rule)->after('exists:')->explode(',')->toArray();
 
                 $this->table = $ruleExists[0];
@@ -35,6 +37,11 @@ class TableExistsRule extends BaseRule
 
     public function getValue(): string
     {
-        return "\Illuminate\Support\Facades\DB::table('$this->table')->select('$this->key')->limit(1)->value('$this->key')";
+        return Builder::make('')
+            ->staticCall(DB::class, 'table', $this->table)
+            ->method('select', $this->key)
+            ->method('limit', 1)
+            ->method('value', $this->key)
+            ->build();
     }
 }

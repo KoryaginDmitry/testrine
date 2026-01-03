@@ -18,7 +18,7 @@ class StringRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('string', $this->rules, true);
+        return $this->inRules('string');
     }
 
     public function getValue(): string

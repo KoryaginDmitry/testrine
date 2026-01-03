@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 use Illuminate\Support\Str;
 
@@ -32,6 +33,8 @@ class PasswordRule extends BaseRule
 
         $pass = '"'.str(Str::password())->replace(['$', '""'], '')->value().'"';
 
-        return "'password' => $pass,\n\t\t\t'password_confirmation' => $pass,\n\t\t\t";
+        return Builder::make('')
+            ->raw("'password' => '$pass',\n\t\t\t'password_confirmation' => '$pass',\n\t\t\t")
+            ->build();
     }
 }

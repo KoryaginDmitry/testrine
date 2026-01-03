@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 
 class BooleanRule extends BaseRule
@@ -15,12 +16,13 @@ class BooleanRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('boolean', $this->rules, true)
-            || in_array('bool', $this->rules, true);
+        return $this->inRules('boolean') || $this->inRules('bool');
     }
 
     public function getValue(): string
     {
-        return 'fake()->numberBetween(0,1)';
+        return Builder::make('fake()')
+            ->method('numberBetween', 0, 1)
+            ->build();
     }
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
+use Illuminate\Validation\Rules\Email;
 
 class EmailRule extends BaseRule
 {
@@ -15,11 +17,13 @@ class EmailRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('email', $this->rules, true);
+        return $this->inRules('email') || $this->hasInstance(Email::class);
     }
 
     public function getValue(): string
     {
-        return 'fake()->email()';
+        return Builder::make('fake()')
+            ->method('email')
+            ->build();
     }
 }

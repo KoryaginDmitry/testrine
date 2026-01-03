@@ -16,7 +16,7 @@ class CurrentPasswordRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('current_password', $this->rules);
+        return $this->inRules('current_password');
     }
 
     public function getValue(): string

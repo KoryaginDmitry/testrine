@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 
 class ImageRule extends BaseRule
@@ -15,11 +16,13 @@ class ImageRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('image', $this->rules, true);
+        return $this->inRules('image');
     }
 
     public function getValue(): string
     {
-        return 'fake()->image';
+        return Builder::make('fake()')
+            ->property('image')
+            ->build();
     }
 }

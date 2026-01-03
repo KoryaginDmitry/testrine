@@ -83,7 +83,7 @@ class BindService extends BaseService
     }
 
     /**
-     * @param class-string<HasHandler> $handler
+     * @param  class-string<HasHandler>  $handler
      */
     public function setHandler(string $handler, \Closure $closure): void
     {

@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 use DkDev\Testrine\ValidData\Traits\HasMimes;
 use DkDev\Testrine\ValidData\Traits\HasRange;
+use Illuminate\Http\UploadedFile;
 
 class FileRule extends BaseRule
 {
@@ -20,7 +22,7 @@ class FileRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('file', $this->rules, true);
+        return $this->inRules('file');
     }
 
     public function getValue(): string
@@ -28,6 +30,9 @@ class FileRule extends BaseRule
         $mime = ! empty($this->mimes) ? $this->mimes[0] : null;
         $size = fake()->numberBetween(1, $this->max ?: 1000);
 
-        return "\Illuminate\Http\UploadedFile::fake()->create('test', $size, $mime)";
+        return Builder::make('')
+            ->staticCall(UploadedFile::class, 'fake')
+            ->method('create', 'test', $size, $mime)
+            ->build();
     }
 }

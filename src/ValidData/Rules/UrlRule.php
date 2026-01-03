@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 
 class UrlRule extends BaseRule
@@ -15,11 +16,11 @@ class UrlRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('url', $this->rules, true);
+        return $this->inRules('url');
     }
 
     public function getValue(): string
     {
-        return 'fake()->url()';
+        return Builder::make('fake()')->method('url')->build();
     }
 }

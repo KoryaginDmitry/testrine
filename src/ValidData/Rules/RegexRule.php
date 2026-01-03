@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 
 class RegexRule extends BaseRule
@@ -30,6 +31,8 @@ class RegexRule extends BaseRule
 
         $pattern = substr($regexRule, strlen('regex:'));
 
-        return "fake()->regexify('".addslashes(trim($pattern, '/'))."')";
+        return Builder::make('fake()')
+            ->method('regexify', addslashes(trim($pattern, '/')))
+            ->build();
     }
 }

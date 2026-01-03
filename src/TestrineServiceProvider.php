@@ -11,7 +11,6 @@ use DkDev\Testrine\Console\ParseCommand;
 use DkDev\Testrine\Enums\Doc\Renderer;
 use DkDev\Testrine\Exceptions\RendererNotFound;
 use DkDev\Testrine\Renders\BaseRender;
-use DkDev\Testrine\Renders\ScribeRender;
 use DkDev\Testrine\Renders\SwaggerRender;
 use DkDev\Testrine\Support\Infrastructure\Config;
 use DkDev\Testrine\ValidData\Rules\ArrayRule;

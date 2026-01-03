@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 use DkDev\Testrine\ValidData\Traits\HasRange;
 
@@ -18,11 +19,13 @@ class IntegerRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('integer', $this->rules, true);
+        return $this->inRules('integer');
     }
 
     public function getValue(): string
     {
-        return "fake()->numberBetween($this->min, $this->max)";
+        return Builder::make('fake()')
+            ->method('numberBetween', $this->min, $this->max)
+            ->build();
     }
 }

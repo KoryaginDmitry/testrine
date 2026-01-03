@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
+use Illuminate\Validation\Rules\Enum;
 
 class EnumRule extends BaseRule
 {
@@ -18,7 +20,14 @@ class EnumRule extends BaseRule
     public function hasThisRule(): bool
     {
         foreach ($this->rules as $rule) {
-            if (str_starts_with((string) $rule, 'in:')) {
+            if ($this->isInstance(Enum::class, $rule)) {
+                // $rule->
+
+                // todo
+                return true;
+            }
+
+            if ($this->startsWith('in:', $rule)) {
                 $this->in = str((string) $rule)->after(':')->explode(',')->toArray();
 
                 return true;
@@ -30,6 +39,9 @@ class EnumRule extends BaseRule
 
     public function getValue(): string
     {
-        return 'collect(['.implode(',', $this->in).'])->random()';
+        return Builder::make('')
+            ->func('collect', $this->in)
+            ->method('random')
+            ->build();
     }
 }

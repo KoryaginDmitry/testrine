@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 use DkDev\Testrine\ValidData\Traits\HasRange;
 
@@ -18,13 +19,15 @@ class DateRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return in_array('date', $this->rules, true);
+        return $this->inRules('date');
     }
 
     public function getValue(): string
     {
         $max = $this->max ?: 'now';
 
-        return "fake()->date('Y-m-d', $max)";
+        return Builder::make('fake()')
+            ->method('date', 'Y-m-d', $max)
+            ->build();
     }
 }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 
 class NullableRule extends BaseRule
@@ -15,15 +16,13 @@ class NullableRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return (
-            ! in_array('required', $this->rules, true)
-            && ! in_array('sometimes', $this->rules, true)
-        )
-            || in_array('nullable', $this->rules, true);
+        return (! $this->inRules('required') && ! $this->inRules('sometimes')) || $this->inRules('nullable');
     }
 
     public function getValue(): string
     {
-        return "''";
+        return Builder::make('')
+            ->raw('')
+            ->build();
     }
 }
