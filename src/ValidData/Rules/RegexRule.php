@@ -17,7 +17,7 @@ class RegexRule extends BaseRule
     public function hasThisRule(): bool
     {
         return collect($this->rules)
-            ->contains(fn (string $rule) => str($rule)->contains('regex'));
+            ->contains(fn (mixed $rule) => $this->contains('regex', $rule));
     }
 
     public function getValue(): string
