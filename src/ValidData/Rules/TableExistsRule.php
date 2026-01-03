@@ -12,7 +12,7 @@ class TableExistsRule extends BaseRule
 {
     protected string $table;
 
-    protected string $key;
+    protected string $column;
 
     public function getPriority(): RulePriority
     {
@@ -26,7 +26,7 @@ class TableExistsRule extends BaseRule
                 $ruleExists = str((string) $rule)->after('exists:')->explode(',')->toArray();
 
                 $this->table = $ruleExists[0];
-                $this->key = $ruleExists[1] && $ruleExists[1] !== 'NULL' ? $ruleExists[1] : $this->key;
+                $this->column = $ruleExists[1] && $ruleExists[1] !== 'NULL' ? $ruleExists[1] : $this->key;
 
                 return true;
             }
@@ -39,9 +39,9 @@ class TableExistsRule extends BaseRule
     {
         return Builder::make('')
             ->staticCall(DB::class, 'table', $this->table)
-            ->method('select', $this->key)
+            ->method('select', $this->column)
             ->method('limit', 1)
-            ->method('value', $this->key)
+            ->method('value', $this->column)
             ->build();
     }
 }
