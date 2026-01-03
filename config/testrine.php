@@ -24,14 +24,16 @@ use DkDev\Testrine\Contracts\ParametersContract;
 use DkDev\Testrine\Contracts\ResponseContract;
 use DkDev\Testrine\Contracts\SeedContract;
 use DkDev\Testrine\Contracts\ValidateContract;
-use DkDev\Testrine\Mappers\AuthMapper;
-use DkDev\Testrine\Mappers\DescriptionMapper;
-use DkDev\Testrine\Mappers\GroupMapper;
-use DkDev\Testrine\Mappers\MethodMapper;
-use DkDev\Testrine\Mappers\PathMapper;
-use DkDev\Testrine\Mappers\RequestMapper;
-use DkDev\Testrine\Mappers\ResponseMapper;
-use DkDev\Testrine\Mappers\SummaryMapper;
+use DkDev\Testrine\Doc\OpenApi\OpenApi;
+use DkDev\Testrine\Enums\Doc\Renderer;
+use DkDev\Testrine\Processors\AuthProcessor;
+use DkDev\Testrine\Processors\DescriptionProcessor;
+use DkDev\Testrine\Processors\GroupProcessor;
+use DkDev\Testrine\Processors\MethodProcessor;
+use DkDev\Testrine\Processors\PathProcessor;
+use DkDev\Testrine\Processors\RequestProcessor;
+use DkDev\Testrine\Processors\ResponseProcessor;
+use DkDev\Testrine\Processors\SummaryProcessor;
 use DkDev\Testrine\Resolvers\Code\InvalidDataCodeResolver;
 use DkDev\Testrine\Resolvers\Code\InvalidRouteParamsResolver;
 use DkDev\Testrine\Resolvers\Code\ValidDataCodeResolver;
@@ -52,16 +54,46 @@ use DkDev\Testrine\Strategies\Auth\SanctumAuthStrategy;
 use DkDev\Testrine\Strategies\Auth\WithoutAuthStrategy;
 
 return [
+
+    /*
+    |--------------------------------------------------------------------------
+    | Test Groups Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Groups define testing and documentation contexts.
+    | Each group may define users, authorization strategies,
+    | contracts, response codes and documentation behavior.
+    |
+    */
     'groups' => [
+
+        /*
+        |----------------------------------------------------------------------
+        | Default Group
+        |----------------------------------------------------------------------
+        |
+        | The default group is used if no parameter is specified for a specific group.
+        |
+        */
         'default' => [
 
+            /*
+            | Define users within a group.
+            */
             'users' => [
                 'guest',
                 'user',
             ],
 
+            /*
+            | Determine whether this group should be included
+            | in documentation generation.
+            */
             'document' => true,
 
+            /*
+            | Contracts and their corresponding resolvers.
+            */
             'contracts' => [
                 CodeContract::class => CodeContractResolver::class,
                 DocIgnoreContract::class => DocIgnoreResolver::class,
@@ -79,40 +111,97 @@ return [
                 ResponseContract::class => ResponseContractResolver::class,
             ],
 
+            /*
+            | Default HTTP response code resolvers.
+            */
             'code' => [
                 'valid_data' => ValidDataCodeResolver::class,
                 'invalid_data' => InvalidDataCodeResolver::class,
                 'invalid_route_params' => InvalidRouteParamsResolver::class,
             ],
 
+            /*
+            | Middleware used to determine whether a route
+            | requires authentication.
+            */
+            'auth_middleware' => 'auth:sanctum',
+
+            /*
+            | Authorization strategies per user.
+            */
             'auth' => [
                 'guest' => WithoutAuthStrategy::class,
                 'user' => SanctumAuthStrategy::class,
             ],
         ],
 
+        /*
+        |----------------------------------------------------------------------
+        | Custom Groups
+        |----------------------------------------------------------------------
+        |
+        | Custom groups may override any configuration
+        | from the default group.
+        |
+        */
         'api' => [],
     ],
 
-    'swagger' => [
+    /*
+    |--------------------------------------------------------------------------
+    | Documentation Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Configuration for OpenAPI schema generation and
+    | documentation UI rendering.
+    |
+    */
+    'docs' => [
+
+        /*
+        | Documentation UI renderer
+        */
+        'renderer' => Renderer::SWAGGER,
+
+        /*
+        | Routes Configuration
+        */
         'routes' => [
+
+            /*
+            | Global middlewares applied to all documentation routes.
+            */
             'middlewares' => [],
 
+            /*
+            | Documentation UI route configuration.
+            */
             'ui' => [
-                'name' => 'swagger.ui',
+                'name' => 'docs.ui',
                 'path' => 'api/documentation',
                 'middlewares' => [],
             ],
 
+            /*
+            | OpenAPI schema route configuration.
+            |
+            | This route returns the raw OpenAPI JSON schema.
+            */
             'scheme' => [
-                'name' => 'swagger.scheme',
+                'name' => 'docs.scheme',
                 'path' => 'api/documentation/scheme',
                 'middlewares' => [],
             ],
         ],
 
+        /*
+        | OpenAPI Specification Version
+        */
         'openapi' => '3.0.0',
 
+        /*
+        | OpenAPI Info Block
+        */
         'info' => [
             'title' => 'API documentation',
             'description' => 'API documentation',
@@ -129,6 +218,9 @@ return [
             ],
         ],
 
+        /*
+        | API Servers
+        */
         'servers' => [
             [
                 'url' => env('APP_URL'),
@@ -136,11 +228,21 @@ return [
             ],
         ],
 
+        /*
+        | Authorization Configuration
+        */
         'auth' => [
-            'middleware' => 'auth:sanctum',
 
+            /*
+            | Default security scheme applied to protected endpoints.
+            */
             'security_scheme' => 'sanctum',
 
+            /*
+            | Available OpenAPI security schemes.
+            |
+            | Custom schemes may be added here.
+            */
             'security_schemes' => [
 
                 'passport' => [
@@ -177,17 +279,31 @@ return [
             ],
         ],
 
+        /*
+        | Storage Configuration
+        */
         'storage' => [
             'driver' => 'local',
+
+            /*
+            | Path for storing raw data collected from tests.
+            */
             'data' => [
                 'path' => 'swagger/data/',
             ],
+
+            /*
+            | Path for generated documentation files.
+            */
             'docs' => [
                 'name' => 'api-docs',
-                'path' => 'swagger/api-docs/',
+                'path' => 'docs/api-docs/',
             ],
         ],
 
+        /*
+        | Collectors gather data during test execution.
+        */
         'collectors' => [
             GroupCollector::class,
             CodeCollector::class,
@@ -201,15 +317,25 @@ return [
             ResponseCollector::class,
         ],
 
-        'mappers' => [
-            PathMapper::class,
-            MethodMapper::class,
-            GroupMapper::class,
-            AuthMapper::class,
-            SummaryMapper::class,
-            DescriptionMapper::class,
-            ResponseMapper::class,
-            RequestMapper::class,
+        /*
+        | The DTO class used as the root object for building
+        | the OpenAPI documentation structure.
+        */
+        'dto' => OpenApi::class,
+
+        /*
+        | Processors transform collected data into
+        | OpenAPI schema objects.
+        */
+        'processors' => [
+            PathProcessor::class,
+            MethodProcessor::class,
+            GroupProcessor::class,
+            AuthProcessor::class,
+            SummaryProcessor::class,
+            DescriptionProcessor::class,
+            ResponseProcessor::class,
+            RequestProcessor::class,
         ],
     ],
 ];

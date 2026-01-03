@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\Support\Builders;
 
-use DkDev\Testrine\Data\OpenApi\Path\Method\Scheme\Property\Property;
-use DkDev\Testrine\Data\OpenApi\Path\Method\Scheme\Scheme;
+use DkDev\Testrine\Doc\OpenApi\Path\Method\Scheme\Property\Property;
+use DkDev\Testrine\Doc\OpenApi\Path\Method\Scheme\Scheme;
 use DkDev\Testrine\Enums\Attributes\Type;
 use Illuminate\Support\Arr;
 

@@ -7,6 +7,7 @@ namespace DkDev\Testrine\Services;
 use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Resolvers\Code\CodeResolver;
 use DkDev\Testrine\Traits\HasContractRoutes;
+use DkDev\Testrine\Traits\HasHandler;
 use DkDev\Testrine\ValidData\Rules\BaseRule;
 
 class BindService extends BaseService
@@ -79,5 +80,13 @@ class BindService extends BaseService
     public function setDefaultCode(string $resolver, string $routeName, int $value): void
     {
         CodeResolver::setDefaultCode(resolver: $resolver, routeName: $routeName, code: $value);
+    }
+
+    /**
+     * @param class-string<HasHandler> $handler
+     */
+    public function setHandler(string $handler, \Closure $closure): void
+    {
+        $handler::setHandler($closure);
     }
 }

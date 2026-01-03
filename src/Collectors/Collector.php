@@ -17,7 +17,8 @@ abstract class Collector
 
     public function __construct(
         protected TestResponse $response,
-        protected Collection $attributes
+        protected Collection $attributes,
+        protected string $group,
     ) {}
 
     abstract public function getName(): string;

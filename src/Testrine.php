@@ -33,7 +33,7 @@ class Testrine
         return self::getInstance(BindService::class);
     }
 
-    public function handlers(): HandlerService
+    public static function handlers(): HandlerService
     {
         return self::getInstance(HandlerService::class);
     }

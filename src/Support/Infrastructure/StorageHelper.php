@@ -13,7 +13,7 @@ class StorageHelper
     public static function driver(): Filesystem|LocalFilesystemAdapter
     {
         return Storage::drive(
-            Config::getSwaggerValue('storage.driver')
+            Config::getDocsValue('storage.driver')
         );
     }
 }

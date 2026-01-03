@@ -34,16 +34,15 @@ class TestParser
 
     protected bool $isset = false;
 
-    public function makeAutoDoc(TestResponse $response): void
+    public function makeAutoDoc(TestResponse $response, string $group): void
     {
         try {
             $this->collectAttributes();
-            $this->makeData($response);
+            $this->makeData($response, $group);
             $this->saveFile();
 
             Inform::push(__('success'));
         } catch (Throwable $throwable) {
-            dd($throwable);
             Inform::push(__('error', [
                 'error' => $throwable->getMessage(),
             ]), Level::WARNING);
@@ -139,16 +138,17 @@ class TestParser
         return $result;
     }
 
-    protected function makeData(TestResponse $response): void
+    protected function makeData(TestResponse $response, string $group): void
     {
         /**
          * @var string $key
          * @var Collector $collector
          */
-        foreach (Config::getSwaggerValue('collectors') as $collector) {
+        foreach (Config::getDocsValue('collectors') as $collector) {
             $collector = $collector::make(
                 response: $response,
-                attributes: $this->attributes
+                attributes: $this->attributes,
+                group: $group,
             );
 
             $this->data[$collector->getName()] = $collector->handle();
@@ -158,7 +158,7 @@ class TestParser
     protected function saveFile(): void
     {
         WriterFactory::make(Format::JSON)->write(
-            path: Config::getSwaggerValue('storage.data.path'),
+            path: Config::getDocsValue('storage.data.path'),
             name: request()->route()->getName().Str::random(10),
             data: $this->data,
         );

@@ -27,8 +27,8 @@ class Config
             : $config;
     }
 
-    public static function getSwaggerValue(string $path): mixed
+    public static function getDocsValue(string $path, mixed $default = null): mixed
     {
-        return config('testrine.swagger.'.$path);
+        return config('testrine.docs.'.$path, $default);
     }
 }

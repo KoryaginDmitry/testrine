@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\Services;
 
+use Closure;
 use DkDev\Testrine\Handlers\AfterDestroyFilesHandler;
 use DkDev\Testrine\Handlers\AfterDocGenerationHandler;
 use DkDev\Testrine\Handlers\AfterTestHandler;

@@ -8,6 +8,12 @@ use DkDev\Testrine\Console\GenerateTestsCommand;
 use DkDev\Testrine\Console\InitCommand;
 use DkDev\Testrine\Console\MakeCommand;
 use DkDev\Testrine\Console\ParseCommand;
+use DkDev\Testrine\Enums\Doc\Renderer;
+use DkDev\Testrine\Exceptions\RendererNotFound;
+use DkDev\Testrine\Renders\BaseRender;
+use DkDev\Testrine\Renders\ScribeRender;
+use DkDev\Testrine\Renders\SwaggerRender;
+use DkDev\Testrine\Support\Infrastructure\Config;
 use DkDev\Testrine\ValidData\Rules\ArrayRule;
 use DkDev\Testrine\ValidData\Rules\BooleanRule;
 use DkDev\Testrine\ValidData\Rules\CurrentPasswordRule;
@@ -33,6 +39,13 @@ class TestrineServiceProvider extends ServiceProvider
             __DIR__.'/../config/testrine.php',
             'testrine'
         );
+
+        $this->app->bind(BaseRender::class, function () {
+            return match (Config::getDocsValue('renderer')) {
+                Renderer::SWAGGER => app(SwaggerRender::class),
+                default => throw new RendererNotFound,
+            };
+        });
     }
 
     public function boot(): void
@@ -70,6 +83,7 @@ class TestrineServiceProvider extends ServiceProvider
 
     protected function setRules(): void
     {
+
         Testrine::rules()->set([
             NullableRule::class,
             TableExistsRule::class,

@@ -15,6 +15,6 @@ class AuthCollector extends Collector
 
     public function defaultHandler(): mixed
     {
-        return in_array(Config::getSwaggerValue('auth.middleware'), $this->getRoute()?->middleware(), true);
+        return in_array(Config::getGroupValue($this->group, 'auth_middleware'), $this->getRoute()?->middleware(), true);
     }
 }
