@@ -14,6 +14,6 @@ class StaticNode extends BaseNode
 
     public function render(): string
     {
-        return "$this->class::{$this->method}({$this->prepareArgs()})";
+        return "\\$this->class::{$this->method}({$this->prepareArgs()})";
     }
 }
