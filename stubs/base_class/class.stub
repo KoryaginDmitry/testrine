@@ -54,7 +54,7 @@ abstract class {{ class_name }} extends BaseTestrineCase
         $testResponse = $this->json(method: $method, uri: $uri, data: $data);
 
         if (Config::getGroupValue(group: $this->getGroupName(), key: 'document') && ! $this->implements(contract: DocIgnoreContract::class)) {
-            TestParser::make()->makeAutoDoc(response: $testResponse, group: $this-getGroupName());
+            TestParser::make()->makeAutoDoc(response: $testResponse, group: $this->getGroupName());
         }
 
         return $testResponse;

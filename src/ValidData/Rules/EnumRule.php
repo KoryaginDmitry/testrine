@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Rules;
 
+use BackedEnum;
 use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 use Illuminate\Validation\Rules\Enum;
+use ReflectionClass;
+use Stringable;
 
 class EnumRule extends BaseRule
 {
@@ -19,16 +22,16 @@ class EnumRule extends BaseRule
 
     public function hasThisRule(): bool
     {
+        /** @var Enum $rule */
         foreach ($this->rules as $rule) {
-            if ($this->isInstance(Enum::class, $rule)) {
-                // $rule->
+            if ($rule instanceof Enum::class) {
+                $this->setInByEnumRule($rule);
 
-                // todo
                 return true;
             }
 
             if ($this->startsWith('in:', $rule)) {
-                $this->in = str((string) $rule)->after(':')->explode(',')->toArray();
+                $this->setInByInRule((string) $rule);
 
                 return true;
             }
@@ -43,5 +46,26 @@ class EnumRule extends BaseRule
             ->func('collect', $this->in)
             ->method('random')
             ->build();
+    }
+
+    protected function setInByEnumRule(Enum $enum): void
+    {
+        $reflection = new ReflectionClass($enum);
+
+        $property = $reflection->getProperty('type');
+        $property->setAccessible(true);
+
+        $type = $property->getValue($enum);
+
+        $this->in = array_map(function ($case) {
+            return $case instanceof BackedEnum
+                ? $case->value
+                : $case->name;
+        }, $type::cases());
+    }
+
+    protected function setInByInRule(string $rule): void
+    {
+        $this->in = str($rule)->after(':')->explode(',')->toArray();
     }
 }

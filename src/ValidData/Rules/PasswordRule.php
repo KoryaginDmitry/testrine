@@ -34,7 +34,7 @@ class PasswordRule extends BaseRule
         $pass = '"'.str(Str::password())->replace(['$', '""'], '')->value().'"';
 
         return Builder::make('')
-            ->raw("'password' => '$pass',\n\t\t\t'password_confirmation' => '$pass',\n\t\t\t")
+            ->raw(code: "'password' => $pass,\n\t\t\t'password_confirmation' => $pass,\n\t\t\t", escape: false)
             ->build();
     }
 }

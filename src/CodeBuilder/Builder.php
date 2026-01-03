@@ -74,9 +74,9 @@ class Builder
         return $this;
     }
 
-    public function raw(string $code): static
+    public function raw(string $code, bool $escape = true): static
     {
-        $this->nodes[] = new RawNode($code);
+        $this->nodes[] = new RawNode($code, $escape);
 
         return $this;
     }

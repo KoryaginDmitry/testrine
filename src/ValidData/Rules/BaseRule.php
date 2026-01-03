@@ -69,11 +69,6 @@ abstract class BaseRule
         );
     }
 
-    protected function isInstance(string $class, mixed $rule): bool
-    {
-        return $rule instanceof $class;
-    }
-
     protected function startsWith(string $value, mixed $rule): bool
     {
         return (is_string($rule) || $rule instanceof Stringable) && str_starts_with((string) $rule, $value);
