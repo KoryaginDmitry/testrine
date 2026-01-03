@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\ValidData\Traits;
 
+use Stringable;
+
 trait HasRange
 {
     protected null|string|int $min = null;
@@ -13,6 +15,10 @@ trait HasRange
     public function setRange(array $rules): void
     {
         foreach ($rules as $rule) {
+            if (!is_string($rule) || !($rule instanceof Stringable)) {
+                continue;
+            }
+
             if (str($rule)->contains('min:')) {
                 $this->min = str($rule)->after('min:')->value();
             }

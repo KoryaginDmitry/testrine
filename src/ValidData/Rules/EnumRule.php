@@ -24,7 +24,7 @@ class EnumRule extends BaseRule
     {
         /** @var Enum $rule */
         foreach ($this->rules as $rule) {
-            if ($rule instanceof Enum::class) {
+            if ($rule instanceof Enum) {
                 $this->setInByEnumRule($rule);
 
                 return true;
