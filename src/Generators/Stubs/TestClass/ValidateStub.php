@@ -32,10 +32,7 @@ class ValidateStub extends TestClassStub
             $rules = Reflection::make(route: $route)->getFormRequestRules();
         }
 
-        $result = collect($rules ?? [])
-            ->map(fn (array|string $rules, string $key) => RequestPayloadFactory::make()->generate(route: $route, key: $key, rules: $rules))
-            ->values()
-            ->implode('');
+        $result = RequestPayloadFactory::make()->generate(route: $route, rules: $rules ?? []);
 
         return $this->makeResult(key: '{{ data }}', value: rtrim($result, Char::NL_TAB3));
     }

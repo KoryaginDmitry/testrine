@@ -44,9 +44,4 @@ class Renderer
 
         return "$prefix$key => $value,$tabs";
     }
-
-    protected function formatKey(mixed $key): string
-    {
-        return is_int($key) ? $key : "'$key'";
-    }
 }
