@@ -25,4 +25,9 @@ class ImageRule extends BaseRule
             ->property('image')
             ->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

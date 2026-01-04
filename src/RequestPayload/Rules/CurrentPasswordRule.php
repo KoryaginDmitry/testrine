@@ -29,4 +29,9 @@ class CurrentPasswordRule extends BaseRule
 
         return $definition['password'] ?? '';
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

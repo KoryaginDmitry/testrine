@@ -35,4 +35,9 @@ class FileRule extends BaseRule
             ->method('create', 'test', $size, $mime)
             ->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

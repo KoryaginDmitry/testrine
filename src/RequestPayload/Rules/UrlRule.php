@@ -23,4 +23,9 @@ class UrlRule extends BaseRule
     {
         return Builder::make('fake()')->method('url')->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

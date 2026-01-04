@@ -67,4 +67,9 @@ class EnumRule extends BaseRule
     {
         $this->in = str($rule)->after(':')->explode(',')->toArray();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

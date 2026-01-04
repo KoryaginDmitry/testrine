@@ -26,4 +26,9 @@ class EmailRule extends BaseRule
             ->method('email')
             ->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

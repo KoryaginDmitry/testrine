@@ -35,4 +35,9 @@ class RegexRule extends BaseRule
             ->method('regexify', addslashes(trim($pattern, '/')))
             ->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

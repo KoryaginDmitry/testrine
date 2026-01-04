@@ -10,24 +10,33 @@ use DkDev\Testrine\Traits\Makeable;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 
+/**
+ * @method static RequestPayloadFactory make(Route $route, array|string $rules, bool $valid = true)
+ */
 class RequestPayloadFactory
 {
     use Makeable;
 
-    public function generate(Route $route, array|string $rules): string
-    {
-        $tree = $this->buildRulesTree($rules);
+    public function __construct(
+        protected Route $route,
+        protected array|string $rules,
+        protected bool $valid = true,
+    ) {}
 
-        $data = $this->generateFromTree($route, $tree);
+    public function generate(): string
+    {
+        $data = $this->generateFromTree(
+            $this->buildRulesTree()
+        );
 
         return Renderer::make()->render($data);
     }
 
-    protected function buildRulesTree(array $rules): array
+    protected function buildRulesTree(): array
     {
         $tree = [];
 
-        foreach ($rules as $key => $ruleSet) {
+        foreach ($this->rules as $key => $ruleSet) {
             $ruleSet = is_string($ruleSet)
                 ? explode('|', $ruleSet)
                 : $ruleSet;
@@ -50,18 +59,18 @@ class RequestPayloadFactory
         return $tree;
     }
 
-    protected function generateFromTree(Route $route, array $tree): array
+    protected function generateFromTree(array $tree): array
     {
         $result = [];
 
         foreach ($tree as $key => $value) {
             if (! isset($value['_rules'])) {
-                $result[$key] = $this->generateFromTree($route, $value);
+                $result[$key] = $this->generateFromTree($value);
 
                 continue;
             }
 
-            $value = $this->generateValue($route, $key, $value['_rules']);
+            $value = $this->generateValue($key, $value['_rules']);
 
             if ($key === '*') {
                 $result[] = $value;
@@ -73,7 +82,7 @@ class RequestPayloadFactory
         return $result;
     }
 
-    protected function generateValue(Route $route, string $key, array|string $rules): string
+    protected function generateValue(string $key, array|string $rules): string
     {
         $rules = is_string($rules) ? explode('|', $rules) : $rules;
 
@@ -81,7 +90,7 @@ class RequestPayloadFactory
 
         foreach (Testrine::rules()->list() as $rule) {
             /** @var BaseRule $rule */
-            $rule = $rule::make(route: $route, key: $key, rules: $rules);
+            $rule = $rule::make(route: $this->route, key: $key, rules: $rules, valid: $this->valid);
 
             if ($rule->hasThisRule()) {
                 if (in_array(HasRange::class, class_uses($rule))) {

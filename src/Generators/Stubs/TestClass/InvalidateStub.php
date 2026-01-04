@@ -6,6 +6,7 @@ namespace DkDev\Testrine\Generators\Stubs\TestClass;
 
 use DkDev\Testrine\Contracts\InvalidateContract;
 use DkDev\Testrine\Generators\Stubs\TestClassStub;
+use DkDev\Testrine\RequestPayload\RequestPayloadFactory;
 use DkDev\Testrine\Support\Char;
 use DkDev\Testrine\Support\Infrastructure\Reflection;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
@@ -31,9 +32,7 @@ class InvalidateStub extends TestClassStub
             $rules = Reflection::make(route: $route)->getFormRequestRules();
         }
 
-        $result = collect($rules ?? [])
-            ->map(fn (array|string $rules, string $key) => "'$key' => '',\n\t\t\t")
-            ->implode(value: '');
+        $result = RequestPayloadFactory::make(route: $route, rules: $rules ?? [], valid: false)->generate();
 
         return $this->makeResult(key: '{{ data }}', value: rtrim(string: $result, characters: Char::NL_TAB3));
     }

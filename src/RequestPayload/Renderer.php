@@ -42,6 +42,6 @@ class Renderer
 
         $prefix = $level > 0 ? Char::TAB : '';
 
-        return "$prefix$key => $value,$tabs";
+        return "$prefix'$key' => $value,$tabs";
     }
 }

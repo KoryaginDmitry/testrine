@@ -25,4 +25,9 @@ class BooleanRule extends BaseRule
             ->method('numberBetween', 0, 1)
             ->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

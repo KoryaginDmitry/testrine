@@ -28,4 +28,9 @@ class IntegerRule extends BaseRule
             ->method('numberBetween', $this->min, $this->max)
             ->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

@@ -11,7 +11,7 @@ use Illuminate\Routing\Route;
 use Stringable;
 
 /**
- * @method static BaseRule make(Route $route, string $key, array $rules)
+ * @method static BaseRule make(Route $route, string $key, array $rules, bool $valid = true)
  */
 abstract class BaseRule
 {
@@ -23,6 +23,7 @@ abstract class BaseRule
         protected Route $route,
         protected string $key,
         protected array $rules,
+        protected bool $valid = true,
     ) {}
 
     abstract public function getPriority(): RulePriority;
@@ -31,9 +32,15 @@ abstract class BaseRule
 
     abstract public function getValue(): string;
 
+    abstract public function getInvalidValue(): string;
+
     public function makeResult(): string
     {
-        return $this->hasDefaultValue() ? $this->getDefaultValue() : $this->getValue();
+        if ($this->valid) {
+            return $this->hasDefaultValue() ? $this->getDefaultValue() : $this->getValue();
+        }
+
+        return $this->getInvalidValue();
     }
 
     public static function setDefaultValue(string $routeName, string $key, int|string|Builder $value): void
@@ -75,5 +82,10 @@ abstract class BaseRule
     protected function contains(string $value, mixed $rule): bool
     {
         return (is_string($rule) || $rule instanceof Stringable) && str((string) $rule)->contains($value);
+    }
+
+    protected function randomStr(): string
+    {
+        return Builder::make('str()')->method('random', 12)->build();
     }
 }

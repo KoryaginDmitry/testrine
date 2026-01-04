@@ -30,4 +30,9 @@ class DateRule extends BaseRule
             ->method('date', 'Y-m-d', $max)
             ->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

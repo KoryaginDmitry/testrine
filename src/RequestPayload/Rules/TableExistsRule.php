@@ -44,4 +44,9 @@ class TableExistsRule extends BaseRule
             ->method('value', $this->column)
             ->build();
     }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
+    }
 }

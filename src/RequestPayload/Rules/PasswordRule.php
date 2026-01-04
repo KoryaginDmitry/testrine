@@ -28,13 +28,18 @@ class PasswordRule extends BaseRule
     public function makeResult(): string
     {
         if (self::hasDefaultValue()) {
-            return "'$this->key' => ".self::getDefaultValue().",\n\t\t\t";
+            return self::getDefaultValue();
         }
 
         $pass = '"'.str(Str::password())->replace(['$', '""'], '')->value().'"';
 
         return Builder::make('')
-            ->raw(code: "'password' => $pass,\n\t\t\t'password_confirmation' => $pass,\n\t\t\t", escape: false)
+            ->raw(code: "$pass,\n\t\t\t'password_confirmation' => $pass", escape: false)
             ->build();
+    }
+
+    public function getInvalidValue(): string
+    {
+        return $this->randomStr();
     }
 }
