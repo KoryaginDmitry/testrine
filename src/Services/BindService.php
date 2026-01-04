@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace DkDev\Testrine\Services;
 
 use DkDev\Testrine\CodeBuilder\Builder;
+use DkDev\Testrine\RequestPayload\Rules\BaseRule;
 use DkDev\Testrine\Resolvers\Code\CodeResolver;
 use DkDev\Testrine\Traits\HasContractRoutes;
 use DkDev\Testrine\Traits\HasHandler;
-use DkDev\Testrine\ValidData\Rules\BaseRule;
 
 class BindService extends BaseService
 {

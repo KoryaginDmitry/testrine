@@ -12,22 +12,20 @@ use DkDev\Testrine\Enums\Doc\Renderer;
 use DkDev\Testrine\Exceptions\RendererNotFound;
 use DkDev\Testrine\Renders\BaseRender;
 use DkDev\Testrine\Renders\SwaggerRender;
+use DkDev\Testrine\RequestPayload\Rules\BooleanRule;
+use DkDev\Testrine\RequestPayload\Rules\CurrentPasswordRule;
+use DkDev\Testrine\RequestPayload\Rules\DateRule;
+use DkDev\Testrine\RequestPayload\Rules\EmailRule;
+use DkDev\Testrine\RequestPayload\Rules\EnumRule;
+use DkDev\Testrine\RequestPayload\Rules\FileRule;
+use DkDev\Testrine\RequestPayload\Rules\ImageRule;
+use DkDev\Testrine\RequestPayload\Rules\IntegerRule;
+use DkDev\Testrine\RequestPayload\Rules\PasswordRule;
+use DkDev\Testrine\RequestPayload\Rules\RegexRule;
+use DkDev\Testrine\RequestPayload\Rules\StringRule;
+use DkDev\Testrine\RequestPayload\Rules\TableExistsRule;
+use DkDev\Testrine\RequestPayload\Rules\UrlRule;
 use DkDev\Testrine\Support\Infrastructure\Config;
-use DkDev\Testrine\ValidData\Rules\ArrayRule;
-use DkDev\Testrine\ValidData\Rules\BooleanRule;
-use DkDev\Testrine\ValidData\Rules\CurrentPasswordRule;
-use DkDev\Testrine\ValidData\Rules\DateRule;
-use DkDev\Testrine\ValidData\Rules\EmailRule;
-use DkDev\Testrine\ValidData\Rules\EnumRule;
-use DkDev\Testrine\ValidData\Rules\FileRule;
-use DkDev\Testrine\ValidData\Rules\ImageRule;
-use DkDev\Testrine\ValidData\Rules\IntegerRule;
-use DkDev\Testrine\ValidData\Rules\NullableRule;
-use DkDev\Testrine\ValidData\Rules\PasswordRule;
-use DkDev\Testrine\ValidData\Rules\RegexRule;
-use DkDev\Testrine\ValidData\Rules\StringRule;
-use DkDev\Testrine\ValidData\Rules\TableExistsRule;
-use DkDev\Testrine\ValidData\Rules\UrlRule;
 use Illuminate\Support\ServiceProvider;
 
 class TestrineServiceProvider extends ServiceProvider
@@ -84,9 +82,7 @@ class TestrineServiceProvider extends ServiceProvider
     {
 
         Testrine::rules()->set([
-            NullableRule::class,
             TableExistsRule::class,
-            ArrayRule::class,
             BooleanRule::class,
             DateRule::class,
             EmailRule::class,

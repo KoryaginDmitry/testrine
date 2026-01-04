@@ -717,7 +717,7 @@ public function validData(): array
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\RequestPayload\Rules;
 
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 

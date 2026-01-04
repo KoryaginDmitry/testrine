@@ -2,16 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\RequestPayload\Rules;
 
 use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
-use DkDev\Testrine\ValidData\Traits\HasRange;
 
-class DateRule extends BaseRule
+class ImageRule extends BaseRule
 {
-    use HasRange;
-
     public function getPriority(): RulePriority
     {
         return RulePriority::MEDIUM;
@@ -19,15 +16,13 @@ class DateRule extends BaseRule
 
     public function hasThisRule(): bool
     {
-        return $this->inRules('date');
+        return $this->inRules('image');
     }
 
     public function getValue(): string
     {
-        $max = $this->max ?: 'now';
-
         return Builder::make('fake()')
-            ->method('date', 'Y-m-d', $max)
+            ->property('image')
             ->build();
     }
 }

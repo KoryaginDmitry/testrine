@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\RequestPayload\Rules;
 
 use BackedEnum;
 use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
 use Illuminate\Validation\Rules\Enum;
 use ReflectionClass;
-use Stringable;
 
 class EnumRule extends BaseRule
 {

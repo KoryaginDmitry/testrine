@@ -30,7 +30,7 @@ class Renderer
             is_string($arg) => "'".addslashes($arg)."'",
             is_null($arg) => 'null',
             is_bool($arg) => $arg ? 'true' : 'false',
-            is_array($arg) => '[' . implode(', ', array_map(fn ($v) => '\'' . $v . '\'', $arg)) . ']',
+            is_array($arg) => '['.implode(', ', array_map(fn ($v) => '\''.$v.'\'', $arg)).']',
             default => var_export($arg, true),
         };
     }

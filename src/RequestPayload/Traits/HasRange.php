@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Traits;
+namespace DkDev\Testrine\RequestPayload\Traits;
 
 use Stringable;
 
@@ -15,7 +15,7 @@ trait HasRange
     public function setRange(array $rules): void
     {
         foreach ($rules as $rule) {
-            if (!is_string($rule) || !($rule instanceof Stringable)) {
+            if (! is_string($rule) || ! ($rule instanceof Stringable)) {
                 continue;
             }
 

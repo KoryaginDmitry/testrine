@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\RequestPayload\Rules;
 
 use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;

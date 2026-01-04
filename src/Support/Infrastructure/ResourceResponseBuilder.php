@@ -73,7 +73,7 @@ class ResourceResponseBuilder
         return rtrim($result, $tabs);
     }
 
-    private function formatValue(mixed $key, mixed $value, int $level): string
+    protected function formatValue(mixed $key, mixed $value, int $level): string
     {
         $tabs = Char::NL_TAB3.str_repeat(Char::TAB, $level);
 

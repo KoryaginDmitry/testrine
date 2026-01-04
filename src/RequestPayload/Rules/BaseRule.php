@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\RequestPayload\Rules;
 
 use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
@@ -33,9 +33,7 @@ abstract class BaseRule
 
     public function makeResult(): string
     {
-        $value = $this->hasDefaultValue() ? $this->getDefaultValue() : $this->getValue();
-
-        return "'$this->key' => $value,\n\t\t\t";
+        return $this->hasDefaultValue() ? $this->getDefaultValue() : $this->getValue();
     }
 
     public static function setDefaultValue(string $routeName, string $key, int|string|Builder $value): void

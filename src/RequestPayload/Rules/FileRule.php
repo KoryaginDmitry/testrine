@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace DkDev\Testrine\ValidData\Rules;
+namespace DkDev\Testrine\RequestPayload\Rules;
 
 use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\Enums\ValidData\RulePriority;
-use DkDev\Testrine\ValidData\Traits\HasMimes;
-use DkDev\Testrine\ValidData\Traits\HasRange;
+use DkDev\Testrine\RequestPayload\Traits\HasMimes;
+use DkDev\Testrine\RequestPayload\Traits\HasRange;
 use Illuminate\Http\UploadedFile;
 
 class FileRule extends BaseRule
