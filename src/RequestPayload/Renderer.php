@@ -13,10 +13,10 @@ class Renderer
 
     public function render(array $data): string
     {
-        dd($data, $this->prepareStructure($data));
+        return $this->prepareData($data);
     }
 
-    protected function prepareStructure(array $data, int $level = 0): string
+    protected function prepareData(array $data, int $level = 0): string
     {
         $tabs = Char::NL_TAB3.str_repeat(Char::TAB, $level);
         $result = '';
@@ -34,7 +34,7 @@ class Renderer
 
         if (is_array($value)) {
             $nextLevel = $level + 1;
-            $content = $this->prepareStructure($value, $nextLevel);
+            $content = $this->prepareData($value, $nextLevel);
             $prefix = $level > 0 ? Char::TAB : '';
 
             return "$prefix'$key' => [$tabs$content$tabs],$tabs";
