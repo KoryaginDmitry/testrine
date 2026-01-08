@@ -8,19 +8,20 @@ use Closure;
 
 trait HasHandler
 {
-    public static Closure $handle;
+    /**
+     * @var array<class-string, Closure>
+     */
+    protected static array $handlers = [];
 
     public static function setHandler(Closure $callback): void
     {
-        self::$handle = $callback;
+        static::$handlers[static::class] = $callback;
     }
 
-    public function handle()
+    public function handle(): mixed
     {
         if ($this->hasHandler()) {
-            $callable = static::$handle;
-
-            return $callable($this);
+            return static::$handlers[static::class]($this);
         }
 
         return $this->defaultHandler();
@@ -28,7 +29,7 @@ trait HasHandler
 
     public function hasHandler(): bool
     {
-        return ! empty(static::$handle);
+        return array_key_exists(static::class, static::$handlers);
     }
 
     abstract public function defaultHandler(): mixed;
