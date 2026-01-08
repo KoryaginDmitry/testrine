@@ -23,8 +23,8 @@ class Info
             title: $data['title'] ?? null,
             description: $data['description'] ?? null,
             version: $data['version'] ?? null,
-            contact: Contact::fromArray($data['contact'] ?? null),
-            license: License::fromArray($data['license'] ?? null),
+            contact: Contact::fromArray($data['contact'] ?? []),
+            license: License::fromArray($data['license'] ?? []),
         );
     }
 }
