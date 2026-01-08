@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace DkDev\Testrine\Services;
 
 use Closure;
-use DkDev\Testrine\Handlers\AfterDestroyFilesHandler;
-use DkDev\Testrine\Handlers\AfterDocGenerationHandler;
-use DkDev\Testrine\Handlers\AfterTestHandler;
-use DkDev\Testrine\Handlers\BeforeDestroyFilesHandler;
-use DkDev\Testrine\Handlers\BeforeDocGenerationHandler;
-use DkDev\Testrine\Handlers\BeforeTestsHandler;
+use DkDev\Testrine\EventHandlers\AfterDestroyFilesEventHandler;
+use DkDev\Testrine\EventHandlers\AfterDocGenerationEventHandler;
+use DkDev\Testrine\EventHandlers\AfterTestEventHandler;
+use DkDev\Testrine\EventHandlers\BeforeDestroyFilesEventHandler;
+use DkDev\Testrine\EventHandlers\BeforeDocGenerationEventHandler;
+use DkDev\Testrine\EventHandlers\BeforeTestsEventHandler;
 use DkDev\Testrine\Traits\HasHandler;
 
 class HandlerService extends BaseService
@@ -25,31 +25,31 @@ class HandlerService extends BaseService
 
     public function afterDestroy(Closure $closure): void
     {
-        AfterDestroyFilesHandler::setHandler($closure);
+        AfterDestroyFilesEventHandler::setHandler($closure);
     }
 
     public function beforeDestroy(Closure $closure): void
     {
-        BeforeDestroyFilesHandler::setHandler($closure);
+        BeforeDestroyFilesEventHandler::setHandler($closure);
     }
 
     public function afterGeneration(Closure $closure): void
     {
-        AfterDocGenerationHandler::setHandler($closure);
+        AfterDocGenerationEventHandler::setHandler($closure);
     }
 
     public function beforeGeneration(Closure $closure): void
     {
-        BeforeDocGenerationHandler::setHandler($closure);
+        BeforeDocGenerationEventHandler::setHandler($closure);
     }
 
     public function afterTests(Closure $closure): void
     {
-        AfterTestHandler::setHandler($closure);
+        AfterTestEventHandler::setHandler($closure);
     }
 
     public function beforeTests(Closure $closure): void
     {
-        BeforeTestsHandler::setHandler($closure);
+        BeforeTestsEventHandler::setHandler($closure);
     }
 }

@@ -11,7 +11,7 @@ class ContentTypeCollector extends Collector
         return 'content_type';
     }
 
-    public function defaultHandler(): mixed
+    public function defaultHandler(): array
     {
         return [
             'response' => $this->response->headers->get('Content-Type'),

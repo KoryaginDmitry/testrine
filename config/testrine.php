@@ -297,7 +297,7 @@ return [
             */
             'docs' => [
                 'name' => 'api-docs',
-                'path' => 'docs/api-docs/',
+                'path' => 'swagger/api-docs/',
             ],
         ],
 

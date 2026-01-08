@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace DkDev\Testrine\Services;
 
 use DkDev\Testrine\CodeBuilder\Builder;
-use DkDev\Testrine\RequestPayload\Rules\BaseRule;
-use DkDev\Testrine\Resolvers\Code\CodeResolver;
-use DkDev\Testrine\Traits\HasContractRoutes;
-use DkDev\Testrine\Traits\HasHandler;
 
-class BindService extends BaseService
+class RouteParamsService extends BaseService
 {
     protected array $valid = [
         '*' => 1,
@@ -58,35 +54,5 @@ class BindService extends BaseService
         return isset($this->invalid[$key])
             ? ''.$this->invalid[$key]
             : ''.$this->invalid['*'];
-    }
-
-    public function setDefaultValue(string $routeName, string $key, int|string|Builder $value): void
-    {
-        BaseRule::setDefaultValue(
-            routeName: $routeName,
-            key: $key,
-            value: $value
-        );
-    }
-
-    /**
-     * @param  class-string<HasContractRoutes>  $contract
-     */
-    public function setContractRoutes(string $contract, array $routes): void
-    {
-        $contract::setContractRoutes(routes: $routes);
-    }
-
-    public function setDefaultCode(string $resolver, string $routeName, int $value): void
-    {
-        CodeResolver::setDefaultCode(resolver: $resolver, routeName: $routeName, code: $value);
-    }
-
-    /**
-     * @param  class-string<HasHandler>  $handler
-     */
-    public function setHandler(string $handler, \Closure $closure): void
-    {
-        $handler::setHandler($closure);
     }
 }

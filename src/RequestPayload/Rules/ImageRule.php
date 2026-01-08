@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DkDev\Testrine\RequestPayload\Rules;
 
 use DkDev\Testrine\CodeBuilder\Builder;
-use DkDev\Testrine\Enums\ValidData\RulePriority;
+use DkDev\Testrine\Enums\RequestPayload\RulePriority;
 
 class ImageRule extends BaseRule
 {

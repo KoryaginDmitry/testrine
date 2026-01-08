@@ -66,7 +66,6 @@ final class SchemeBuilder
             type: Type::ARRAY->value,
             items: new Property(
                 type: Type::OBJECT->value,
-                required: [],
                 properties: [],
             ),
         );
@@ -78,7 +77,6 @@ final class SchemeBuilder
     ): Property {
         return $parent->properties[$key] ??= new Property(
             type: Type::OBJECT->value,
-            required: [],
             properties: [],
         );
     }
@@ -88,20 +86,17 @@ final class SchemeBuilder
         ?string $key,
         array $item
     ): void {
-        $nullable = array_key_exists('example', $item) && $item['example'] === null;
+        $nullable = array_key_exists('example', $item) && $item['example'] === null || empty($item['required']);
 
         $parent->properties[$key] ??= new Property(
             type: $item['type'],
             format: $item['format'],
             description: $item['description'],
+            required: $item['required'] ?? null,
             nullable: $nullable,
             enum: $item['enum'] ?? null,
-            example: $item['example'] ?? null,
+            example: $item['example'] ?? null
         );
-
-        if (! empty($item['required'])) {
-            $parent->required[$key] = $key;
-        }
     }
 
     private static function isIndex(mixed $value): bool

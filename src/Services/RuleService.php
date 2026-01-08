@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\Services;
 
+use DkDev\Testrine\CodeBuilder\Builder;
+use DkDev\Testrine\RequestPayload\Rules\BaseRule;
+
 class RuleService extends BaseService
 {
     public array $rules = [];
 
-    public function add(string $rule)
+    public function add(string $rule): void
     {
         $this->rules[] = $rule;
     }
@@ -26,5 +29,14 @@ class RuleService extends BaseService
     public function clear(): void
     {
         $this->rules = [];
+    }
+
+    public function setDefaultValue(string $routeName, string $key, int|string|Builder $value): void
+    {
+        BaseRule::setDefaultValue(
+            routeName: $routeName,
+            key: $key,
+            value: $value
+        );
     }
 }

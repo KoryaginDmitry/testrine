@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\Console;
 
-use DkDev\Testrine\Handlers\AfterTestHandler;
-use DkDev\Testrine\Handlers\BeforeTestsHandler;
+use DkDev\Testrine\EventHandlers\AfterTestEventHandler;
+use DkDev\Testrine\EventHandlers\BeforeTestsEventHandler;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Symfony\Component\Console\Command\Command as CommandAlias;
@@ -20,11 +20,11 @@ class GenerateCommand extends Command
     {
         Artisan::call('testrine:destroy');
 
-        BeforeTestsHandler::make()->handle();
+        BeforeTestsEventHandler::make()->handle();
 
         Artisan::call('test');
 
-        AfterTestHandler::make()->handle();
+        AfterTestEventHandler::make()->handle();
 
         Artisan::call('testrine:parse');
 

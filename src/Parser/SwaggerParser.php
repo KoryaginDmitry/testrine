@@ -11,7 +11,7 @@ use DkDev\Testrine\Processors\BaseProcessor;
 use DkDev\Testrine\Support\Infrastructure\Config;
 use DkDev\Testrine\Support\Infrastructure\StorageHelper;
 
-class SwaggerGenerator
+class SwaggerParser
 {
     public function generate(): void
     {
@@ -27,7 +27,7 @@ class SwaggerGenerator
     protected function parseFile(BaseDoc $doc, string $path): BaseDoc
     {
         /** @var BaseProcessor $mapper */
-        foreach (Config::getDocsValue('mappers') as $mapper) {
+        foreach (Config::getDocsValue('processors') as $mapper) {
             $doc = $mapper::make(
                 data: $doc,
                 fileData: ReaderFactory::make(Format::JSON)->read($path),

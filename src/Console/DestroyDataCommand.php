@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\Console;
 
-use DkDev\Testrine\Handlers\AfterDestroyFilesHandler;
-use DkDev\Testrine\Handlers\BeforeDestroyFilesHandler;
+use DkDev\Testrine\EventHandlers\AfterDestroyFilesEventHandler;
+use DkDev\Testrine\EventHandlers\BeforeDestroyFilesEventHandler;
 use DkDev\Testrine\Support\Infrastructure\Config;
 use DkDev\Testrine\Support\Infrastructure\StorageHelper;
 use Illuminate\Console\Command;
@@ -19,11 +19,11 @@ class DestroyDataCommand extends Command
 
     public function handle(): int
     {
-        BeforeDestroyFilesHandler::make()->handle();
+        BeforeDestroyFilesEventHandler::make()->handle();
 
         StorageHelper::driver()->deleteDirectory(Config::getDocsValue('storage.data.path'));
 
-        AfterDestroyFilesHandler::make()->handle();
+        AfterDestroyFilesEventHandler::make()->handle();
 
         return CommandAlias::SUCCESS;
     }

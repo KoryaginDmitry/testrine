@@ -33,7 +33,7 @@ class ParametersStub extends TestClassStub
         $result = \DkDev\Testrine\Support\Infrastructure\Route::getParametersByUrl($uri)
             ->map(function (string $parameter, int $index) {
                 $key = str_replace(['{', '}'], '', $parameter);
-                $value = Testrine::binds()->getValid($this->routeName, $key);
+                $value = Testrine::routeParams()->getValid($this->routeName, $key);
 
                 return $index === 0 ? "'$key' => $value" : Char::TAB3."'$key' => $value";
             })->implode(','.Char::NL);

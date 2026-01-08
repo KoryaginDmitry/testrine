@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\Console;
 
-use DkDev\Testrine\Handlers\AfterDocGenerationHandler;
-use DkDev\Testrine\Handlers\BeforeDocGenerationHandler;
-use DkDev\Testrine\Parser\SwaggerGenerator;
+use DkDev\Testrine\EventHandlers\AfterDocGenerationEventHandler;
+use DkDev\Testrine\EventHandlers\BeforeDocGenerationEventHandler;
+use DkDev\Testrine\Parser\SwaggerParser;
 use Illuminate\Console\Command;
-use JsonException;
 use Symfony\Component\Console\Command\Command as CommandAlias;
 use Throwable;
 
@@ -20,15 +19,14 @@ class ParseCommand extends Command
 
     /**
      * @throws Throwable
-     * @throws JsonException
      */
-    public function handle(SwaggerGenerator $generator): int
+    public function handle(SwaggerParser $generator): int
     {
-        BeforeDocGenerationHandler::make()->handle();
+        BeforeDocGenerationEventHandler::make()->handle();
 
         $generator->generate();
 
-        AfterDocGenerationHandler::make()->handle();
+        AfterDocGenerationEventHandler::make()->handle();
 
         return CommandAlias::SUCCESS;
     }

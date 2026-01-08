@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DkDev\Testrine\RequestPayload\Rules;
 
 use App\Models\User;
-use DkDev\Testrine\Enums\ValidData\RulePriority;
+use DkDev\Testrine\Enums\RequestPayload\RulePriority;
 
 class CurrentPasswordRule extends BaseRule
 {

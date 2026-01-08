@@ -14,7 +14,7 @@ class RequestBody implements JsonSerializable
         public string $contentType = 'application/json',
     ) {}
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'content' => [

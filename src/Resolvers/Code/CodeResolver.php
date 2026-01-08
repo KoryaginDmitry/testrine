@@ -42,6 +42,11 @@ abstract class CodeResolver
         self::$defaultCodes[$resolver][$routeName] = $code;
     }
 
+    public static function getDefaultCode(string $resolver, $routeName): ?int
+    {
+        return self::$defaultCodes[$resolver][$routeName] ?? null;
+    }
+
     protected function isGuest(string $group, string $userKey): bool
     {
         return Config::getGroupValue(group: $group, key: "auth.$userKey") === WithoutAuthStrategy::class;

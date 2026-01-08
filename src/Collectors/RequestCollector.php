@@ -142,7 +142,7 @@ class RequestCollector extends Collector
         return request()->method() === 'GET';
     }
 
-    public function defaultHandler(): mixed
+    public function defaultHandler(): array
     {
         $rules = Reflection::make()->getFormRequestRules();
 

@@ -13,7 +13,7 @@ class AuthCollector extends Collector
         return 'auth';
     }
 
-    public function defaultHandler(): mixed
+    public function defaultHandler(): bool
     {
         return in_array(Config::getGroupValue($this->group, 'auth_middleware'), $this->getRoute()?->middleware(), true);
     }

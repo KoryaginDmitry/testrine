@@ -1,37 +1,43 @@
 # Testrine
 
-Пакет покрывает приложение тестами, затем на основе тестов генерирует документацию к API
+The package covers the application with tests (analyzing routes, Eloquent resources, FormRequests, and Attributes). 
+Based on the test results, information is collected for each route, and then OpenAPI documentation is generated from the collected data.
+The package is intended for Laravel developers.
 
-установка
+## Installation
 
 ```bash
-composer required dk-dev/testrine
+composer require dk-dev/testrine
 ```
 
-публикация данных
+Publishing config, translations, and resources
 
 ```bash
 php artisan vendor:publish --provider="DkDev\Testrine\TestrineServiceProvider"
 ```
 
-Общая схема работы.
+General workflow:
+- Define the configuration,
+- Create base classes for each group,
+- Cover it with tests,
+- Run the tests,
+- Collectors collect data,
+- Processors generate documentation,
+- Save the documentation.
 
-Определяема конфигурацию -> создаем базовые классы для каждой группы -> покрываем тестами -> прогоняем тесты 
--> коллекторы собирают данные -> процессоры формируют документацию -> сохраняем документацию.
+## Configuration
 
-Далее все будет описано детальней.
+### Key Points
 
-настраиваем конфигурацию.
+- You can have different groups (e.g., web, api, admin), each group can have its own users, response codes, etc.
+- A default group is already defined in the configuration. Its settings apply to all other groups, but this group is not 
+- used in test generation,
+- In the original documentation, the "api" group was added, all its settings will be taken from the default group, but we 
+- can override them.
 
-у нас могут быть различные группы (например web, api, admin), в каждой группе могут быть свои пользователи, 
-свои коды ответа и т.д.
+### Analysis of each configuration block
 
-у нас уже определенна дефолтная группа. Ее настройки применяются ко всем другим группам, но в формировании тестов эта 
-группа не участвует.
-
-в исходной документации мы определяем группу api, все ее настройки получаем из группы default, но мы можем их переопределить.
-
-теперь детальней разберем каждый блок в конфигурации групп.
+#### tests block
 
 ```php
 'groups' => [
@@ -79,17 +85,20 @@ php artisan vendor:publish --provider="DkDev\Testrine\TestrineServiceProvider"
 ],
 ```
 
-в users мы определяем, какие пользователи будут использованы в рамках группы. Например, в api может быть только guest и user, 
-к примеру в группе web могут быть performer, customer и guest. И могут быть другие группы со своими пользователями. 
+#### users
+
+In users, we define which users will be used within the group. For example, in api, there might only be guest and user.
+For example, in the web group, there might be performer, customer, and guest. There might also be other groups with their own users. 
+
 ```php
 'users' => [
     'guest',
     'user',
 ],
 ```
-Теперь важный момент! Для каждого пользователя нужно будет реализовать методы в классе TestCase или в базовых классах, которые мы создадим далее
 
-Вот пример реализации для изначального конфига
+**Important!** For each user, you will need to implement methods in the TestCase class or in base classes that will be created later. 
+Below is an example implementation for the initial configuration.
 
 ```php
 <?php
@@ -115,16 +124,20 @@ abstract class TestCase extends BaseTestCase
 }
 ```
 
-Далее переходим к параметру document, этот параметр нужен если нам нужно включить/выключить сбор данных по группе.
+#### document
+
+This parameter is needed if we need to enable/disable data collection by group.
 
 ```php
 'document' => true,
 ```
 
-Далее важный момент. Мы определяем какие контракты будут использоваться в группе и какие ресолверы будут определять нужен 
-ли этот контракт для каждого текущего маршрута. Этот блок используется, когда вызывается консольная команда, которая 
-покрывает тестами маршруты. Контракт обязует тест реализовать какую-либо логику, например, проверку передачи валидных данных, 
-параметров и т.д. Далее есть подробное описание контрактов
+#### contracts
+
+**Important!** Contracts define which contracts will be used in the group and which resolvers will determine whether a 
+contract is needed for each current route. This block is used when calling a console command that covers routes with tests. 
+The contract obligates the test to implement certain logic, such as checking for the transfer of valid data, parameters, etc. 
+A detailed description of the contracts follows.
 
 ```php
 'contracts' => [
@@ -144,13 +157,18 @@ abstract class TestCase extends BaseTestCase
         ResponseContract::class => ResponseContractResolver::class,
     ],
 ```
-Определяем какой миделвар отвечает за авторизацию в группе.
+
+#### auth_middleware
+
+Determines which middleware is responsible for authorization in the group.
 
 ```php
 'auth_middleware' => 'auth:sanctum',
 ```
 
-Далее мы определяем ресолверы для получения дефолтного кода
+#### code
+
+The code block specifies which resolvers will be used to determine the response code in the test.
 
 ```php
 'code' => [
@@ -160,7 +178,15 @@ abstract class TestCase extends BaseTestCase
 ],
 ```
 
-Затем для каждого пользователя нужно определить стратегию авторизации
+#### auth
+
+An authorization strategy must be defined for each user. Initially, there are four:
+- PassportAuthStrategy,
+- SanctumAuthStrategy,
+- WebAuthStrategy,
+- WithoutAuthStrategy.
+
+You can add your own strategies.
 
 ```php
 'auth' => [
@@ -169,10 +195,7 @@ abstract class TestCase extends BaseTestCase
 ],
 ```
 
-Это примеры из дефолтной группы. Параметры дефолтной группы применяютсвя к каждой группе, но в каждой группе мы можем 
-переопределять эти данные.
-
-Переходим к конфигурации по созданию документаии
+#### documentation block
 
 ```php
     'docs' => [
@@ -270,7 +293,7 @@ abstract class TestCase extends BaseTestCase
 
             'docs' => [
                 'name' => 'api-docs',
-                'path' => 'docs/api-docs/',
+                'path' => 'swagger/api-docs/',
             ],
         ],
 
@@ -302,14 +325,18 @@ abstract class TestCase extends BaseTestCase
     ],
 ```
 
-Выбираем какой рендерер будет использоваться при отображении документации. Сейчас доступен только swagger, но дальше их будет больше
+#### renderer
+
+Specify which renderer will be used to display the documentation. Currently, only Swagger is available.
 
 ```php
 'renderer' => Renderer::SWAGGER,
 ```
 
-Можем определить данными маршрутов для ui схемы и ее исходных данных. Можем определить миделвары для обоих маршрутов и каждого по отдельности,
-а также имена и пути маршрутов.
+#### routes
+
+We define route data for the UI schema and its source data. You can define middleware for both routes or each route separately,
+as well as route names and paths.
 
 ```php
 'routes' => [
@@ -330,7 +357,9 @@ abstract class TestCase extends BaseTestCase
 ],
 ```
 
-Далее определяем версию OpenApi данные с основной информации и сервера
+#### openapi, info and servers
+
+You can determine the OpenApi version, data from the main information and server.
 
 ```php
 'openapi' => '3.0.0',
@@ -359,8 +388,10 @@ abstract class TestCase extends BaseTestCase
 ],
 ```
 
-Затем переходим к авторизации. У нас уже есть список готовых схем авторизации, нужно выбрать нужную или добавить новые 
-при необходимости
+#### auth
+
+There is already a list of ready-made authorization schemes (security_schemes), you need to select the required one (in security_scheme)
+or add new ones if necessary
 
 ```php
 'auth' => [
@@ -404,7 +435,9 @@ abstract class TestCase extends BaseTestCase
 ],
 ```
 
-Далее данные по хранилищу. Определяем драйвер, место хранения данных по тестам и место и имя файла документации.
+#### storage
+
+We determine the driver, the storage location for test data, and the location and name of the documentation file.
 
 ```php
 'storage' => [
@@ -416,12 +449,14 @@ abstract class TestCase extends BaseTestCase
 
     'docs' => [
         'name' => 'api-docs',
-        'path' => 'docs/api-docs/',
+        'path' => 'swagger/api-docs/',
     ],
 ],
 ```
 
-Определяем коллекторы. Коллектор - это класс, который собирает данные по тестам и пишет рещультат в массив под определнным ключом.
+#### collectors
+
+A collector is a class that collects test data and writes the result to an array under a specific key.
 
 ```php
 'collectors' => [
@@ -438,13 +473,18 @@ abstract class TestCase extends BaseTestCase
 ],
 ```
 
-далее мы определяем класс, который будет наполняться данными и из которого будет сформированна документация
+#### dto
+
+We define a class that will be filled with data and from which documentation will be generated.
 
 ```php
 'dto' => OpenApi::class,
 ```
 
-Затем определяем процессоры и их порядок. Процессор - анализриует собранные коллекторами данные и дополняет ими класс документации
+#### processors
+
+The processor analyzes the data collected by the collectors and adds it to the documentation class. The order of the 
+processors is very important.
 
 ```php
 'processors' => [
@@ -459,258 +499,402 @@ abstract class TestCase extends BaseTestCase
 ],
 ```
 
-После определения конфигурации переходим к созданию базовых классов по группам. Для каждой группы в каталоге тестов будет
-создан свой подкаталог и базовый класс для тестов 
+### Commands
 
-```bash
-php artisan testrine:init
-```
+1. After defining the configuration, you need to create base classes by group. Each group will have its own subdirectory 
+   and base class for tests in the test directory.
 
-Затем создаем сами тесты. Для этого вызываем команду
+    ```bash
+    php artisan testrine:init
+    ```
 
-```bash
-php artisan testrine:tests
-```
+2. Application test coverage.
 
-Команда покрывает маршруты тестами. Если нужно перезаписть можно использовать флаг -R
+    ```bash
+    php artisan testrine:tests
+    ```
 
-Либо можно использовать команду 
+   The command covers routes with tests. If you need to overwrite existing tests, you can use the -R flag.
 
-```bash
-php artisan testrine:make
-```
+3. Creating one test file
 
-Для создания одного файла тестов
+    ```bash
+    php artisan testrine:make
+    ```
 
-После создания тестов запускаем их
+4. Running tests
 
-```bash
-php artisan test
-```
+    ```bash
+    php artisan test
+    ```
 
-Затем анализируем собранные файлы
+5. Analysis of collected data
 
-```bash
-php artisan testrine:parse
-```
+    ```bash
+    php artisan testrine:parse
+    ```
 
-Для удаления собранных файлов используем команду 
+6. Deleting collected data
 
-```bash
-php artisan testrine:destroy
-```
+    ```bash
+    php artisan testrine:destroy
+    ```
 
-Можно использовать команду, которая объединяет в себе запуск тестов, анализ собранных данных и удлаение собранных данных
+7. A command that combines running tests, analyzing collected data, and deleting collected data
 
-```bash
-php artisan testrine:generate
-```
+    ```bash
+    php artisan testrine:generate
+    ```
 
-Могут быть ситуации, когда нам нужно указать значение каких либо параметров маршрутов или данных в теле запроса или 
-указать дефолтный код. Для этого нужно использовать бинды через класс DkDev\Testrine\Testrine и используем код билдер. 
-Далее оно будет более детально описан.
+### Default values for route parameters, valid data, and response codes
 
-Создание значений параметров маршрута. Мы определяем маршрут или можно для всех задать, для этого используем *.
-И значение, можно использовать билдер, можно просто передать строку
+There may be situations where we need to:
+- specify the value of route parameters,
+- data in the request body,
+- a default response code.
+To do this, we need to use the DkDev\Testrine\Testrine and DkDev\Testrine\CodeBuilder\Builder classes.
 
-```php
-Testrine::binds()->pushValid(
-    routeName: 'api.verification.verify',
-    key: 'id',
-    value: Builder::make()->method('getUser')->property('id'),
-);
-```
-
-создание невалидного параметра маршрута
-
-```php
-Testrine::binds()->pushInvalid(
-    routeName: 'api.verification.verify',
-    key: 'id',
-    value: Builder::make()->method('getUser')->property('id'),
-);
-```
-
-создание дефолтного кода. Определяем ресолвер, роут и код
-
-```php
-Testrine::binds()->setDefaultCode(
-    resolver: ValidDataCodeResolver::class,
-    routeName: 'api.auth.logout',
-    value: 204
-);
-```
-
-создание дефолтного валидного значения. определяем роут/или для всех, ключ параметра и значение
-
-```php
-Testrine::binds()->setDefaultValue(
-    routeName: 'api.auth.login',
-    key: 'email',
-    value: Builder::make()->method('getUser')->property('email'),
-);
-```
-
-Контракты.
-
-AssertContract. Применяется, когда нужно использовать сделать дополнительные проверки. Необходимо реализовать метод assert. 
-Метод принимает текущий тест и ключ пользователя из-под которого тест выполняется.
-
-```php
-public function assert(TestResponse $test, string $userKey): void
-{
-    // todo
-}
-```
-
-CodeContract. Применяется, когда нужно переопределить дефолтные успешные коды ответа. Необходимо реализовать метод codes, возвращает ассоциативный 
-массив, где ключ это пользователь, а значение это код
-
-```php
- public function codes(): array
-{
-    return [
-        'guest' => 200,
-        'user' => 200,
-    ];
-}
-```
-
-DocIgnoreContract. Применяется, когда нужно проигнорировать в документации этот тест. Ресолвер этого контракта имеет трейт 
-HasContractRoutes, это значит, что для автоиспользования этого контракта для ресолвера можно задать маршруты.
-
-```php
-Testrine::binds()->setContractRoutes(
-    contract: DocIgnoreContract::class,
-    routes: [
-        'api.home.index',
-    ]
-);
-```
-
-FakeStorageContract. Применяется, когда нужно вызвать Storage::fake() до теста. Ресолвер этого контракта имеет трейт
-HasContractRoutes.
-
-InvalidateCodeContract. Применяется. когда нужно использовать иной от дефолтного кода для невалидных данных. Нужно 
-реализовать метод invalidDataCode
-
-```php
-public function invalidDataCode(): int
-{
-    return 301;
-}
-```
-
-InvalidateContract. Контракт используется, если нужно проверить передачу невалидных данных. Необходимо реализовать метод
-invalidData.
-
-```php
-public function invalidData(): array
-{
-    return [
-        'name' => 123,
-        'age' => 'fake'
-    ]
-}
-```
-
-InvalidParametersCodeContract. Применяется, когда нужно переопределить дефолитные коды для невалидных параметров маршрута.
-Нужно реализовать метод codesForInvalidParameters.
-```php
-public function codesForInvalidParameters(): array
-{
-    return [
-        'guest' => 403,
-        'user' => 404,   
-    ];
-}
-```
-InvalidParametersContract. Применяется, когда нужно проверить передачу невалидных параметров маршрута. Необходимо реализовать 
-метод invalidParameters
-
-```php
-public function invalidParameters(): array
-{
-    return [
-        'post' => 'sadas'  
-    ];
-}
-```
-
-JobContract. Применяется, если нужно проверить работу джоб. Queue::fake() уже будет заранее вызван. 
-Ресолвер этого контракта имеет трейт HasContractRoutes. Необходимо реализовать метод jobs, в котором проверить вызов джоб
-
-```php
-public function jobs(): void
-{
+1. Route parameters
+    In the parameters, I'll pass:
+   - routeName - the name of a specific route or null for all routes,
+   - key - the parameter key,
+   - value - the value. You can use DkDev\Testrine\CodeBuilder\Builder or simply pass a string
     
-}
+       ```php
+       Testrine::routeParams()->pushValid(
+           routeName: 'api.verification.verify',
+           key: 'id',
+           value: Builder::make()->method('getUser')->property('id'),
+       );
+   
+      Testrine::routeParams()->pushInalid(
+           routeName: 'api.verification.verify',
+           key: 'hash',
+           value: Builder::make(root: 'str()')->method('random', 5),
+       );
+       ```
+
+2. Request body data.
+
+   To define default data in the request body, you need to add the default parameter value for a specific route or for all 
+   routes to the rules using the * sign.
+
+    ```php
+    Testrine::rules()->setDefaultValue(
+        routeName: 'api.auth.login',
+        key: 'email',
+        value: Builder::make()->method('getUser')->property('email'),
+    );
+    ```
+
+3. Default response code.
+   - Define the resolver,
+   - Route name,
+   - Specify the code.
+
+       ```php
+       Testrine::code()->setDefaultCode(
+           resolver: ValidDataCodeResolver::class,
+           routeName: 'api.auth.logout',
+           value: 204
+       );
+       ```
+
+### Attributes
+
+Attributes allow you to add data to your documentation.
+
+Attributes can be added:
+- To FormRequest,
+- To Eloquent Resource,
+- Above the controller class,
+- Above the controller method.
+
+Priority:
+1. Method
+2. Controller class
+3. FormRequest
+4. Eloquent Resource.
+
+#### Group
+
+Adds a route to a group.
+
+```php
+use DkDev\Testrine\Attributes\Group;
+
+#[Group(name: 'GroupName')]
 ```
 
-MockContract. Применяется, если нужно вызвать моки над классами. Ресолвер этого контракта имеет трейт HasContractRoutes.
-Необходимо реализовать метод mockAction, где делать все моки
-```php
-public function mockAction(): void
-{
+#### Code
 
-}
+Description of response codes.
+
+```php
+use DkDev\Testrine\Attributes\Code;
+
+#[Code(code: 201, description: 'Post created')]
 ```
 
-NotificationContract. Применяется, если нужно проверить вызов увеодмлений. Ресолвер этого контракта имеет трейт HasContractRoutes.
-Нужно реализовать метод notifications
-```php
-public function notifications(): void
-{
+#### Description
 
-}
+Description of the route.
+
+```php
+use DkDev\Testrine\Attributes\Description;
+
+#[Description(description: 'Post creat endpoint')]
 ```
 
-ParametersContract.Если нужно проверить передачу валидных параметров маршрута. 
+#### Summary
+
+Brief description of the route.
+
 ```php
-public function parameters(): array
-{
-    return [
-        'post' => 1
-    ];
-}
+use DkDev\Testrine\Attributes\Summary;
+
+#[Summary(summary: 'Post creat endpoint')]
 ```
 
-ResponseContract. Если нужно проверить структуру ответа. Необходимо реализовать метод getResponseStructure
+#### Resource
+
+Specifies the Eloquent Resource that is used to respond to a route, and also specifies a nested resource within other resources.
+
 ```php
-public function getResponseStructure(): array
-{
-    return [
-        'data' => [
-            'id',
-            'name',
+use DkDev\Testrine\Attributes\Resource;
+
+#[Resource(name: UserResource::class)]
+#[Resource(name: UserResource::class, key: 'users')]
+```
+
+#### Property
+
+Describes the parameters/properties of the response/request.
+
+```php
+use DkDev\Testrine\Attributes\Property;
+use \DkDev\Testrine\Enums\Attributes\Type;
+use \DkDev\Testrine\Enums\Attributes\StringFormat;
+use \DkDev\Testrine\Enums\Attributes\In;
+
+#[Property(
+    name: 'email',
+    type: Type::STRING,
+    format: StringFormat::EMAIL,
+    in: In::BODY,
+    example: 'example@example.com',
+    description: 'user email address',
+    enum: null,
+    required: true,
+)]
+
+#[Property(
+    name: 'gender',
+    type: Type::ENUM,
+    format: null,
+    in: In::BODY,
+    example: Gender::WOMAN->value,
+    description: 'user gender',
+    enum: Gender::class,
+    required: true,
+)]
+```
+
+### Contracts
+
+1. AssertContract. 
+
+    This is used when additional checks are required. An `assert` method must be implemented.
+    The method accepts the current test and the username under which the test is being executed.
+    
+    ```php
+    public function assert(TestResponse $test, string $userKey): void
+    {
+        // todo
+    }
+    ```
+
+2. CodeContract. 
+
+   Used when you need to override the default success response codes. You must implement the `codes` method, which returns 
+   an associative array, where the key is the user and the value is the code.
+    
+    ```php
+     public function codes(): array
+    {
+        return [
+            'guest' => 200,
+            'user' => 200,
+        ];
+    }
+    ```
+
+3. DocIgnoreContract. 
+
+    Used when this test should be ignored in the documentation. This contract's resolver has the `HasContractRoutes` trait, 
+    meaning routes can be specified for the resolver to automatically use this contract.
+    
+    ```php
+    Testrine::contracts()->setContractRoutes(
+        contract: DocIgnoreContract::class,
+        routes: [
+            'api.home.index',
         ]
-    ];
-}
-```
+    );
+    ```
 
-SeedContract. Если перед тестом нужно вызвать сидеры. Ресолвер этого контракта имеет трейт HasContractRoutes. Нужно 
-реализовать dbSeed
-```php
-public function dbSeed(): void
-{
+4. FakeStorageContract. 
 
-}
-```
+    Used when you need to call `Storage::fake()` before a test. This contract's resolver has the `HasContractRoutes` trait.
 
-ValidateContract. Если нужно проверить передачу валидных данных
-```php
-public function validData(): array
-{
-    return [
-        'name' => 'fake_name',
-        'age' => 21
-    ];
-}
-```
+5. InvalidateCodeContract. 
 
-Для формирования валидных данных используется генератор на основе правил валидации. Для различных правил есть свой обработчик.
-Правила можно расширять. Для этого нужно создать класс наследник класс DkDev\Testrine\ValidData\Rules\BaseRule и реализовать 
-его абстрактные методы getPriority, hasThisRule и getValue. Пример реализации правила 'email'.
+   This is used when a different code than the default is needed for invalid data. The `invalidDataCode` method must be implemented.
+
+    ```php
+    public function invalidDataCode(): int
+    {
+        return 301;
+    }
+    ```
+
+6. InvalidateContract. 
+
+   The contract is used when checking for invalid data transfer. The 'invalidData' method must be implemented.
+    
+    ```php
+    public function invalidData(): array
+    {
+        return [
+            'name' => 123,
+            'age' => 'fake'
+        ]
+    }
+    ```
+
+7. InvalidParametersCodeContract. 
+
+   Used when you need to override default codes for invalid route parameters. You must implement the `codesForInvalidParameters` method.
+    
+   ```php
+    public function codesForInvalidParameters(): array
+    {
+        return [
+            'guest' => 403,
+            'user' => 404,   
+        ];
+    }
+    ```
+   
+8. InvalidParametersContract. 
+
+   This is used when you need to check for invalid route parameters. You must implement the 'invalidParameters' method.
+
+    ```php
+    public function invalidParameters(): array
+    {
+        return [
+            'post' => 'sadas'  
+        ];
+    }
+    ```
+
+9. JobContract. 
+
+   This is used when you need to check whether a job has been called. `Queue::fake()` will already be called. 
+   This contract's resolver has the `HasContractRoutes` trait. You must implement the `jobs` method to check whether 
+   the job has been called.
+
+    ```php
+    public function jobs(): void
+    {
+        
+    }
+    ```
+
+10. MockContract. 
+
+    This is used when mocking classes. The resolver for this contract has the `HasContractRoutes` trait.
+    You must implement the `mockAction` method, where all mocks will be performed.
+    
+    ```php
+    public function mockAction(): void
+    {
+    
+    }
+    ```
+
+11. NotificationContract. 
+
+    Used when checking notification calls. This contract's resolver has the `HasContractRoutes` trait.
+    The `notifications` method must be implemented.
+
+    ```php
+    public function notifications(): void
+    {
+    
+    }
+    ```
+
+12. ParametersContract.
+
+    If you need to check whether valid route parameters are passed, you need to implement the `parameters` method.
+
+    ```php
+    public function parameters(): array
+    {
+        return [
+            'post' => 1
+        ];
+    }
+    ```
+
+13. ResponseContract.
+
+    If you need to check the response structure, you must implement the `getResponseStructure` method.
+    
+    ```php
+    public function getResponseStructure(): array
+    {
+        return [
+            'data' => [
+                'id',
+                'name',
+            ]
+        ];
+    }
+    ```
+
+14. SeedContract. 
+
+    If you need to call seeders before a test, this contract's resolver has the `HasContractRoutes` trait. You need to implement the `dbSeed` method.
+
+    ```php
+    public function dbSeed(): void
+    {
+    
+    }
+    ```
+
+15. ValidateContract. 
+
+    If you need to check whether the data you're passing is valid, you need to implement the `validData` method.
+
+    ```php
+    public function validData(): array
+    {
+        return [
+            'name' => 'fake_name',
+            'age' => 21
+        ];
+    }
+    ```
+
+### RequestPayload rules
+
+A generator based on validation rules is used to generate valid data. Each rule has its own handler.
+Rules can be extended. To do this, create a class inheriting from DkDev\Testrine\RequestPayload\Rules\BaseRule and implement
+its abstract methods getPriority, hasThisRule, and getValue. An example implementation of the 'email' rule.
 
 ```php
 <?php
@@ -719,7 +903,8 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine\RequestPayload\Rules;
 
-use DkDev\Testrine\Enums\ValidData\RulePriority;
+use DkDev\Testrine\Enums\RequestPayload\RulePriority;
+use DkDev\Testrine\CodeBuilder\Builder;
 
 class EmailRule extends BaseRule
 {
@@ -735,18 +920,18 @@ class EmailRule extends BaseRule
 
     public function getValue(): string
     {
-        return 'fake()->email()';
+        return Builder::make('fake()')->method('email')->build();
     }
 }
 ```
 
-Затем нужно зарегистрировать новое правило.
+Then you need to register a new rule.
 
 ```php
 Testrine::rules()->add(NewRule::class);
 ```
 
-Также можно полностью переопределить правила, очистить, получить список правил
+You can also completely redefine the rules, clear them, and get a list of rules.
 
 ```php
 Testrine::rules()->set([
@@ -759,17 +944,22 @@ Testrine::rules()->clear();
 $rules = Testrine::rules()->list();
 ```
 
-Также можно кастомизировать стратегии авторизации, ресолверы контрактов, коллекторы, процессоры, ресолверы кодов и 
-ClassNameBuilder, который автоматически формирует название класса. Для этого делаем бинды обработчика, обратныый вызов 
-всегда получает текущий класс, для которого переопределяем логику.
+### Customization
+
+
+You can also customize auth strategies, resolver contracts, collectors, processors, code resolvers, and ClassNameBuilder, 
+which automatically generates the class name. To do this, we create a callback with our own handler. The callback always 
+receives the current class, for which we override the logic.
 
 ```php
-Testrine::binds()->setHandler(ClassNameBuilder::class, function (ClassNameBuilder $builder) {
+Testrine::handlers()->setHandler(ClassNameBuilder::class, function (ClassNameBuilder $builder) {
     // todo 
 });
 ```
 
-Также мы можем задать обработчики для различных событий
+### Generation events
+
+You can set handlers for various events.
 
 ```php
 Testrine::handlers()->afterDestroy(function () {
@@ -788,42 +978,44 @@ Testrine::handlers()->beforeGeneration(function () {
     // todo   
 });
 
-// сработает только если тесты будут вызваны через testrine:generate
+// will only work if tests are called via testrine:generate
 Testrine::handlers()->afterTests(function () {
     // todo   
 });
 
-// сработает только если тесты будут вызваны через testrine:generate
+// will only work if tests are called via testrine:generate
 Testrine::handlers()->beforeTests(function () {
     // todo   
 });
 ```
 
-CodeBuilder. Через него мы можем:
-- обратиться к текущему тесту
-- вызвать свойство
-- вызвать свойство с null-safe оператором
-- вызвать метод
-- вызвать метод с null-safe оператором
-- вызвать функцию
-- вызвать статическую функцию класса
-- просто сделать возврат строки
+### CodeBuilder
+
+Through it, we can:
+- access the current test
+- call a property
+- call a property with a null-safe operator
+- call a method
+- call a method with a null-safe operator
+- call a function
+- call a static function of a class
+- simply return a string
 
 ```php
 use DkDev\Testrine\CodeBuilder\Builder;
 
-// строитель начнет с $this
+// the builder will start with $this
 Builder::make(); 
 
-// обращаемся к методу getUser и получаем свойство email. Код будет следующим $this->getUser()->email;
+// We call the getUser method and get the email property. The code will be as follows: $this->getUser()->email;
 Builder::make()->method('getUser')->property('email'); 
 
-// тоже самое, но с null-safe оператором $this?->getUser()?->email;
+// the same, but with the null-safe operator $this?->getUser()?->email;
 Builder::make()->safeMethod('getUser')->safeProperty('email');
 
-// вызов функции шифрования почты пользователя. Результат - sha1($this->getUser()->email);
+// Calling the user's email encryption function. Result: sha1($this->getUser()->email);
 Builder::make('')->func('sha1', Builder::make()->method('getUser')->property('email')), 
 
-// возврат строки. Результат - 'password'
+// return string. Result is 'password'
 Builder::make('')->raw('password')
 ```

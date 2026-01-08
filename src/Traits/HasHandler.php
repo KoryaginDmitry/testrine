@@ -17,13 +17,18 @@ trait HasHandler
 
     public function handle()
     {
-        if (! empty(static::$handle)) {
+        if ($this->hasHandler()) {
             $callable = static::$handle;
 
             return $callable($this);
         }
 
         return $this->defaultHandler();
+    }
+
+    public function hasHandler(): bool
+    {
+        return ! empty(static::$handle);
     }
 
     abstract public function defaultHandler(): mixed;

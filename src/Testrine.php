@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace DkDev\Testrine;
 
-use DkDev\Testrine\Services\BindService;
+use DkDev\Testrine\Services\CodeService;
+use DkDev\Testrine\Services\ContractService;
 use DkDev\Testrine\Services\HandlerService;
+use DkDev\Testrine\Services\RouteParamsService;
 use DkDev\Testrine\Services\RuleService;
 
 class Testrine
@@ -23,18 +25,28 @@ class Testrine
         return self::$instances[$instance];
     }
 
-    public static function rules(): RuleService
+    public static function code(): CodeService
     {
-        return self::getInstance(RuleService::class);
+        return self::getInstance(CodeService::class);
     }
 
-    public static function binds(): BindService
+    public static function contracts(): ContractService
     {
-        return self::getInstance(BindService::class);
+        return self::getInstance(CodeService::class);
     }
 
     public static function handlers(): HandlerService
     {
         return self::getInstance(HandlerService::class);
+    }
+
+    public static function routeParams(): RouteParamsService
+    {
+        return self::getInstance(RouteParamsService::class);
+    }
+
+    public static function rules(): RuleService
+    {
+        return self::getInstance(RuleService::class);
     }
 }

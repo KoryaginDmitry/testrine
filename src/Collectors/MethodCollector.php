@@ -11,7 +11,7 @@ class MethodCollector extends Collector
         return 'method';
     }
 
-    public function defaultHandler(): mixed
+    public function defaultHandler(): string
     {
         return str($this->getRoute()?->methods()[0])->lower()->value();
     }

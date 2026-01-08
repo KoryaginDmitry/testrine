@@ -15,7 +15,7 @@ trait HasRange
     public function setRange(array $rules): void
     {
         foreach ($rules as $rule) {
-            if (! is_string($rule) || ! ($rule instanceof Stringable)) {
+            if (! is_string($rule) && ! ($rule instanceof Stringable)) {
                 continue;
             }
 

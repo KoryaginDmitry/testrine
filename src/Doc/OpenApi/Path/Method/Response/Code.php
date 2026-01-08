@@ -15,7 +15,7 @@ class Code implements JsonSerializable
         public string $contentType = 'application/json',
     ) {}
 
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return [
             'description' => $this->description,

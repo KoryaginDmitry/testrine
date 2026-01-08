@@ -13,7 +13,7 @@ class CodeCollector extends Collector
         return 'code';
     }
 
-    public function defaultHandler(): mixed
+    public function defaultHandler(): array
     {
         $code = $this->response->status();
 

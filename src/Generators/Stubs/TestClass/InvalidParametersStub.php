@@ -33,7 +33,7 @@ class InvalidParametersStub extends TestClassStub
         $result = \DkDev\Testrine\Support\Infrastructure\Route::getParametersByUrl($uri)
             ->map(function (string $parameter, int $index) {
                 $key = str_replace(['{', '}'], '', $parameter);
-                $value = Testrine::binds()->getInvalid($this->routeName, $key);
+                $value = Testrine::routeParams()->getInvalid($this->routeName, $key);
 
                 return $index === 0 ? "'$key' => $value" : Char::TAB3."'$key' => $value";
             })->implode(','.Char::NL);

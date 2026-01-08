@@ -10,9 +10,9 @@ use DkDev\Testrine\Doc\OpenApi\Info\License\License;
 class Info
 {
     public function __construct(
-        public string $title,
-        public string $description,
-        public string $version,
+        public ?string $title,
+        public ?string $description,
+        public ?string $version,
         public Contact $contact,
         public License $license,
     ) {}
@@ -20,11 +20,11 @@ class Info
     public static function fromArray(array $data): static
     {
         return new self(
-            title: $data['title'],
-            description: $data['description'],
-            version: $data['version'],
-            contact: Contact::fromArray($data['contact']),
-            license: License::fromArray($data['license']),
+            title: $data['title'] ?? null,
+            description: $data['description'] ?? null,
+            version: $data['version'] ?? null,
+            contact: Contact::fromArray($data['contact'] ?? null),
+            license: License::fromArray($data['license'] ?? null),
         );
     }
 }

@@ -11,7 +11,7 @@ class PathCollector extends Collector
         return 'path';
     }
 
-    public function defaultHandler(): mixed
+    public function defaultHandler(): string
     {
         return str($this->getRoute()?->uri)->replace('?', '')->start('/')->value();
     }

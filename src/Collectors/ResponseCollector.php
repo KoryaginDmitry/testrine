@@ -91,7 +91,7 @@ class ResponseCollector extends Collector
         return null;
     }
 
-    public function defaultHandler(): mixed
+    public function defaultHandler(): array
     {
         $attributes = $this->attributes->filter(function ($attribute) {
             return $attribute instanceof Property && $attribute->in === In::RESPONSE;

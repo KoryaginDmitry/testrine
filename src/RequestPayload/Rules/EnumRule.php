@@ -6,7 +6,7 @@ namespace DkDev\Testrine\RequestPayload\Rules;
 
 use BackedEnum;
 use DkDev\Testrine\CodeBuilder\Builder;
-use DkDev\Testrine\Enums\ValidData\RulePriority;
+use DkDev\Testrine\Enums\RequestPayload\RulePriority;
 use Illuminate\Validation\Rules\Enum;
 use ReflectionClass;
 

@@ -15,6 +15,11 @@ trait HasContractRoutes
         self::$contractRoutes = $routes;
     }
 
+    public static function getContractRoutes(): array
+    {
+        return self::$contractRoutes;
+    }
+
     public function hasRoute(Route $route): bool
     {
         return in_array(needle: $route->getName(), haystack: static::$contractRoutes);
