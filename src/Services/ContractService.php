@@ -11,9 +11,11 @@ class ContractService extends BaseService
     /**
      * @param  class-string<HasContractRoutes>  $contract
      */
-    public function setContractRoutes(string $contract, array $routes): void
+    public function setContractRoutes(string $contract, array $routes): self
     {
         $contract::setContractRoutes(routes: $routes);
+
+        return $this;
     }
 
     /**

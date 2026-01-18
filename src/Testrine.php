@@ -6,6 +6,7 @@ namespace DkDev\Testrine;
 
 use DkDev\Testrine\Services\CodeService;
 use DkDev\Testrine\Services\ContractService;
+use DkDev\Testrine\Services\RequestPropsService;
 use DkDev\Testrine\Services\HandlerService;
 use DkDev\Testrine\Services\RouteParamsService;
 use DkDev\Testrine\Services\RuleService;
@@ -48,5 +49,10 @@ class Testrine
     public static function rules(): RuleService
     {
         return self::getInstance(RuleService::class);
+    }
+
+    public static function requestProps(): RequestPropsService
+    {
+        return self::getInstance(RequestPropsService::class);
     }
 }

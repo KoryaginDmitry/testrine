@@ -3,6 +3,7 @@
 namespace DkDev\Testrine\Support\Infrastructure;
 
 use DkDev\Testrine\Attributes\Resource;
+use DkDev\Testrine\Testrine;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -66,6 +67,10 @@ class Reflection
         foreach (\DkDev\Testrine\Support\Infrastructure\Route::getParametersByUrl($this->route->uri()) as $urlParam) {
             $prop = trim($urlParam, '{}');
             $formRequest->{$prop} = $this->mockRouteValue();
+        }
+
+        foreach (Testrine::requestProps()->list($this->route->getName()) as $prop => $value) {
+            $formRequest->{$prop} = $value;
         }
 
         return $formRequest->rules();

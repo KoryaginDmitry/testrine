@@ -18,38 +18,52 @@ class HandlerService extends BaseService
     /**
      * @param  class-string<HasHandler>  $handlerClass
      */
-    public static function setHandler(string $handlerClass, Closure $handler): void
+    public function setHandler(string $handlerClass, Closure $handler): self
     {
         $handlerClass::setHandler(callback: $handler);
+
+        return $this;
     }
 
-    public function afterDestroy(Closure $closure): void
+    public function afterDestroy(Closure $closure): self
     {
         AfterDestroyFilesEventHandler::setHandler($closure);
+
+        return $this;
     }
 
-    public function beforeDestroy(Closure $closure): void
+    public function beforeDestroy(Closure $closure): self
     {
         BeforeDestroyFilesEventHandler::setHandler($closure);
+
+        return $this;
     }
 
-    public function afterGeneration(Closure $closure): void
+    public function afterGeneration(Closure $closure): self
     {
         AfterDocGenerationEventHandler::setHandler($closure);
+
+        return $this;
     }
 
-    public function beforeGeneration(Closure $closure): void
+    public function beforeGeneration(Closure $closure): self
     {
         BeforeDocGenerationEventHandler::setHandler($closure);
+
+        return $this;
     }
 
-    public function afterTests(Closure $closure): void
+    public function afterTests(Closure $closure): self
     {
         AfterTestEventHandler::setHandler($closure);
+
+        return $this;
     }
 
-    public function beforeTests(Closure $closure): void
+    public function beforeTests(Closure $closure): self
     {
         BeforeTestsEventHandler::setHandler($closure);
+
+        return $this;
     }
 }

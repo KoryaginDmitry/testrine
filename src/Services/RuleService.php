@@ -11,14 +11,18 @@ class RuleService extends BaseService
 {
     public array $rules = [];
 
-    public function add(string $rule): void
+    public function add(string $rule): self
     {
         $this->rules[] = $rule;
+
+        return $this;
     }
 
-    public function set(array $rules): void
+    public function set(array $rules): self
     {
         $this->rules = $rules;
+
+        return $this;
     }
 
     public function list(): array
@@ -26,17 +30,21 @@ class RuleService extends BaseService
         return $this->rules;
     }
 
-    public function clear(): void
+    public function clear(): self
     {
         $this->rules = [];
+
+        return $this;
     }
 
-    public function setDefaultValue(string $routeName, string $key, int|string|Builder $value): void
+    public function setDefaultValue(string $routeName, string $key, int|string|Builder $value): self
     {
         BaseRule::setDefaultValue(
             routeName: $routeName,
             key: $key,
             value: $value
         );
+
+        return $this;
     }
 }

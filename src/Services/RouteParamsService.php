@@ -16,7 +16,7 @@ class RouteParamsService extends BaseService
         '*' => 999999,
     ];
 
-    public function pushValid(?string $routeName, string $key, string|Builder $value): void
+    public function pushValid(?string $routeName, string $key, string|Builder $value): self
     {
         $value = $value instanceof Builder ? $value->build() : $value;
 
@@ -25,15 +25,19 @@ class RouteParamsService extends BaseService
         } else {
             $this->valid[$key] = $value;
         }
+
+        return $this;
     }
 
-    public function pushInvalid(?string $routeName, string $key, string $value): void
+    public function pushInvalid(?string $routeName, string $key, string $value): self
     {
         if ($routeName) {
             $this->invalid[$routeName][$key] = $value;
         } else {
             $this->invalid[$key] = $value;
         }
+
+        return $this;
     }
 
     public function getValid(string $routeName, string $key): int|string
