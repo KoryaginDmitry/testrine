@@ -70,7 +70,9 @@ class Reflection
         }
 
         foreach (Testrine::requestProps()->list($this->route->getName()) as $prop => $value) {
-            $formRequest->{$prop} = $value;
+            $formRequest->merge([
+                $prop => $value,
+            ]);
         }
 
         return $formRequest->rules();
