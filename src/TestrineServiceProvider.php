@@ -20,6 +20,7 @@ use DkDev\Testrine\RequestPayload\Rules\EnumRule;
 use DkDev\Testrine\RequestPayload\Rules\FileRule;
 use DkDev\Testrine\RequestPayload\Rules\ImageRule;
 use DkDev\Testrine\RequestPayload\Rules\IntegerRule;
+use DkDev\Testrine\RequestPayload\Rules\IpRule;
 use DkDev\Testrine\RequestPayload\Rules\PasswordRule;
 use DkDev\Testrine\RequestPayload\Rules\RegexRule;
 use DkDev\Testrine\RequestPayload\Rules\StringRule;
@@ -80,7 +81,6 @@ class TestrineServiceProvider extends ServiceProvider
 
     protected function setRules(): void
     {
-
         Testrine::rules()->set([
             TableExistsRule::class,
             BooleanRule::class,
@@ -95,6 +95,7 @@ class TestrineServiceProvider extends ServiceProvider
             UrlRule::class,
             RegexRule::class,
             CurrentPasswordRule::class,
+            IpRule::class,
         ]);
     }
 }

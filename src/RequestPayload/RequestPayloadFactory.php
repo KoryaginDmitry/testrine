@@ -2,6 +2,7 @@
 
 namespace DkDev\Testrine\RequestPayload;
 
+use DkDev\Testrine\CodeBuilder\Builder;
 use DkDev\Testrine\RequestPayload\Rules\BaseRule;
 use DkDev\Testrine\RequestPayload\Traits\HasMimes;
 use DkDev\Testrine\RequestPayload\Traits\HasRange;
@@ -115,6 +116,6 @@ class RequestPayloadFactory
 
     protected function makeStub(string $key): string
     {
-        return str($key)->contains('id') ? 1 : Str::random(12);
+        return str($key)->contains('id') ? 1 : Builder::make('')->staticCall(Str::class, 'random')->build();
     }
 }
