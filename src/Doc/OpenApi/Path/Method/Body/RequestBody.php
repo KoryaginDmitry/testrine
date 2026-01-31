@@ -18,7 +18,7 @@ class RequestBody implements JsonSerializable
     {
         return [
             'content' => [
-                'application/json' => [
+                $this->contentType => [
                     'schema' => $this->scheme,
                 ],
             ],
