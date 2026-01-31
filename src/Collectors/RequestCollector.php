@@ -12,6 +12,7 @@ use DkDev\Testrine\Enums\Attributes\Type;
 use DkDev\Testrine\Support\Infrastructure\Reflection;
 use DkDev\Testrine\Testrine;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rules\Enum;
 use ReflectionClass;
@@ -27,17 +28,23 @@ class RequestCollector extends Collector
 
     protected function parseBody(array $rules): void
     {
-        $json = json_decode(request()->getContent(), true);
-        if (! is_array($json)) {
+        $payload = json_decode(request()->getContent(), true);
+        if (! is_array($payload)) {
             return;
         }
 
-        foreach ($json as $name => $value) {
+        foreach (request()->files as $name => $file) {
+            $payload[$name] = $file;
+        }
+
+        foreach ($payload as $name => $value) {
             $property = $this->findProperty(attributes: $this->attributes, name: $name, excluded: [In::PATH, In::RESPONSE]);
 
             $in = $property?->in ?? ($this->isGet() ? In::QUERY : In::BODY);
 
-            $this->addResult(property: $property, name: $name, value: $value, in: $in, rules: $rules);
+            $value instanceof UploadedFile
+                ? $this->addFile(property: $property, name: $name, file: $value, in: $in, rules: $rules)
+                : $this->addResult(property: $property, name: $name, value: $value, in: $in, rules: $rules);
         }
     }
 
@@ -81,6 +88,21 @@ class RequestCollector extends Collector
             'description' => $property?->description
                 ?: Testrine::property()->getDescription($this->getRoute()->getName(), $name),
             'enum' => $this->resolveEnum($property, $name, $rules),
+            'required' => $this->resolveRequired($property, $name, $rules) || $in === In::PATH,
+        ];
+    }
+
+    protected function addFile(?Property $property, string $name, UploadedFile $file, In $in, array $rules)
+    {
+        $this->result[] = [
+            'name' => $name,
+            'example' => file_get_contents($file->getRealPath()),
+            'type' => Type::STRING->value,
+            'format' => StringFormat::BINARY->value,
+            'in' => $in->value,
+            'description' => $property?->description
+                ?: Testrine::property()->getDescription($this->getRoute()->getName(), $name),
+            'enum' => null,
             'required' => $this->resolveRequired($property, $name, $rules) || $in === In::PATH,
         ];
     }
@@ -131,7 +153,7 @@ class RequestCollector extends Collector
                 return $property->getValue($rule);
             }
 
-            if ($this->startsWith('in:', $rule)) {
+            if ((is_string($rule) || $rule instanceof Stringable) && str_starts_with('in:', $rule)) {
                 return str($rule)->after(':')->explode(',')->toArray();
             }
         }
