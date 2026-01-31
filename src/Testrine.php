@@ -6,6 +6,7 @@ namespace DkDev\Testrine;
 
 use DkDev\Testrine\Services\CodeService;
 use DkDev\Testrine\Services\ContractService;
+use DkDev\Testrine\Services\PropertyService;
 use DkDev\Testrine\Services\RequestPropsService;
 use DkDev\Testrine\Services\HandlerService;
 use DkDev\Testrine\Services\RouteParamsService;
@@ -54,5 +55,10 @@ class Testrine
     public static function requestProps(): RequestPropsService
     {
         return self::getInstance(RequestPropsService::class);
+    }
+
+    public static function property(): PropertyService
+    {
+        return self::getInstance(PropertyService::class);
     }
 }

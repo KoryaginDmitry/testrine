@@ -9,6 +9,7 @@ use DkDev\Testrine\Attributes\Property;
 use DkDev\Testrine\Enums\Attributes\In;
 use DkDev\Testrine\Enums\Attributes\StringFormat;
 use DkDev\Testrine\Enums\Attributes\Type;
+use DkDev\Testrine\Testrine;
 use Illuminate\Support\Collection;
 
 class ResponseCollector extends Collector
@@ -38,7 +39,8 @@ class ResponseCollector extends Collector
                     'type' => $this->resolveType($property, $value),
                     'format' => $this->resolveFormat($property, $value),
                     'in' => In::RESPONSE->value,
-                    'description' => $property?->description,
+                    'description' => $property?->description
+                        ?: Testrine::property()->getDescription($this->getRoute()->getName(), $name),
                     'enum' => $this->resolveEnum($property),
                     'required' => $property?->required || ! empty($value),
                 ];

@@ -10,8 +10,11 @@ use DkDev\Testrine\Enums\Attributes\In;
 use DkDev\Testrine\Enums\Attributes\StringFormat;
 use DkDev\Testrine\Enums\Attributes\Type;
 use DkDev\Testrine\Support\Infrastructure\Reflection;
+use DkDev\Testrine\Testrine;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Validation\Rules\Enum;
+use ReflectionClass;
 
 class RequestCollector extends Collector
 {
@@ -75,8 +78,9 @@ class RequestCollector extends Collector
             'type' => $this->resolveType($property, $value),
             'format' => $this->resolveFormat($property, $name, $rules),
             'in' => $in->value,
-            'description' => $property?->description,
-            'enum' => $this->resolveEnum($property),
+            'description' => $property?->description
+                ?: Testrine::property()->getDescription($this->getRoute()->getName(), $name),
+            'enum' => $this->resolveEnum($property, $name, $rules),
             'required' => $this->resolveRequired($property, $name, $rules) || $in === In::PATH,
         ];
     }
@@ -100,9 +104,9 @@ class RequestCollector extends Collector
         };
     }
 
-    protected function resolveEnum(?Property $property): ?array
+    protected function resolveEnum(?Property $property, string $name, array $rules): ?array
     {
-        $enum = $property?->enum;
+        $enum = $property?->enum ?: $this->getEnumFromRules($rules[$name] ?? []);
 
         return match (true) {
             is_array($enum) => $enum,
@@ -113,6 +117,26 @@ class RequestCollector extends Collector
             is_string($enum) => [$enum],
             default => null,
         };
+    }
+
+    protected function getEnumFromRules(array $rules = [])
+    {
+        foreach ($rules as $rule) {
+            if ($rule instanceof Enum) {
+                $reflection = new ReflectionClass($rule);
+
+                $property = $reflection->getProperty('type');
+                $property->setAccessible(true);
+
+                return $property->getValue($rule);
+            }
+
+            if ($this->startsWith('in:', $rule)) {
+                return str($rule)->after(':')->explode(',')->toArray();
+            }
+        }
+
+        return [];
     }
 
     protected function resolveRequired(?Property $property, string $name, array $rules): bool
